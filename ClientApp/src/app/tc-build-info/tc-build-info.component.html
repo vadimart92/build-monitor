@@ -1,0 +1,13 @@
+<mat-card  [ngClass]="getStatusClass()">
+  <mat-card-header>
+    <button class="status-icon" mat-mini-fab mat-card-avatar mat-button [ngSwitch]="buildConfig.status">
+      <mat-icon *ngSwitchCase="buildStatus.Failed">clear</mat-icon>
+      <mat-icon *ngSwitchCase="buildStatus.Success">check</mat-icon>
+    </button>
+    <mat-card-title>{{buildConfig.name}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+   {{buildConfig.projectName}}
+   {{buildConfig.startedBy}}
+  </mat-card-content>
+</mat-card>
