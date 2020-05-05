@@ -9,8 +9,8 @@ import {FlexModule} from '@angular/flex-layout/flex';
 import {GridModule} from '@angular/flex-layout/grid';
 
 import {
-  BuildConfigItem,
-  BuildMonitorConfig,
+  BuildMonitorInfoItem,
+  BuildMonitorInfo,
   BuildStatus,
   BuildViewType, Change,
   MonitorItem, TcBuildInfo, User
@@ -29,9 +29,9 @@ storiesOf('Build monitor', module)
     component: BuildMonitorComponent,
     props: {
       monitorItem: <MonitorItem>({
-        config: <BuildMonitorConfig>{
+        config: <BuildMonitorInfo>{
           builds: [
-            <BuildConfigItem>({
+            <BuildMonitorInfoItem>({
               viewType: BuildViewType.TeamCity,
               config: <TcBuildInfo>({
                 id: "ApiTests|4189",
@@ -45,7 +45,7 @@ storiesOf('Build monitor', module)
                 ]
               })
             }),
-            <BuildConfigItem>({
+            <BuildMonitorInfoItem>({
               viewType: BuildViewType.TeamCity,
               config: <TcBuildInfo>({
                 id: "ApiTests|4189",

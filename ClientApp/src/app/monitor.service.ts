@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {
-  BuildConfigItem,
-  BuildMonitorConfig,
+  BuildMonitorInfoItem,
+  BuildMonitorInfo,
   BuildStatus,
   BuildViewType,
   Change,
@@ -20,7 +20,7 @@ export class MonitorService {
 
   getMonitors(configName) {
     const builds = data.builds.map(function (build) {
-      return <BuildConfigItem>{
+      return <BuildMonitorInfoItem>{
         viewType: BuildViewType.TeamCity,
         config: <TcBuildInfo>{
           id: build.id,
@@ -39,7 +39,7 @@ export class MonitorService {
       <MonitorItem>({
         type: MonitorType.BuildInfo,
         name: "core",
-        config: <BuildMonitorConfig> {
+        config: <BuildMonitorInfo> {
           builds: builds
         }
       })

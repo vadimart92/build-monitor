@@ -1,4 +1,4 @@
-<mat-card  [ngClass]="getStatusClass()">
+<mat-card  [ngClass]="getStatusClass()" class="mat-elevation-z4">
   <mat-card-header>
     <button class="status-icon" mat-mini-fab mat-card-avatar mat-button [ngSwitch]="buildConfig.status">
       <mat-icon *ngSwitchCase="buildStatus.Failed">clear</mat-icon>

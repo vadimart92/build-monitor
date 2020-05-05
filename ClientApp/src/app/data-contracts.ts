@@ -1,11 +1,10 @@
-﻿import {Type} from "@angular/core";
-export enum BuildViewType {
+﻿export enum BuildViewType {
   TeamCity
 }
 export enum MonitorType {
   BuildInfo
 }
-export class BuildConfigItem {
+export class BuildMonitorInfoItem {
   public viewType: BuildViewType
   public config: BuildInfo
 }
@@ -26,8 +25,8 @@ export class BuildInfo {
   public durationSeconds: number
 }
 
-export class BuildMonitorConfig {
-  public builds: BuildConfigItem[]
+export class BuildMonitorInfo {
+  public builds: BuildMonitorInfoItem[]
 }
 export class User {
   public name: string
@@ -49,5 +48,5 @@ export class TcBuildInfo extends BuildInfo{
 export class MonitorItem {
   public type: MonitorType
   public name: string
-  public config: BuildMonitorConfig
+  public config: any
 }
