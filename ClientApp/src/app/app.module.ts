@@ -18,10 +18,12 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatTableModule} from '@angular/material/table';
 
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {FlexModule} from '@angular/flex-layout/flex';
 import {GridModule} from '@angular/flex-layout/grid';
+import { ProfileListComponent } from './profile-list/profile-list.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import {GridModule} from '@angular/flex-layout/grid';
     FetchDataComponent,
     MonitorListComponent,
     BuildMonitorComponent,
-    TcBuildInfoComponent
+    TcBuildInfoComponent,
+    ProfileListComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
@@ -40,6 +43,7 @@ import {GridModule} from '@angular/flex-layout/grid';
     FormsModule,
     RouterModule.forRoot([
       {path: '', component: HomeComponent, pathMatch: 'full'},
+      {path: 'profiles', component: ProfileListComponent},
       {path: 'counter', component: CounterComponent},
       {path: 'fetch-data', component: FetchDataComponent},
       {path: 'monitor-view', component: MonitorListComponent},
@@ -50,6 +54,7 @@ import {GridModule} from '@angular/flex-layout/grid';
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
+    MatTableModule,
     FlexLayoutModule, FlexModule, GridModule
   ],
   providers: [],

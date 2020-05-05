@@ -14,8 +14,8 @@ export class MonitorListComponent implements OnInit {
   public monitorType = MonitorType;
   constructor(private monitorService: MonitorService, private route: ActivatedRoute) { }
   ngOnInit() {
-    let configName = this.route.snapshot.paramMap.get('configName');
-    this.monitorItems = this.monitorService.getMonitors(configName);
+    let profile = this.route.snapshot.paramMap.get('profile');
+    this.monitorItems = this.monitorService.getMonitors(profile);
   }
 
 }

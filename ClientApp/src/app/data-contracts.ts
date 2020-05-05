@@ -50,3 +50,9 @@ export class MonitorItem {
   public name: string
   public config: any
 }
+
+export class Profile {
+  id: number;
+  name: string;
+  description: string;
+}

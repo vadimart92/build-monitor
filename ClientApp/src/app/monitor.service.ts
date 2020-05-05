@@ -7,7 +7,7 @@ import {
   Change,
   MonitorItem,
   MonitorType,
-  TcBuildInfo, User
+  TcBuildInfo, User, Profile
 } from "./data-contracts";
 
 import *  as  data from './sampleData.json';
@@ -18,7 +18,16 @@ import *  as  data from './sampleData.json';
 
 export class MonitorService {
 
+  getProfiles() : Profile []{
+    return [
+      {id: 1, name: "test", description: "test desc"},
+      {id: 1, name: "empty", description: "empty desc"}
+    ]
+  }
   getMonitors(configName) {
+    if (configName == "empty"){
+      return [];
+    }
     const builds = data.builds.map(function (build) {
       return <BuildMonitorInfoItem>{
         viewType: BuildViewType.TeamCity,
