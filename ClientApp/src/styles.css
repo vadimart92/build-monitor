@@ -19,7 +19,7 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 body {
-  background-image: url("src/assets/pattern-b8gl.png");
+  background-image: url("src/assets/wall/carbon_fibre.png");
   background-repeat: repeat;
   background-attachment: fixed;
 }
