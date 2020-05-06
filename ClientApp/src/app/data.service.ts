@@ -16,12 +16,12 @@ import *  as  data from './sampleData.json';
   providedIn: 'root'
 })
 
-export class MonitorService {
+export class DataService {
 
   getProfiles() : Profile []{
     return [
-      {id: 1, name: "test", description: "test desc"},
-      {id: 1, name: "empty", description: "empty desc"}
+      {id: 1, name: "test", description: "test desc", config: "..."},
+      {id: 1, name: "empty", description: "empty desc", config: "..."}
     ]
   }
   getMonitors(configName) {
@@ -53,5 +53,26 @@ export class MonitorService {
         }
       })
     ];
+  }
+  createSampleProfile():Profile {
+    return {
+      config: '-  martin:\n' +
+        '    name: Martin D\'vloper\n' +
+        '    job: Developer\n' +
+        '    skills:\n' +
+        '      - python\n' +
+        '      - perl\n' +
+        '      - pascal\n' +
+        '-  tabitha:\n' +
+        '    name: Tabitha Bitumen\n' +
+        '    job: Developer\n' +
+        '    skills:\n' +
+        '      - lisp\n' +
+        '      - fortran\n' +
+        '      - erlang',
+      id: 0,
+      name: "sample",
+      description: "desc"
+    }
   }
 }

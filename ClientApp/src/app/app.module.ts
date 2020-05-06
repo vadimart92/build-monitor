@@ -19,11 +19,16 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTableModule} from '@angular/material/table';
+import {MatInputModule} from '@angular/material/input';
 
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {FlexModule} from '@angular/flex-layout/flex';
 import {GridModule} from '@angular/flex-layout/grid';
+
+import {MonacoEditorModule, NgxMonacoEditorConfig} from 'ngx-monaco-editor';
+
 import { ProfileListComponent } from './profile-list/profile-list.component';
+import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +40,8 @@ import { ProfileListComponent } from './profile-list/profile-list.component';
     MonitorListComponent,
     BuildMonitorComponent,
     TcBuildInfoComponent,
-    ProfileListComponent
+    ProfileListComponent,
+    ProfileEditComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
@@ -43,10 +49,11 @@ import { ProfileListComponent } from './profile-list/profile-list.component';
     FormsModule,
     RouterModule.forRoot([
       {path: '', component: HomeComponent, pathMatch: 'full'},
-      {path: 'profiles', component: ProfileListComponent},
+      {path: 'profile-list', component: ProfileListComponent},
       {path: 'counter', component: CounterComponent},
       {path: 'fetch-data', component: FetchDataComponent},
-      {path: 'monitor-view', component: MonitorListComponent},
+      {path: 'monitor-view/:profile', component: MonitorListComponent},
+      {path: 'profile', component: ProfileEditComponent},
     ]),
     BrowserAnimationsModule,
     MatCardModule,
@@ -55,7 +62,9 @@ import { ProfileListComponent } from './profile-list/profile-list.component';
     MatIconModule,
     MatToolbarModule,
     MatTableModule,
-    FlexLayoutModule, FlexModule, GridModule
+    MatInputModule,
+    FlexLayoutModule, FlexModule, GridModule,
+    MonacoEditorModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

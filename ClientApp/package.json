@@ -28,6 +28,8 @@
     "@nguniversal/module-map-ngfactory-loader": "8.1.1",
     "aspnet-prerendering": "^3.0.1",
     "core-js": "^3.3.3",
+    "monaco-yaml": "^2.4.0",
+    "ngx-monaco-editor": "^9.0.0",
     "oidc-client": "^1.9.1",
     "popper.js": "^1.16.0",
     "rxjs": "^6.5.4",

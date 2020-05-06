@@ -21,7 +21,7 @@
         <mat-header-cell mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
         <mat-cell mat-cell *matCellDef="let element">
           <button mat-icon-button (click)="view(element.name)" >
-            <mat-icon>pageview</mat-icon>
+            <mat-icon>open_in_new</mat-icon>
           </button>
           <button mat-icon-button>
             <mat-icon>edit</mat-icon>
@@ -32,6 +32,11 @@
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
+    <mat-card-actions align="end">
+      <button mat-fab color="primary" aria-label="Add new profile" (click)="addProfile()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </mat-card-actions>
 
   </mat-card-content>
 </mat-card>
