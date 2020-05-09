@@ -4,25 +4,26 @@ import {MatTableModule} from '@angular/material/table';
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {RouterTestingModule} from "@angular/router/testing";
-import {ProfileEditComponent} from "./profile-edit.component";
 import {ActivatedRoute, convertToParamMap} from "@angular/router";
+import { from } from "rxjs";
 import {MatInputModule} from "@angular/material/input";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MonacoEditorModule, NgxMonacoEditorConfig} from "ngx-monaco-editor";
-import {DataService} from "../data.service";
-import {BuildServer, BuildServerType} from "../data-contracts";
+import {BuildServerEditComponent} from "./build-server-edit.component";
+
 
 const router = RouterTestingModule.withRoutes(
-  [{path: '**', component: ProfileEditComponent}]
+  [{path: '**', component: BuildServerEditComponent}]
 )
-storiesOf('Profile edit component', module)
+
+storiesOf('Build server edit component', module)
   .addDecorator(
     moduleMetadata({
       imports: [BrowserAnimationsModule, MatCardModule, MatTableModule, MatButtonModule, MatIconModule, MatInputModule, MonacoEditorModule.forRoot(), router]
     })
   )
   .add('Add new', () => ({
-    component: ProfileEditComponent,
+    component: BuildServerEditComponent,
     props: {
       isNewMode: true
     },
@@ -36,7 +37,7 @@ storiesOf('Profile edit component', module)
     }
   }))
   .add('Edit', () => ({
-    component: ProfileEditComponent,
+    component: BuildServerEditComponent,
     props: {
       isNewMode: true
     },
@@ -46,18 +47,6 @@ storiesOf('Profile edit component', module)
           provide: ActivatedRoute,
           useValue: {snapshot: {paramMap: convertToParamMap({mode: 'edit'})}}
         },
-        {
-          provide: DataService,
-          useValue: {
-            getProfile: ()=> new DataService().createSampleProfile(),
-            getBuildServers():BuildServer []{
-              return [
-                {id: "1", name: "teamcity", description: "test desc", config: "...", type: BuildServerType.TeamCity},
-                {id: "2", name: "jenkins", description: "empty desc", config: "...", type: BuildServerType.TeamCity}
-              ]
-            }
-          }
-        }
       ]
     }
   }));

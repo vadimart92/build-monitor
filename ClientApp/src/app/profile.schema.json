@@ -1,0 +1,30 @@
+﻿{
+  "uri": "http://example.com/profile-schema.json",
+  "fileMatch": [
+    "*"
+  ],
+  "schema": {
+    "type": "object",
+    "properties": {
+      "monitors": {
+        "type": "array"
+
+      }
+    },
+    "definitions": {
+      "buildMonitorItem": {
+        "properties": {
+          "buildServer": {
+            "type": "string",
+            "description": "build server name",
+            "enum": ["main"]
+          },
+          "buildIds": {
+            "type": "array"
+          }
+        }
+      }
+    }
+
+  }
+}

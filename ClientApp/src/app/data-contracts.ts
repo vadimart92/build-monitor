@@ -1,5 +1,6 @@
 ﻿export enum BuildViewType {
-  TeamCity
+  TeamCity,
+  Default
 }
 export enum MonitorType {
   BuildInfo
@@ -25,6 +26,11 @@ export class BuildInfo {
   public durationSeconds: number
 }
 
+export class TcBuildInfo extends BuildInfo{
+  public changes: Change[]
+  public projectName: string
+}
+
 export class BuildMonitorInfo {
   public builds: BuildMonitorInfoItem[]
 }
@@ -40,20 +46,26 @@ export class Change {
   public author: User
 }
 
-export class TcBuildInfo extends BuildInfo{
-  public changes: Change[]
-  public projectName: string
-}
-
 export class MonitorItem {
   public type: MonitorType
   public name: string
   public config: any
 }
 
-export class Profile {
-  id: number;
+export class BaseConfigItem {
+  id: string;
   name: string;
   description: string;
   config: string;
+}
+
+export class Profile extends BaseConfigItem {
+}
+
+export enum BuildServerType {
+  TeamCity,
+  Jenkins
+}
+export class BuildServer extends BaseConfigItem {
+  type: BuildServerType
 }

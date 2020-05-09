@@ -29,4 +29,7 @@ export class ProfileListComponent implements OnInit {
     this.router.navigate(['/profile', {mode: "new"}]);
   }
 
+  edit(id: any) {
+    this.router.navigate(['/profile', {mode: "edit", id: id}]);
+  }
 }

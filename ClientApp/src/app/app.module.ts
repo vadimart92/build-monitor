@@ -29,6 +29,8 @@ import {MonacoEditorModule, NgxMonacoEditorConfig} from 'ngx-monaco-editor';
 
 import { ProfileListComponent } from './profile-list/profile-list.component';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
+import { BuildServerListComponent } from './build-server-list/build-server-list.component';
+import { BuildServerEditComponent } from './build-server-edit/build-server-edit.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { ProfileEditComponent } from './profile-edit/profile-edit.component';
     BuildMonitorComponent,
     TcBuildInfoComponent,
     ProfileListComponent,
-    ProfileEditComponent
+    ProfileEditComponent,
+    BuildServerListComponent,
+    BuildServerEditComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
@@ -49,11 +53,13 @@ import { ProfileEditComponent } from './profile-edit/profile-edit.component';
     FormsModule,
     RouterModule.forRoot([
       {path: '', component: HomeComponent, pathMatch: 'full'},
-      {path: 'profile-list', component: ProfileListComponent},
       {path: 'counter', component: CounterComponent},
       {path: 'fetch-data', component: FetchDataComponent},
       {path: 'monitor-view/:profile', component: MonitorListComponent},
+      {path: 'profile-list', component: ProfileListComponent},
       {path: 'profile', component: ProfileEditComponent},
+      {path: 'build-server-list', component: BuildServerListComponent},
+      {path: 'build-server', component: BuildServerEditComponent},
     ]),
     BrowserAnimationsModule,
     MatCardModule,

@@ -8,10 +8,10 @@ import {Profile} from "../data-contracts";
 import {RouterTestingModule} from "@angular/router/testing";
 
 const profiles: Profile[] = [
-  {id: 1, name: 'Hydrogen', description: "Core", config: "..."},
-  {id: 2, name: 'Helium', description: "Core 1", config: "..."},
-  {id: 3, name: 'Lithium', description: "some", config: "..."},
-  {id: 4, name: 'Beryllium', description: "asdsad", config: "..."}
+  {id: "1", name: 'Hydrogen', description: "Core", config: "..."},
+  {id: "2", name: 'Helium', description: "Core 1", config: "..."},
+  {id: "3", name: 'Lithium', description: "some", config: "..."},
+  {id: "4", name: 'Beryllium', description: "asdsad", config: "..."}
 ];
 
 const router = RouterTestingModule.withRoutes(
