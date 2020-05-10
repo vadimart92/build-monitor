@@ -2,10 +2,7 @@
   TeamCity,
   Default
 }
-export enum MonitorType {
-  BuildInfo
-}
-export class BuildMonitorInfoItem {
+export class BuildData {
   public viewType: BuildViewType
   public config: BuildInfo
 }
@@ -30,9 +27,9 @@ export class TcBuildInfo extends BuildInfo{
   public changes: Change[]
   public projectName: string
 }
-
-export class BuildMonitorInfo {
-  public builds: BuildMonitorInfoItem[]
+export interface IScreenData {}
+export class BuildScreenData implements IScreenData{
+  public builds: BuildData[]
 }
 export class User {
   public name: string
@@ -46,10 +43,13 @@ export class Change {
   public author: User
 }
 
-export class MonitorItem {
-  public type: MonitorType
-  public name: string
-  public config: any
+export enum ScreenType {
+  BuildInfo
+}
+export class Screen {
+  public id: string;
+  public type: ScreenType
+  public data: IScreenData
 }
 
 export class BaseConfigItem {

@@ -1,4 +1,4 @@
 <div *ngFor="let item of monitorItems" [ngSwitch]="item.type">
-  <app-build-monitor class="monitor" [monitorItem]="item"  *ngSwitchCase="monitorType.BuildInfo"></app-build-monitor>
-  <div *ngSwitchDefault>Monitor {{item.name}} has not supported type {{item.type}}</div>
+  <app-build-monitor class="monitor" [screen]="item" *ngSwitchCase="monitorType.BuildInfo"></app-build-monitor>
+  <div *ngSwitchDefault>Monitor {{item.id}} has not supported type {{item.type}}</div>
 </div>

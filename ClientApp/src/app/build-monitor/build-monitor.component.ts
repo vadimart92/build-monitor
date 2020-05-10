@@ -7,7 +7,7 @@ import {
   ViewContainerRef,
   ComponentFactoryResolver, ChangeDetectorRef, Input
 } from '@angular/core';
-import {BuildViewType, MonitorItem} from "../data-contracts";
+import {BuildViewType, Screen} from "../data-contracts";
 
 @Component({
   selector: 'app-build-monitor',
@@ -16,7 +16,7 @@ import {BuildViewType, MonitorItem} from "../data-contracts";
 })
 export class BuildMonitorComponent implements OnInit {
   public buildViewType = BuildViewType;
-  @Input() monitorItem: MonitorItem;
+  @Input() screen: Screen;
   constructor() { }
 
   ngOnInit(): void {

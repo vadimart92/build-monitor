@@ -1,14 +1,14 @@
 import {Injectable} from '@angular/core';
 import {
-  BuildMonitorInfo,
-  BuildMonitorInfoItem,
+  BuildScreenData,
+  BuildData,
   BuildServer,
   BuildServerType,
   BuildStatus,
   BuildViewType,
   Change,
-  MonitorItem,
-  MonitorType,
+  Screen,
+  ScreenType,
   Profile,
   TcBuildInfo,
   User
@@ -35,12 +35,12 @@ export class DataService {
       {id: "2", name: "empty", description: "empty desc", config: "...", type: BuildServerType.TeamCity}
     ]
   }
-  getMonitors(configName) {
+  getScreens(configName): Screen[] {
     if (configName == "empty"){
       return [];
     }
     const builds = data.builds.map(function (build) {
-      return <BuildMonitorInfoItem>{
+      return <BuildData>{
         viewType: BuildViewType.TeamCity,
         config: <TcBuildInfo>{
           id: build.id,
@@ -56,10 +56,10 @@ export class DataService {
       }
     });
     return [
-      <MonitorItem>({
-        type: MonitorType.BuildInfo,
-        name: "core",
-        config: <BuildMonitorInfo> {
+      <Screen>({
+        id: "id1",
+        type: ScreenType.BuildInfo,
+        data: <BuildScreenData> {
           builds: builds
         }
       })

@@ -9,11 +9,15 @@ import {FlexModule} from '@angular/flex-layout/flex';
 import {GridModule} from '@angular/flex-layout/grid';
 
 import {
-  BuildMonitorInfoItem,
-  BuildMonitorInfo,
+  BuildScreenData,
+  BuildData,
   BuildStatus,
-  BuildViewType, Change,
-  MonitorItem, TcBuildInfo, User
+  BuildViewType,
+  Change,
+  Screen,
+  ScreenType,
+  TcBuildInfo,
+  User
 } from "../data-contracts";
 import {BuildMonitorComponent} from "./build-monitor.component";
 import {TcBuildInfoComponent} from "../tc-build-info/tc-build-info.component";
@@ -28,10 +32,12 @@ storiesOf('Build monitor', module)
   .add('Simple', () => ({
     component: BuildMonitorComponent,
     props: {
-      monitorItem: <MonitorItem>({
-        config: <BuildMonitorInfo>{
+      screen: <Screen>({
+        id: "xx",
+        type: ScreenType.BuildInfo,
+        data: <BuildScreenData>{
           builds: [
-            <BuildMonitorInfoItem>({
+            <BuildData>({
               viewType: BuildViewType.TeamCity,
               config: <TcBuildInfo>({
                 id: "ApiTests|4189",
@@ -45,7 +51,7 @@ storiesOf('Build monitor', module)
                 ]
               })
             }),
-            <BuildMonitorInfoItem>({
+            <BuildData>({
               viewType: BuildViewType.TeamCity,
               config: <TcBuildInfo>({
                 id: "ApiTests|4189",

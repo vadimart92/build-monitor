@@ -1,0 +1,62 @@
+﻿@startuml
+enum BuildViewType {
+  TeamCity,
+  Default
+}
+class BuildData {
+  viewType: BuildViewType
+  config: BuildInfo
+}
+BuildData *-- BuildViewType
+BuildData *-- BuildInfo
+
+enum BuildStatus {
+  Undefined,
+  Running,
+  Success,
+  Failed
+}
+class BuildInfo {
+  id: string;
+  name: string;
+  number: string;
+  status: BuildStatus;
+  url: string;
+  startedBy: string;
+  startedOn: Date;
+  durationSeconds: number
+}
+BuildInfo *-- BuildStatus
+
+class TcBuildInfo {
+  changes: Change[]
+  projectName: string
+}
+TcBuildInfo <|-- BuildInfo
+class Change {
+  message: string;
+  author: User
+}
+TcBuildInfo *-- Change
+class User {
+  name: string
+  avatarImage: string
+}
+Change *-- User
+interface IScreenData {}
+class BuildScreenData {
+  builds: BuildData[]
+}
+BuildScreenData <|-- IScreenData
+BuildScreenData *-- BuildData
+class Screen {
+  id: string;
+  type: ScreenType
+  data: IScreenData
+}
+enum ScreenType {
+  BuildInfo
+}
+Screen *-- ScreenType
+Screen *-- IScreenData
+@enduml
