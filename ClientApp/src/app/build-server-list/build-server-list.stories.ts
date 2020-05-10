@@ -6,6 +6,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {BuildServer, BuildServerType} from "../data-contracts";
 import {RouterTestingModule} from "@angular/router/testing";
 import {BuildServerListComponent} from "./build-server-list.component";
+import {UIUtils} from "../uiutils";
 
 const buildServers: BuildServer[] = [
   <BuildServer>{id: "1", type: BuildServerType.TeamCity, description: "Core", config: {name: "1"}},
@@ -21,7 +22,8 @@ const router = RouterTestingModule.withRoutes(
 storiesOf('Build server list component', module)
   .addDecorator(
     moduleMetadata({
-      imports: [MatCardModule, MatTableModule, MatButtonModule, MatIconModule, router]
+      imports: [MatCardModule, MatTableModule, MatButtonModule, MatIconModule, router],
+      providers: [UIUtils]
     })
   )
   .add('Simple', () => ({

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import {BuildServer} from "../data-contracts";
 import {SchemaService} from "../schema.service";
 import {ActivatedRoute} from "@angular/router";
@@ -32,9 +32,11 @@ export class BuildServerEditComponent implements OnInit {
   }
 
   onInit(editor) {
-    monaco.languages.json.jsonDefaults.diagnosticsOptions.schemas.length = 0;
-    const profileSchema = this._schemaService.getBuildServerSchema();
-    monaco.languages.json.jsonDefaults.diagnosticsOptions.schemas.push(profileSchema);
+    const buildServerSchema = this._schemaService.getBuildServerSchema();
+    monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
+      validate: true,
+      schemas: [buildServerSchema]
+    });
   }
 
   async save() {

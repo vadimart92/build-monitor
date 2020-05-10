@@ -42,9 +42,11 @@ export class ProfileEditComponent implements OnInit {
   }
 
   onInit(editor) {
-    monaco.languages.json.jsonDefaults.diagnosticsOptions.schemas.length = 0;
     const profileSchema = this._schemaService.getProfileSchema();
-    monaco.languages.json.jsonDefaults.diagnosticsOptions.schemas.push(profileSchema);
+    monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
+      validate: true,
+      schemas: [profileSchema]
+    });
   }
 
 }

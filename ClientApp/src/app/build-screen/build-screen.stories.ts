@@ -22,7 +22,7 @@ import {
 import {BuildScreenComponent} from "./build-screen.component";
 import {TcBuildInfoComponent} from "../tc-build-info/tc-build-info.component";
 
-storiesOf('Build monitor', module)
+storiesOf('Build screen', module)
   .addDecorator(
     moduleMetadata({
       declarations: [TcBuildInfoComponent],
