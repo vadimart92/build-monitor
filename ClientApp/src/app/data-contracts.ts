@@ -1,6 +1,6 @@
 ﻿export enum BuildViewType {
-  TeamCity,
-  Default
+  Default,
+  TeamCity
 }
 export class BuildData {
   public viewType: BuildViewType
@@ -13,6 +13,7 @@ export enum BuildStatus {
   Failed
 }
 export class BuildInfo {
+  //profile name + screen number + build number
   public id: string;
   public name: string;
   public number: string;
@@ -47,6 +48,7 @@ export enum ScreenType {
   BuildInfo
 }
 export class Screen {
+  //profile name + screen number
   public id: string;
   public type: ScreenType
   public data: IScreenData

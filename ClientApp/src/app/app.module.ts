@@ -10,7 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BuildMonitorComponent } from './build-monitor/build-monitor.component';
+import { BuildScreenComponent } from './build-screen/build-screen.component';
 import { TcBuildInfoComponent } from './tc-build-info/tc-build-info.component';
 import {ScreenListComponent} from "./screen-list/screen-list.component";
 import {MatCardModule} from "@angular/material/card";
@@ -32,6 +32,7 @@ import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import { BuildServerListComponent } from './build-server-list/build-server-list.component';
 import { BuildServerEditComponent } from './build-server-edit/build-server-edit.component';
 import {UIUtils} from "./uiutils";
+import { BaseBuildInfoComponent } from './base-build-info/base-build-info.component';
 
 @NgModule({
   declarations: [
@@ -41,12 +42,13 @@ import {UIUtils} from "./uiutils";
     CounterComponent,
     FetchDataComponent,
     ScreenListComponent,
-    BuildMonitorComponent,
+    BuildScreenComponent,
     TcBuildInfoComponent,
     ProfileListComponent,
     ProfileEditComponent,
     BuildServerListComponent,
-    BuildServerEditComponent
+    BuildServerEditComponent,
+    BaseBuildInfoComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),

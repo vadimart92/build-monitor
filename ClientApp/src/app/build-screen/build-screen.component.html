@@ -1,7 +1,7 @@
-<div class="build-monitor" gdGap="2em" gdColumns="repeat(auto-fill, minmax(20em, 1fr))">
+<div class="build-screen" gdGap="2em" gdColumns="repeat(auto-fill, minmax(20em, 1fr))">
   <div class="build-info-item" *ngFor="let build of buildScreenData.builds">
     <div [ngSwitch]="build.viewType">
-      <app-tc-build-info [buildConfig]="build.config" *ngSwitchCase="buildViewType.TeamCity"></app-tc-build-info>
+      <app-tc-build-info [buildInfo]="build.config" *ngSwitchCase="buildViewType.TeamCity"></app-tc-build-info>
       <div *ngSwitchDefault>Build {{build.config.name}} has not supported view type {{build.viewType}}</div>
     </div>
   </div>

@@ -37,8 +37,8 @@ export class DataService {
   getBuildServers():BuildServer []{
     return this._buildServers;
   }
-  getScreens(configName): Screen[] {
-    if (configName == "empty"){
+  getScreens(configProfileId): Screen[] {
+    if (configProfileId == "empty"){
       return [];
     }
     const builds = data.builds.map(function (build) {
