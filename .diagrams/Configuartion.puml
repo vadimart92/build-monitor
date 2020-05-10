@@ -1,0 +1,51 @@
+﻿@startuml
+enum buildServerType {
+    teamCity
+    jenkins
+}
+object buildServer {
+    type: buildServerType
+    name: string
+}
+buildServer *-- buildServerType
+object teamCityBuildServer {
+    url: string
+    guestLogin: bool
+}
+teamCityBuildServer <|-- buildServer
+object jenkinsBuildServer
+jenkinsBuildServer <|-- buildServer
+
+interface buildListConfig
+
+interface buildList {
+    buildServer: enum
+    config: buildListConfig
+}
+buildList *-- buildListConfig
+buildList *-- buildServer
+
+object teamCityBuildListConfig {
+    buildIds: string[]
+}
+teamCityBuildListConfig <|-- buildListConfig
+
+enum screenType {
+    buildMonitor
+}
+
+interface screen {
+    type: screenType
+    displayTime: int
+}
+screen *-- screenType
+object buildStatusScreen {
+    builds: buildList[]
+}
+buildStatusScreen *-- buildList
+buildStatusScreen <|- screen
+object profile {
+    screens: screen[]
+}
+profile *-- screen
+@enduml

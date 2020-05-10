@@ -1,0 +1,29 @@
+﻿{
+  "uri": "http://example.com/profile-schema.json",
+  "fileMatch": ["*"],
+  "schema": {
+    "oneOf": [
+      { "$ref": "#/definitions/teamCityBuildServer" }
+    ],
+    "definitions": {
+      "buildServerType": {
+        "type": "string",
+        "enum": ["teamCity", "jenkins"]
+      },
+      "name": {
+        "type":  "string",
+        "pattern": "^[\\w.]*$"
+      },
+      "teamCityBuildServer": {
+        "type": "object",
+        "properties": {
+          "name": { "$ref": "#/definitions/name" },
+          "type": { "$ref": "#/definitions/buildServerType" },
+          "url": { "type": "string" },
+          "guestLogin": { "type": "boolean" }
+        },
+        "required": ["name","type","url", "guestLogin"]
+      }
+    }
+  }
+}

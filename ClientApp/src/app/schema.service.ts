@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import * as profileSchema from './profile.schema.json'
-import * as buildTypeSchema from './build-server.schema.json'
+import * as profileSchema from './.schema/profile.schema.json'
+import * as buildTypeSchema from './.schema/build-server.schema.json'
 import {DataService} from "./data.service";
 
 @Injectable({

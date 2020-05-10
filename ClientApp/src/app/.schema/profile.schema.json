@@ -17,28 +17,36 @@
       }
     },
     "definitions": {
-      "build": {
+      "teamCityBuildListConfig": {
+        "properties": {
+          "buildIds": {
+            "type": "array"
+          }
+        }
+      },
+      "buildList": {
         "type": "object",
-        "required": ["buildServer"],
+        "required": ["buildServer", "buildIds"],
         "properties": {
           "buildServer": {
             "type": "string",
             "description": "build server name",
             "enum": ["main"]
           },
-          "buildIds": {
-            "type": "array"
+          "config": {
+            "anyOf":{ "$ref": "#/definitions/teamCityBuildListConfig" }
           }
         }
+      },
+      "screenType": {
+        "type": "string",
+        "enum": ["buildMonitor"]
       },
       "buildStatusScreen": {
         "type": "object",
         "required": ["type", "builds"],
         "properties": {
-          "type": {
-            "type": "string",
-            "enum": ["buildMonitor"]
-          },
+          "type": { "$ref": "#/definitions/screenType" },
           "displayTime": {
             "type": "number",
             "description" : "Screen display time in seconds",
@@ -48,7 +56,7 @@
             "type": "array",
             "items": {
               "anyOf": [
-                { "$ref": "#/definitions/build" }
+                { "$ref": "#/definitions/buildList" }
               ]
             }
           }
