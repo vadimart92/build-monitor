@@ -15,7 +15,6 @@ export class BaseBuildInfoComponent<TBuildInfo extends BuildInfo> implements OnI
   public buildStatus = BuildStatus;
   private _subscription: Subscription;
   constructor(protected buildInfoService: BuildInfoService) {
-
   }
 
   ngOnInit(): void {

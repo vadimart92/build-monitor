@@ -1,15 +1,15 @@
 import {Injectable} from '@angular/core';
 import {
-  BuildScreenData,
   BuildData,
+  BuildScreenData,
   BuildServer,
   BuildServerType,
   BuildStatus,
   BuildViewType,
   Change,
+  Profile,
   Screen,
   ScreenType,
-  Profile,
   TcBuildInfo,
   User
 } from "./data-contracts";
@@ -23,12 +23,12 @@ import *  as  samples from './samples.json';
 
 export class DataService {
   private _profiles:  Profile [] = [
-    <Profile>{id: "1", name: "test", description: "test desc", config: "..."},
-    <Profile>{id: "2", name: "empty", description: "empty desc", config: "..."}
+    <Profile>{name: "test", description: "test desc", config: "..."},
+    <Profile>{name: "empty", description: "empty desc", config: "..."}
   ]
   private _buildServers: BuildServer[] = [
-    <BuildServer>{id: "1", description: "test desc", config: {name: "test"}, type: BuildServerType.TeamCity},
-    <BuildServer>{id: "2", description: "empty desc", config: {name: "empty"}, type: BuildServerType.TeamCity}
+    <BuildServer>{description: "test desc", config: {name: "test"}, type: BuildServerType.TeamCity},
+    <BuildServer>{description: "empty desc", config: {name: "empty"}, type: BuildServerType.TeamCity}
   ]
 
   getProfiles() : Profile [] {
@@ -68,40 +68,37 @@ export class DataService {
     ];
   }
   createSampleProfile():Profile {
-    const profile = <Profile>{
-      id: "0",
+    return <Profile>{
       name: "sample",
       description: "desc",
       config: samples.profile
     };
-    return profile;
   }
   createSampleBuildServer():BuildServer {
-        return <BuildServer>{
-          type: BuildServerType.TeamCity,
-          config: samples.buildServer,
-          id: "0",
-          description: "desc"
-        }
+    return <BuildServer>{
+      type: BuildServerType.TeamCity,
+      config: samples.buildServer,
+      description: "desc"
+    };
   }
 
   getProfile(profileId: string) {
-    return this.getProfiles().find(p => p.id === profileId);
+    return this.getProfiles().find(p => p.name === profileId);
   }
 
   saveProfile(profile: Profile) : Promise<void> {
-    if (!this.getProfile(profile.id)){
+    if (!this.getProfile(profile.name)){
       this._profiles.push(profile);
     }
     return Promise.resolve();
   }
 
   getBuildServer(buildServerId: string) {
-    return this.getBuildServers().find(p => p.id === buildServerId);
+    return this.getBuildServers().find(p => p.config.name === buildServerId);
   }
 
   async saveBuildServer(buildServer: BuildServer): Promise<void> {
-    if (!this.getBuildServer(buildServer.id)){
+    if (!this.getBuildServer(buildServer.config.name)){
       this._buildServers.push(buildServer);
     }
     return Promise.resolve();

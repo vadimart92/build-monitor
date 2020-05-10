@@ -14,7 +14,7 @@ storiesOf('TC build info', module)
   .add('Failed', () => ({
     component: TcBuildInfoComponent,
     props: {
-      buildConfig: {
+      buildInfo: {
         id: "ApiTests|4189",
         name: "API Tests|trunk",
         projectName: "Continuous Integration / API Tests",
@@ -30,7 +30,7 @@ storiesOf('TC build info', module)
   .add('Success', () => ({
     component: TcBuildInfoComponent,
     props: {
-      buildConfig: {
+      buildInfo: {
         id: "ApiTests|4189",
         name: "API Tests|trunk",
         projectName: "Continuous Integration / API Tests",

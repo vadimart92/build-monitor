@@ -2,11 +2,6 @@
   <mat-card-content>
     <mat-table [dataSource]="profiles" class="mat-elevation-z4">
 
-      <ng-container matColumnDef="id">
-        <mat-header-cell mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
-        <mat-cell mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
-      </ng-container>
-
       <ng-container matColumnDef="name">
         <mat-header-cell mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
         <mat-cell mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
@@ -17,13 +12,18 @@
         <mat-cell mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
       </ng-container>
 
+      <ng-container matColumnDef="public">
+        <mat-header-cell mat-header-cell *matHeaderCellDef> Public </mat-header-cell>
+        <mat-cell mat-cell *matCellDef="let element"> {{element.public}} </mat-cell>
+      </ng-container>
+
       <ng-container matColumnDef="actions">
         <mat-header-cell mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
         <mat-cell mat-cell *matCellDef="let element">
           <button mat-icon-button (click)="view(element.name)" >
             <mat-icon>open_in_new</mat-icon>
           </button>
-          <button mat-icon-button (click)="edit(element.id)" >
+          <button mat-icon-button (click)="edit(element.name)" >
             <mat-icon>edit</mat-icon>
           </button>
         </mat-cell>

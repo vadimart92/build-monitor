@@ -12,7 +12,7 @@ import {UIUtils} from "../uiutils";
 export class BuildServerListComponent implements OnInit {
 
   @Input() buildServers: BuildServer[];
-  displayedColumns: string[] = ['id', 'name', 'type', 'description', 'actions'];
+  displayedColumns: string[] = ['name', 'type', 'description', 'actions'];
   constructor(private router: Router, private dataService: DataService, private _uiUtils: UIUtils) { }
 
   ngOnInit(): void {
@@ -25,8 +25,8 @@ export class BuildServerListComponent implements OnInit {
     this.router.navigate(['/build-server', {mode: "new"}]);
   }
 
-  edit(id: any) {
-    this.router.navigate(['/build-server', {mode: "edit", id: id}]);
+  edit(name: any) {
+    this.router.navigate(['/build-server', {mode: "edit", name: name}]);
   }
 
   getTypeDisplayValue(type: BuildServerType) {

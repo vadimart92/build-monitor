@@ -12,13 +12,13 @@ import {DataService} from "../data.service";
 export class ProfileListComponent implements OnInit {
   @Input() profiles: Profile[];
 
-  displayedColumns: string[] = ['id', 'name', 'description', 'actions'];
+  displayedColumns: string[] = ['name', 'description', 'public', 'actions'];
 
-  constructor(private router: Router, private monitorService: DataService) { }
+  constructor(private router: Router, private _dataService: DataService) { }
 
   ngOnInit(): void {
     if (!this.profiles) {
-      this.profiles = this.monitorService.getProfiles();
+      this.profiles = this._dataService.getProfiles();
     }
   }
 
@@ -29,7 +29,7 @@ export class ProfileListComponent implements OnInit {
     this.router.navigate(['/profile', {mode: "new"}]);
   }
 
-  edit(id: any) {
-    this.router.navigate(['/profile', {mode: "edit", id: id}]);
+  edit(name: any) {
+    this.router.navigate(['/profile', {mode: "edit", name: name}]);
   }
 }

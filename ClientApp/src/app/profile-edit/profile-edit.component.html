@@ -9,13 +9,16 @@
     <div class="form">
       <mat-form-field class="full-width">
         <mat-label>Profile name</mat-label>
-        <input [required]="true" matInput id="name" placeholder="My monitors" [(ngModel)]="profile.name">
+        <input [required]="true" matInput id="name" placeholder="My monitor" [(ngModel)]="profile.name">
       </mat-form-field>
 
       <mat-form-field class="full-width">
         <mat-label>Profile description</mat-label>
         <input matInput id="description" placeholder="e.g. for core developers " [(ngModel)]="profile.description">
       </mat-form-field>
+      <div class="full-width form-check-box">
+        <mat-checkbox id="isPublic" [(ngModel)]="profile.public">Public</mat-checkbox>
+      </div>
     </div>
     <div class="code-editor-wrap">
       <ngx-monaco-editor class="code-editor" [options]="editorOptions" (onInit)="onInit($event)" [(ngModel)]="config"></ngx-monaco-editor>

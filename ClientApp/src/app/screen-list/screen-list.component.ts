@@ -3,6 +3,7 @@ import {Component, ComponentFactoryResolver, Input, OnInit, ViewChild} from '@an
 import {DataService} from "../data.service";
 import {Screen, ScreenType} from "../data-contracts";
 import {ActivatedRoute} from "@angular/router";
+import {BuildInfoService} from "../build-info.service";
 
 @Component({
   selector: 'app-monitor-list',
@@ -12,10 +13,12 @@ import {ActivatedRoute} from "@angular/router";
 export class ScreenListComponent implements OnInit {
   monitorItems: Screen[];
   public monitorType = ScreenType;
-  constructor(private monitorService: DataService, private route: ActivatedRoute) { }
+  constructor(private monitorService: DataService, private route: ActivatedRoute,
+              private _buildInfoService: BuildInfoService) { }
   ngOnInit() {
     let profile = this.route.snapshot.paramMap.get('profile');
     this.monitorItems = this.monitorService.getScreens(profile);
+    this._buildInfoService.subscribeForProfile(profile);
   }
 
 }

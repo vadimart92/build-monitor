@@ -12,6 +12,7 @@ import {MonacoEditorModule, NgxMonacoEditorConfig} from "ngx-monaco-editor";
 import {DataService} from "../data.service";
 import {BuildServer, BuildServerType} from "../data-contracts";
 import {UIUtils} from "../uiutils";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 const router = RouterTestingModule.withRoutes(
   [{path: '**', component: ProfileEditComponent}]
@@ -19,7 +20,10 @@ const router = RouterTestingModule.withRoutes(
 storiesOf('Profile edit component', module)
   .addDecorator(
     moduleMetadata({
-      imports: [BrowserAnimationsModule, MatCardModule, MatTableModule, MatButtonModule, MatIconModule, MatInputModule, MonacoEditorModule.forRoot(), router]
+      imports: [
+        BrowserAnimationsModule, MatCardModule, MatTableModule, MatButtonModule, MatIconModule, MatInputModule,
+        MatCheckboxModule, MonacoEditorModule.forRoot(), router
+      ]
     })
   )
   .add('Add new', () => ({
@@ -54,8 +58,8 @@ storiesOf('Profile edit component', module)
             getProfile: ()=> new DataService().createSampleProfile(),
             getBuildServers():BuildServer []{
               return [
-               <BuildServer> {id: "1", description: "test desc", config: {name: "teamcity"}, type: BuildServerType.TeamCity},
-                <BuildServer> {id: "2", description: "empty desc", config: {name: "jenkins"}, type: BuildServerType.TeamCity}
+               <BuildServer> {description: "test desc", config: {name: "teamcity"}, type: BuildServerType.TeamCity},
+                <BuildServer> {description: "empty desc", config: {name: "jenkins"}, type: BuildServerType.TeamCity}
               ]
             }
           }

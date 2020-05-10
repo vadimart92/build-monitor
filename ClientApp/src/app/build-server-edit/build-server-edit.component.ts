@@ -25,8 +25,8 @@ export class BuildServerEditComponent implements OnInit {
     if (this.isNewMode){
       this.buildServer = this._dataService.createSampleBuildServer();
     } else {
-      let buildServerId = this._route.snapshot.paramMap.get('id');
-      this.buildServer = this._dataService.getBuildServer(buildServerId);
+      let buildServerName = this._route.snapshot.paramMap.get('name');
+      this.buildServer = this._dataService.getBuildServer(buildServerName);
     }
     this.config = this._uiUtils.getConfigText(this.buildServer);
   }

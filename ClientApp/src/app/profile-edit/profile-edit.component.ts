@@ -25,7 +25,7 @@ export class ProfileEditComponent implements OnInit {
     if (this.isNewMode){
       this.profile = this._dataService.createSampleProfile();
     } else {
-      let profileId = this._route.snapshot.paramMap.get('id');
+      let profileId = this._route.snapshot.paramMap.get('name');
       this.profile = this._dataService.getProfile(profileId);
     }
     this.config = this._uiUtils.getConfigText(this.profile);

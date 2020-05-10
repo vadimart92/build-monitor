@@ -16,6 +16,14 @@ export class BuildInfoService {
     }
     return this.subjects[buildInfoId].asObservable();
   }
+
+  subscribeForProfile(profileName: string){
+
+  }
+  unsubscribeFromProfile(profileName: string){
+
+  }
+
   refresh(){
     const info = new TcBuildInfo();
     info.id = "xxxx";
