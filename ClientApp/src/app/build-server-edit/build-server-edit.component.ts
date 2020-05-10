@@ -32,7 +32,6 @@ export class BuildServerEditComponent implements OnInit {
   }
 
   onInit(editor) {
-    let line = editor.getPosition();
     monaco.languages.json.jsonDefaults.diagnosticsOptions.schemas.length = 0;
     const profileSchema = this._schemaService.getBuildServerSchema();
     monaco.languages.json.jsonDefaults.diagnosticsOptions.schemas.push(profileSchema);

@@ -21,7 +21,7 @@
           "type": { "$ref": "#/definitions/buildServerType" },
           "url": {
             "type": "string",
-            "pattern": "^http:\\/\\/[a-zA-Z0-9_\\-]+\\.[a-zA-Z0-9_\\-]+\\.[a-zA-Z0-9_\\-]+$"
+            "pattern": "^http(s):\\/\\/[a-zA-Z0-9_\\-]+\\.[a-zA-Z0-9_\\-]+\\.[a-zA-Z0-9_\\-]+$"
           },
           "guestLogin": { "type": "boolean" }
         },

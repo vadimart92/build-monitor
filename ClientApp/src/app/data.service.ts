@@ -22,19 +22,20 @@ import *  as  samples from './samples.json';
 })
 
 export class DataService {
-  private profiles:  Profile [] = [
+  private _profiles:  Profile [] = [
     <Profile>{id: "1", name: "test", description: "test desc", config: "..."},
     <Profile>{id: "2", name: "empty", description: "empty desc", config: "..."}
   ]
+  private _buildServers: BuildServer[] = [
+    <BuildServer>{id: "1", description: "test desc", config: {name: "test"}, type: BuildServerType.TeamCity},
+    <BuildServer>{id: "2", description: "empty desc", config: {name: "empty"}, type: BuildServerType.TeamCity}
+  ]
 
   getProfiles() : Profile [] {
-    return this.profiles;
+    return this._profiles;
   }
   getBuildServers():BuildServer []{
-    return [
-      <BuildServer>{id: "1", description: "test desc", config: {name: "test"}, type: BuildServerType.TeamCity},
-      <BuildServer>{id: "2", description: "empty desc", config: {name: "empty"}, type: BuildServerType.TeamCity}
-    ]
+    return this._buildServers;
   }
   getScreens(configName): Screen[] {
     if (configName == "empty"){
@@ -89,6 +90,9 @@ export class DataService {
   }
 
   saveProfile(profile: Profile) : Promise<void> {
+    if (!this.getProfile(profile.id)){
+      this._profiles.push(profile);
+    }
     return Promise.resolve();
   }
 
@@ -97,6 +101,9 @@ export class DataService {
   }
 
   async saveBuildServer(buildServer: BuildServer): Promise<void> {
+    if (!this.getBuildServer(buildServer.id)){
+      this._buildServers.push(buildServer);
+    }
     return Promise.resolve();
   }
 }
