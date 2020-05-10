@@ -74,8 +74,10 @@ export class DataService {
         '            "displayTime": 60,\n' +
         '            "builds": [\n' +
         '                {\n' +
-        '                    "buildServer": "teamcity",\n' +
-        '                    "buildIds": ["coreUnit"]\n' +
+        '                    "buildServer": "testServer",\n' +
+        '                    "config": {\n' +
+        '                        "buildIds": ["coreUnitTest"]\n' +
+        '                    }\n' +
         '                }\n' +
         '            ]\n' +
         '        }\n' +

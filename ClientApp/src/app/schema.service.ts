@@ -14,7 +14,9 @@ export class SchemaService {
   getProfileSchema() {
     const config = (<any>profileSchema).default;
     const buildServers = this.dataService.getBuildServers();
-    config.schema.definitions.build.properties.buildServer.enum = buildServers.map(s => s.name);
+    const buildServerNames = buildServers.map(s => s.name);
+    config.schema.definitions.buildList.properties.buildServer.default = buildServerNames[0];
+    config.schema.definitions.buildList.properties.buildServer.enum = buildServerNames;
     return config;
   }
   getBuildTypeSchema(){

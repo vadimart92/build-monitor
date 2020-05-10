@@ -26,11 +26,12 @@
       },
       "buildList": {
         "type": "object",
-        "required": ["buildServer", "buildIds"],
+        "required": ["buildServer", "config"],
         "properties": {
           "buildServer": {
             "type": "string",
             "description": "build server name",
+            "default": "main",
             "enum": ["main"]
           },
           "config": {
