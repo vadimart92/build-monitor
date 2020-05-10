@@ -67,7 +67,20 @@ export class DataService {
   }
   createSampleProfile():Profile {
     return {
-      config: '{\n\t"buildServer": null\n}',
+      config: '{\n' +
+        '    "screens": [\n' +
+        '        {\n' +
+        '            "type": "buildMonitor",\n' +
+        '            "displayTime": 60,\n' +
+        '            "builds": [\n' +
+        '                {\n' +
+        '                    "buildServer": "teamcity",\n' +
+        '                    "buildIds": ["coreUnit"]\n' +
+        '                }\n' +
+        '            ]\n' +
+        '        }\n' +
+        '    ]\n' +
+        '}',
       id: "0",
       name: "sample",
       description: "desc"

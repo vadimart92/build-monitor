@@ -1,4 +1,5 @@
 ﻿{
+  "$schema": "http://json-schema.org/draft-04/schema",
   "uri": "http://example.com/profile-schema.json",
   "fileMatch": [
     "*"
@@ -6,13 +7,19 @@
   "schema": {
     "type": "object",
     "properties": {
-      "monitors": {
-        "type": "array"
-
+      "screens": {
+        "type": "array",
+        "items": {
+          "anyOf": [
+            { "$ref": "#/definitions/buildStatusScreen" }
+          ]
+        }
       }
     },
     "definitions": {
-      "buildMonitorItem": {
+      "build": {
+        "type": "object",
+        "required": ["buildServer"],
         "properties": {
           "buildServer": {
             "type": "string",
@@ -23,8 +30,30 @@
             "type": "array"
           }
         }
+      },
+      "buildStatusScreen": {
+        "type": "object",
+        "required": ["type", "builds"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["buildMonitor"]
+          },
+          "displayTime": {
+            "type": "number",
+            "description" : "Screen display time in seconds",
+            "default" : 60
+          },
+          "builds": {
+            "type": "array",
+            "items": {
+              "anyOf": [
+                { "$ref": "#/definitions/build" }
+              ]
+            }
+          }
+        }
       }
     }
-
   }
 }

@@ -22,7 +22,6 @@
     <Content Remove="$(SpaRoot)**" />
     <Content Include="ClientApp\src\app\build-server.schema.json" />
     <Content Include="ClientApp\src\app\profile.schema.json" />
-    <Content Include="ClientApp\src\app\sampleData.json" />
     <None Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
     <None Include="ClientApp\.storybook\tsconfig.json" />
