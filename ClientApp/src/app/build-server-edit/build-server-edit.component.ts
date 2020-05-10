@@ -33,7 +33,7 @@ export class BuildServerEditComponent implements OnInit {
 
   onInit(editor) {
     const buildServerSchema = this._schemaService.getBuildServerSchema();
-    monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
+    (<any>window).monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
       validate: true,
       schemas: [buildServerSchema]
     });

@@ -1,10 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BaseBuildInfoComponent } from './base-build-info.component';
+import {BuildInfo} from "../data-contracts";
 
 describe('BaseBuildInfoComponent', () => {
-  let component: BaseBuildInfoComponent;
-  let fixture: ComponentFixture<BaseBuildInfoComponent>;
+  let component: BaseBuildInfoComponent<BuildInfo>;
+  let fixture: ComponentFixture<BaseBuildInfoComponent<BuildInfo>>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
