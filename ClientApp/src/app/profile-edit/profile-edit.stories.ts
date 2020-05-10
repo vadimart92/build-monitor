@@ -11,6 +11,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MonacoEditorModule, NgxMonacoEditorConfig} from "ngx-monaco-editor";
 import {DataService} from "../data.service";
 import {BuildServer, BuildServerType} from "../data-contracts";
+import {UIUtils} from "../uiutils";
 
 const router = RouterTestingModule.withRoutes(
   [{path: '**', component: ProfileEditComponent}]
@@ -32,6 +33,7 @@ storiesOf('Profile edit component', module)
           provide: ActivatedRoute,
           useValue: {snapshot: {paramMap: convertToParamMap({mode: 'new'})}}
         },
+        UIUtils
       ]
     }
   }))
@@ -52,12 +54,13 @@ storiesOf('Profile edit component', module)
             getProfile: ()=> new DataService().createSampleProfile(),
             getBuildServers():BuildServer []{
               return [
-                {id: "1", name: "teamcity", description: "test desc", config: "...", type: BuildServerType.TeamCity},
-                {id: "2", name: "jenkins", description: "empty desc", config: "...", type: BuildServerType.TeamCity}
+               <BuildServer> {id: "1", description: "test desc", config: {name: "teamcity"}, type: BuildServerType.TeamCity},
+                <BuildServer> {id: "2", description: "empty desc", config: {name: "jenkins"}, type: BuildServerType.TeamCity}
               ]
             }
           }
-        }
+        },
+        UIUtils
       ]
     }
   }));

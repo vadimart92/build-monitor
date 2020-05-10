@@ -24,6 +24,7 @@
     <Content Include=".diagrams\Data.puml" />
     <Content Include="ClientApp\src\app\.schema\build-server.schema.json" />
     <Content Include="ClientApp\src\app\.schema\profile.schema.json" />
+    <Content Include="ClientApp\src\app\samples.json" />
     <None Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
     <None Include="ClientApp\.storybook\tsconfig.json" />

@@ -5,6 +5,7 @@ import {Location} from '@angular/common';
 import {DataService} from "../data.service";
 import {Profile} from "../data-contracts";
 import {SchemaService} from "../schema.service";
+import {UIUtils} from "../uiutils";
 
 @Component({
   selector: 'app-profile-edit',
@@ -15,20 +16,24 @@ export class ProfileEditComponent implements OnInit {
   isNewMode: boolean;
   editorOptions = {theme: 'vs-dark', language: 'json'};
   profile: Profile;
-  constructor(private schema: SchemaService, private route: ActivatedRoute, private _location: Location, private monitorService: DataService) {}
+  config: string;
+  constructor(private _schemaService: SchemaService, private _route: ActivatedRoute,
+              private _location: Location, private _dataService: DataService, private _uiUtils: UIUtils) {}
 
   ngOnInit(): void {
-    this.isNewMode = this.route.snapshot.paramMap.get('mode') === "new";
+    this.isNewMode = this._route.snapshot.paramMap.get('mode') === "new";
     if (this.isNewMode){
-      this.profile = this.monitorService.createSampleProfile();
+      this.profile = this._dataService.createSampleProfile();
     } else {
-      let profileId = this.route.snapshot.paramMap.get('id');
-      this.profile = this.monitorService.getProfile(profileId);
+      let profileId = this._route.snapshot.paramMap.get('id');
+      this.profile = this._dataService.getProfile(profileId);
     }
+    this.config = this._uiUtils.getConfigText(this.profile);
   }
 
   async save() {
-    await this.monitorService.saveProfile(this.profile);
+    this._uiUtils.setConfig(this.profile, this.config);
+    await this._dataService.saveProfile(this.profile);
     this._location.back();
   }
 
@@ -39,7 +44,7 @@ export class ProfileEditComponent implements OnInit {
   onInit(editor) {
     let line = editor.getPosition();
     monaco.languages.json.jsonDefaults.diagnosticsOptions.schemas.length = 0;
-    const profileSchema = this.schema.getProfileSchema();
+    const profileSchema = this._schemaService.getProfileSchema();
     monaco.languages.json.jsonDefaults.diagnosticsOptions.schemas.push(profileSchema);
   }
 

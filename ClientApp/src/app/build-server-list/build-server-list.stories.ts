@@ -8,10 +8,10 @@ import {RouterTestingModule} from "@angular/router/testing";
 import {BuildServerListComponent} from "./build-server-list.component";
 
 const buildServers: BuildServer[] = [
-  {id: "1", type: BuildServerType.TeamCity, name: 'Hydrogen', description: "Core", config: "..."},
-  {id: "2", type: BuildServerType.TeamCity, name: 'Helium', description: "Core 1", config: "..."},
-  {id: "3", type: BuildServerType.TeamCity, name: 'Lithium', description: "some", config: "..."},
-  {id: "4", type: BuildServerType.TeamCity, name: 'Beryllium', description: "asdsad", config: "..."}
+  <BuildServer>{id: "1", type: BuildServerType.TeamCity, description: "Core", config: {name: "1"}},
+  <BuildServer>{id: "2", type: BuildServerType.TeamCity, description: "Core 1", config: {name: "2"}},
+  <BuildServer>{id: "3", type: BuildServerType.TeamCity, description: "some", config: {name: "3"}},
+  <BuildServer>{id: "4", type: BuildServerType.TeamCity, description: "asdsad", config: {name: "4"}}
 ];
 
 const router = RouterTestingModule.withRoutes(

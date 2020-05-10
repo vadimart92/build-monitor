@@ -6,10 +6,10 @@ import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-monitor-list',
-  templateUrl: './monitor-list.component.html',
-  styleUrls: ['./monitor-list.component.css']
+  templateUrl: './screen-list.component.html',
+  styleUrls: ['./screen-list.component.css']
 })
-export class MonitorListComponent implements OnInit {
+export class ScreenListComponent implements OnInit {
   monitorItems: Screen[];
   public monitorType = ScreenType;
   constructor(private monitorService: DataService, private route: ActivatedRoute) { }

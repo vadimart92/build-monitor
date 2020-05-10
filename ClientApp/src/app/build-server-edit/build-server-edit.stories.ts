@@ -10,6 +10,7 @@ import {MatInputModule} from "@angular/material/input";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MonacoEditorModule, NgxMonacoEditorConfig} from "ngx-monaco-editor";
 import {BuildServerEditComponent} from "./build-server-edit.component";
+import {UIUtils} from "../uiutils";
 
 
 const router = RouterTestingModule.withRoutes(
@@ -33,6 +34,7 @@ storiesOf('Build server edit component', module)
           provide: ActivatedRoute,
           useValue: {snapshot: {paramMap: convertToParamMap({mode: 'new'})}}
         },
+        UIUtils
       ]
     }
   }))
@@ -45,8 +47,9 @@ storiesOf('Build server edit component', module)
       providers: [
         {
           provide: ActivatedRoute,
-          useValue: {snapshot: {paramMap: convertToParamMap({mode: 'edit'})}}
+          useValue: {snapshot: {paramMap: convertToParamMap({mode: 'edit', id: "1"})}}
         },
+        UIUtils,
       ]
     }
   }));

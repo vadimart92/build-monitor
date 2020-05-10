@@ -1,0 +1,24 @@
+﻿{
+  "profile": {
+    "screens": [
+      {
+        "type": "buildMonitor",
+        "displayTime": 60,
+        "builds": [
+          {
+            "buildServer": "testServer",
+            "config": {
+              "buildIds": ["coreUnitTest"]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "buildServer": {
+    "type": "teamCity",
+    "name": "teamcityPublic",
+    "url": "https://teamcity.jetbrains.com",
+    "guestLogin": true
+  }
+}

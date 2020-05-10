@@ -23,7 +23,7 @@ export class ProfileListComponent implements OnInit {
   }
 
   view(name: any) {
-    this.router.navigate([`/monitor-view/${name}`]);
+    this.router.navigate([`/view/${name}`]);
   }
   addProfile(){
     this.router.navigate(['/profile', {mode: "new"}]);

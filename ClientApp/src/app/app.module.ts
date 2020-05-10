@@ -12,7 +12,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BuildMonitorComponent } from './build-monitor/build-monitor.component';
 import { TcBuildInfoComponent } from './tc-build-info/tc-build-info.component';
-import {MonitorListComponent} from "./monitor-list/monitor-list.component";
+import {ScreenListComponent} from "./screen-list/screen-list.component";
 import {MatCardModule} from "@angular/material/card";
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatButtonModule} from '@angular/material/button';
@@ -31,6 +31,7 @@ import { ProfileListComponent } from './profile-list/profile-list.component';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import { BuildServerListComponent } from './build-server-list/build-server-list.component';
 import { BuildServerEditComponent } from './build-server-edit/build-server-edit.component';
+import {UIUtils} from "./uiutils";
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { BuildServerEditComponent } from './build-server-edit/build-server-edit.
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    MonitorListComponent,
+    ScreenListComponent,
     BuildMonitorComponent,
     TcBuildInfoComponent,
     ProfileListComponent,
@@ -55,7 +56,7 @@ import { BuildServerEditComponent } from './build-server-edit/build-server-edit.
       {path: '', component: HomeComponent, pathMatch: 'full'},
       {path: 'counter', component: CounterComponent},
       {path: 'fetch-data', component: FetchDataComponent},
-      {path: 'monitor-view/:profile', component: MonitorListComponent},
+      {path: 'view/:profile', component: ScreenListComponent},
       {path: 'profile-list', component: ProfileListComponent},
       {path: 'profile', component: ProfileEditComponent},
       {path: 'build-server-list', component: BuildServerListComponent},
@@ -72,7 +73,9 @@ import { BuildServerEditComponent } from './build-server-edit/build-server-edit.
     FlexLayoutModule, FlexModule, GridModule,
     MonacoEditorModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    UIUtils
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

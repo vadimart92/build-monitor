@@ -54,12 +54,12 @@ export class Screen {
 
 export class BaseConfigItem {
   id: string;
-  name: string;
   description: string;
-  config: string;
+  config: any;
 }
 
 export class Profile extends BaseConfigItem {
+  name: string;
 }
 
 export enum BuildServerType {
@@ -68,4 +68,7 @@ export enum BuildServerType {
 }
 export class BuildServer extends BaseConfigItem {
   type: BuildServerType
+  getName() {
+    return this.config.name;
+  }
 }

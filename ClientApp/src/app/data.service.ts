@@ -15,6 +15,7 @@ import {
 } from "./data-contracts";
 
 import *  as  data from './sampleData.json';
+import *  as  samples from './samples.json';
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +23,8 @@ import *  as  data from './sampleData.json';
 
 export class DataService {
   private profiles:  Profile [] = [
-    {id: "1", name: "test", description: "test desc", config: "..."},
-    {id: "2", name: "empty", description: "empty desc", config: "..."}
+    <Profile>{id: "1", name: "test", description: "test desc", config: "..."},
+    <Profile>{id: "2", name: "empty", description: "empty desc", config: "..."}
   ]
 
   getProfiles() : Profile [] {
@@ -31,8 +32,8 @@ export class DataService {
   }
   getBuildServers():BuildServer []{
     return [
-      {id: "1", name: "test", description: "test desc", config: "...", type: BuildServerType.TeamCity},
-      {id: "2", name: "empty", description: "empty desc", config: "...", type: BuildServerType.TeamCity}
+      <BuildServer>{id: "1", description: "test desc", config: {name: "test"}, type: BuildServerType.TeamCity},
+      <BuildServer>{id: "2", description: "empty desc", config: {name: "empty"}, type: BuildServerType.TeamCity}
     ]
   }
   getScreens(configName): Screen[] {
@@ -66,48 +67,19 @@ export class DataService {
     ];
   }
   createSampleProfile():Profile {
-    return {
-      config: '{\n' +
-        '    "screens": [\n' +
-        '        {\n' +
-        '            "type": "buildMonitor",\n' +
-        '            "displayTime": 60,\n' +
-        '            "builds": [\n' +
-        '                {\n' +
-        '                    "buildServer": "testServer",\n' +
-        '                    "config": {\n' +
-        '                        "buildIds": ["coreUnitTest"]\n' +
-        '                    }\n' +
-        '                }\n' +
-        '            ]\n' +
-        '        }\n' +
-        '    ]\n' +
-        '}',
+    const profile = <Profile>{
       id: "0",
       name: "sample",
-      description: "desc"
-    }
+      description: "desc",
+      config: samples.profile
+    };
+    return profile;
   }
   createSampleBuildServer():BuildServer {
-        return {
+        return <BuildServer>{
           type: BuildServerType.TeamCity,
-          config: '-  martin:\n' +
-            '    name: teamCity' +
-            '    name: Martin D\'vloper\n' +
-            '    job: Developer\n' +
-            '    skills:\n' +
-            '      - python\n' +
-            '      - perl\n' +
-            '      - pascal\n' +
-            '-  tabitha:\n' +
-            '    name: Tabitha Bitumen\n' +
-            '    job: Developer\n' +
-            '    skills:\n' +
-            '      - lisp\n' +
-            '      - fortran\n' +
-            '      - erlang',
+          config: samples.buildServer,
           id: "0",
-          name: "sample",
           description: "desc"
         }
   }
@@ -117,6 +89,14 @@ export class DataService {
   }
 
   saveProfile(profile: Profile) : Promise<void> {
+    return Promise.resolve();
+  }
+
+  getBuildServer(buildServerId: string) {
+    return this.getBuildServers().find(p => p.id === buildServerId);
+  }
+
+  async saveBuildServer(buildServer: BuildServer): Promise<void> {
     return Promise.resolve();
   }
 }

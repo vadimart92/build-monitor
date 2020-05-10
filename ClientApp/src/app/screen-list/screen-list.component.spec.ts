@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MonitorListComponent } from './monitor-list.component';
+import { ScreenListComponent } from './screen-list.component';
 
 describe('MonitorViewComponent', () => {
-  let component: MonitorListComponent;
-  let fixture: ComponentFixture<MonitorListComponent>;
+  let component: ScreenListComponent;
+  let fixture: ComponentFixture<ScreenListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MonitorListComponent ]
+      declarations: [ ScreenListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MonitorListComponent);
+    fixture = TestBed.createComponent(ScreenListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

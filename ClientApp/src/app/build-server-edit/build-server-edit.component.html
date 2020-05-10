@@ -1,1 +1,28 @@
-<p>build-server-edit works!</p>
+<mat-card class="card">
+  <mat-card-header>
+    <ng-container [ngSwitch]="isNewMode">
+      <mat-card-title *ngSwitchCase="true">Create build server connection</mat-card-title>
+      <mat-card-title *ngSwitchDefault>Edit build server connection</mat-card-title>
+    </ng-container>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="form">
+      <mat-form-field class="full-width">
+        <mat-label>Description</mat-label>
+        <input matInput id="description" placeholder="e.g. for core developers " [(ngModel)]="buildServer.description">
+      </mat-form-field>
+    </div>
+    <div class="code-editor-wrap">
+      <ngx-monaco-editor class="code-editor" [options]="editorOptions" (onInit)="onInit($event)" [(ngModel)]="config"></ngx-monaco-editor>
+    </div>
+  </mat-card-content>
+  <mat-card-actions align="end" class="buttons">
+    <button mat-fab color="primary" aria-label="Save" (click)="save()">
+      <mat-icon>save</mat-icon>
+    </button>
+    <button mat-fab color="primary" aria-label="Exit" (click)="back()">
+      <mat-icon>undo</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>
+
