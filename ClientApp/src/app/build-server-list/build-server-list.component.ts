@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {BuildServer, BuildServerType, Profile} from "../data-contracts";
+import {BuildServer, Profile} from "../data-contracts";
 import {Router} from "@angular/router";
 import {DataService} from "../data.service";
 import {UIUtils} from "../uiutils";
@@ -28,8 +28,8 @@ export class BuildServerListComponent implements OnInit {
     this.router.navigate(['/build-server', {mode: "edit", name: name}]);
   }
 
-  getTypeDisplayValue(type: BuildServerType) {
-    return BuildServerType[type].toString();
+  getTypeDisplayValue(server: BuildServer) {
+    return server.config.type;
   }
   getName(server: BuildServer){
     return this._uiUtils.getBuildServerName(server);

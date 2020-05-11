@@ -10,7 +10,7 @@ import {MatInputModule} from "@angular/material/input";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MonacoEditorModule, NgxMonacoEditorConfig} from "ngx-monaco-editor";
 import {DataService} from "../data.service";
-import {BuildServer, BuildServerType, Profile} from "../data-contracts";
+import {BuildServer, Profile} from "../data-contracts";
 import {UIUtils} from "../uiutils";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import * as samples from "../samples.json";
@@ -38,8 +38,8 @@ storiesOf('Profile edit component', module)
             },
             getBuildServers(): Observable<BuildServer[]>{
               return from([[
-                <BuildServer> {description: "test desc", config: {name: "teamcity"}, type: BuildServerType.TeamCity},
-                <BuildServer> {description: "empty desc", config: {name: "jenkins"}, type: BuildServerType.TeamCity}
+                <BuildServer> {description: "test desc", config: {name: "teamcity"}},
+                <BuildServer> {description: "empty desc", config: {name: "jenkins"}}
               ]])
             },
             createSampleProfile() {

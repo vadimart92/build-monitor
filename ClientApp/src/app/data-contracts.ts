@@ -55,19 +55,19 @@ export class Screen {
 }
 
 export class BaseConfigItem {
+  id?: string;
+  name?: string;
   description: string;
   config: any;
 }
 
 export class Profile extends BaseConfigItem {
-  name: string;
   public: boolean
 }
 
-export enum BuildServerType {
-  TeamCity,
-  Jenkins
-}
 export class BuildServer extends BaseConfigItem {
-  type: BuildServerType
+}
+export enum BuildServerType {
+  TeamCity = "teamCity",
+  Jenkins = "jenkins"
 }

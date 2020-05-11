@@ -11,10 +11,10 @@ import {DataService} from "../data.service";
 import {from} from "rxjs";
 
 const buildServers: BuildServer[] = [
-  <BuildServer>{type: BuildServerType.TeamCity, description: "Core", config: {name: "1"}},
-  <BuildServer>{type: BuildServerType.TeamCity, description: "Core 1", config: {name: "2"}},
-  <BuildServer>{type: BuildServerType.TeamCity, description: "some", config: {name: "3"}},
-  <BuildServer>{type: BuildServerType.TeamCity, description: "asdsad", config: {name: "4"}}
+  <BuildServer>{description: "Core", config: {name: "1", type: BuildServerType.TeamCity}},
+  <BuildServer>{description: "Core 1", config: {name: "2", type: BuildServerType.TeamCity}},
+  <BuildServer>{description: "some", config: {name: "3", type: BuildServerType.TeamCity}},
+  <BuildServer>{description: "asdsad", config: {name: "4", type: BuildServerType.TeamCity}}
 ];
 
 const router = RouterTestingModule.withRoutes(

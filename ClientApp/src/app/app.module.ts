@@ -21,6 +21,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {FlexModule} from '@angular/flex-layout/flex';
@@ -74,6 +75,7 @@ import { BaseBuildInfoComponent } from './base-build-info/base-build-info.compon
     MatTableModule,
     MatInputModule,
     MatCheckboxModule,
+    MatSnackBarModule,
     FlexLayoutModule, FlexModule, GridModule,
     MonacoEditorModule.forRoot()
   ],

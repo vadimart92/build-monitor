@@ -3,7 +3,6 @@ import {
   BuildData,
   BuildScreenData,
   BuildServer,
-  BuildServerType,
   BuildStatus,
   BuildViewType,
   Change,
@@ -18,6 +17,7 @@ import *  as  data from './sampleData.json';
 import *  as  samples from './samples.json';
 import {HttpClient} from "@angular/common/http";
 import {from, Observable} from "rxjs";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Injectable({
   providedIn: 'root'
@@ -25,15 +25,15 @@ import {from, Observable} from "rxjs";
 
 export class DataService {
   private _buildServers: BuildServer[] = [
-    <BuildServer>{description: "test desc", config: {name: "test"}, type: BuildServerType.TeamCity},
-    <BuildServer>{description: "empty desc", config: {name: "empty"}, type: BuildServerType.TeamCity}
+    <BuildServer>{description: "test desc", config: {name: "test"}},
+    <BuildServer>{description: "empty desc", config: {name: "empty"}}
   ]
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private _snackBar: MatSnackBar) {
   }
 
   getProfiles() : Observable<Profile[]> {
-    return this.http.get<Profile[]>("/api/Profiles");
+    return this.http.get<Profile[]>("/api/configuration/getProfiles");
   }
   getBuildServers():Observable<BuildServer[]>{
     return from([this._buildServers]);
@@ -77,7 +77,6 @@ export class DataService {
   }
   createSampleBuildServer():BuildServer {
     return <BuildServer>{
-      type: BuildServerType.TeamCity,
       config: samples.buildServer,
       description: "desc"
     };
@@ -103,9 +102,10 @@ export class DataService {
   }
 
   async saveBuildServer(buildServer: BuildServer): Promise<void> {
-    if (!this.getBuildServer(buildServer.config.name)){
-      this._buildServers.push(buildServer);
-    }
-    return Promise.resolve();
+    const name = buildServer.config.name;
+    buildServer.config = JSON.stringify(buildServer.config);
+    buildServer.name = name;
+    await this.http.post("/api/configuration/saveBuildServer", buildServer).toPromise();
+    this._snackBar.open(`Build server ${name} saved.`);
   }
 }

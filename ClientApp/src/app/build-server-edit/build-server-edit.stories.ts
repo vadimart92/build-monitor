@@ -11,7 +11,7 @@ import {MonacoEditorModule, NgxMonacoEditorConfig} from "ngx-monaco-editor";
 import {BuildServerEditComponent} from "./build-server-edit.component";
 import {UIUtils} from "../uiutils";
 import {DataService} from "../data.service";
-import {BuildServer, BuildServerType, Profile} from "../data-contracts";
+import {BuildServer, Profile} from "../data-contracts";
 import * as samples from "../samples.json";
 
 const router = RouterTestingModule.withRoutes(
@@ -27,11 +27,10 @@ storiesOf('Build server edit component', module)
         {
           provide: DataService,
           useValue: {
-            getBuildServer: ()=> <BuildServer>{description: "test desc", config: samples.buildServer, type: BuildServerType.TeamCity},
+            getBuildServer: ()=> <BuildServer>{description: "test desc", config: samples.buildServer},
             createSampleBuildServer: () => <BuildServer> {
               description: "new desc",
-              config: samples.buildServer,
-              type: BuildServerType.TeamCity
+              config: samples.buildServer
             }
           }
         },
