@@ -1,19 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using BuildMonitor.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
-namespace build_monitor.Controllers
+namespace BuildMonitor.Controllers
 {
-
-    public class Profile
-    {
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string Config { get; set; }
-    }
     
     [ApiController]
     [Route("[controller]")]
