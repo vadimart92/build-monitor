@@ -11,6 +11,7 @@ namespace build_monitor.Controllers
     public class Profile
     {
         public string Name { get; set; }
+        public string Description { get; set; }
         public string Config { get; set; }
     }
     
@@ -18,18 +19,6 @@ namespace build_monitor.Controllers
     [Route("[controller]")]
     public class ProfileController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
-        private readonly ILogger<ProfileController> _logger;
-
-        public ProfileController(ILogger<ProfileController> logger)
-        {
-            _logger = logger;
-        }
-
         [HttpGet]
         public IEnumerable<Profile> Get()
         {
