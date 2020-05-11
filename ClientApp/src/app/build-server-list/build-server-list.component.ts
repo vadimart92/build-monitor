@@ -3,6 +3,7 @@ import {BuildServer, BuildServerType, Profile} from "../data-contracts";
 import {Router} from "@angular/router";
 import {DataService} from "../data.service";
 import {UIUtils} from "../uiutils";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-build-server-list',
@@ -11,14 +12,12 @@ import {UIUtils} from "../uiutils";
 })
 export class BuildServerListComponent implements OnInit {
 
-  @Input() buildServers: BuildServer[];
+  @Input() buildServers$: Observable<BuildServer[]>;
   displayedColumns: string[] = ['name', 'type', 'description', 'actions'];
   constructor(private router: Router, private dataService: DataService, private _uiUtils: UIUtils) { }
 
   ngOnInit(): void {
-    if (!this.buildServers) {
-      this.buildServers = this.dataService.getBuildServers();
-    }
+    this.buildServers$ = this.dataService.getBuildServers();
   }
 
   addBuildServer() {

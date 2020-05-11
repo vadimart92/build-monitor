@@ -41,8 +41,8 @@ export class ProfileEditComponent implements OnInit {
     this._location.back();
   }
 
-  onInit(editor) {
-    const profileSchema = this._schemaService.getProfileSchema();
+  async onInit(editor) {
+    const profileSchema = await this._schemaService.getProfileSchema();
     (<any>window).monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
       validate: true,
       schemas: [profileSchema]

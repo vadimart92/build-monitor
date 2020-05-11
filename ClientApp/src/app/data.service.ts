@@ -16,26 +16,27 @@ import {
 
 import *  as  data from './sampleData.json';
 import *  as  samples from './samples.json';
+import {HttpClient} from "@angular/common/http";
+import {from, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class DataService {
-  private _profiles:  Profile [] = [
-    <Profile>{name: "test", description: "test desc", config: "..."},
-    <Profile>{name: "empty", description: "empty desc", config: "..."}
-  ]
   private _buildServers: BuildServer[] = [
     <BuildServer>{description: "test desc", config: {name: "test"}, type: BuildServerType.TeamCity},
     <BuildServer>{description: "empty desc", config: {name: "empty"}, type: BuildServerType.TeamCity}
   ]
 
-  getProfiles() : Profile [] {
-    return this._profiles;
+  constructor(private http: HttpClient) {
   }
-  getBuildServers():BuildServer []{
-    return this._buildServers;
+
+  getProfiles() : Observable<Profile[]> {
+    return this.http.get<Profile[]>("/api/Profiles");
+  }
+  getBuildServers():Observable<BuildServer[]>{
+    return from([this._buildServers]);
   }
   getScreens(configProfileId): Screen[] {
     if (configProfileId == "empty"){
@@ -83,9 +84,13 @@ export class DataService {
   }
 
   getProfile(profileId: string) {
-    return this.getProfiles().find(p => p.name === profileId);
+    return this._profiles.find(p => p.name === profileId);
   }
 
+  private _profiles:  Profile [] = [
+    <Profile>{name: "test", description: "test desc", config: "..."},
+    <Profile>{name: "empty", description: "empty desc", config: "..."}
+  ]
   saveProfile(profile: Profile) : Promise<void> {
     if (!this.getProfile(profile.name)){
       this._profiles.push(profile);
@@ -94,7 +99,7 @@ export class DataService {
   }
 
   getBuildServer(buildServerId: string) {
-    return this.getBuildServers().find(p => p.config.name === buildServerId);
+    return this._buildServers.find(p => p.config.name === buildServerId);
   }
 
   async saveBuildServer(buildServer: BuildServer): Promise<void> {

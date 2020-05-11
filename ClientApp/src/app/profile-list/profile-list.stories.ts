@@ -6,6 +6,8 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {Profile} from "../data-contracts";
 import {RouterTestingModule} from "@angular/router/testing";
+import {DataService} from "../data.service";
+import {from} from "rxjs";
 
 const profiles: Profile[] = [
   <Profile>{name: 'Hydrogen', description: "Core", public: true, config: {}},
@@ -19,12 +21,15 @@ const router = RouterTestingModule.withRoutes(
 storiesOf('Profile list component', module)
   .addDecorator(
     moduleMetadata({
-      imports: [MatCardModule, MatTableModule, MatButtonModule, MatIconModule, router]
+      imports: [MatCardModule, MatTableModule, MatButtonModule, MatIconModule, router],
+      providers: [
+        {
+          provide: DataService,
+          useValue: {getProfiles: ()=> (from([profiles]))}
+        }
+      ]
     })
   )
   .add('Simple', () => ({
-    component: ProfileListComponent,
-    props: {
-      profiles: profiles
-    }
+    component: ProfileListComponent
   }));

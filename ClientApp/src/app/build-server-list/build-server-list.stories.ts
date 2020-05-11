@@ -7,6 +7,8 @@ import {BuildServer, BuildServerType} from "../data-contracts";
 import {RouterTestingModule} from "@angular/router/testing";
 import {BuildServerListComponent} from "./build-server-list.component";
 import {UIUtils} from "../uiutils";
+import {DataService} from "../data.service";
+import {from} from "rxjs";
 
 const buildServers: BuildServer[] = [
   <BuildServer>{type: BuildServerType.TeamCity, description: "Core", config: {name: "1"}},
@@ -16,19 +18,22 @@ const buildServers: BuildServer[] = [
 ];
 
 const router = RouterTestingModule.withRoutes(
-  [{path: '**', component: BuildServerListComponent}]
+  [{path: '**', component: BuildServerListComponent}],
 )
 
 storiesOf('Build server list component', module)
   .addDecorator(
     moduleMetadata({
       imports: [MatCardModule, MatTableModule, MatButtonModule, MatIconModule, router],
-      providers: [UIUtils]
+      providers: [
+        UIUtils,
+        {
+          provide: DataService,
+          useValue: {getBuildServers: ()=> from([buildServers])}
+        }
+      ]
     })
   )
   .add('Simple', () => ({
-    component: BuildServerListComponent,
-    props: {
-      buildServers: buildServers
-    }
+    component: BuildServerListComponent
   }));

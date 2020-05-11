@@ -12,9 +12,9 @@ export class SchemaService {
 
   constructor(private dataService: DataService, private _uiUtils: UIUtils) { }
 
-  getProfileSchema() {
+  async getProfileSchema() : Promise<any> {
     const config = (<any>profileSchema).default;
-    const buildServers = this.dataService.getBuildServers();
+    const buildServers = await this.dataService.getBuildServers().toPromise();
     const buildServerNames = buildServers.map(s => this._uiUtils.getBuildServerName(s));
     config.schema.definitions.buildList.properties.buildServer.default = buildServerNames[0];
     config.schema.definitions.buildList.properties.buildServer.enum = buildServerNames;

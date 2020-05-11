@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import {Router} from "@angular/router";
 import {Profile} from "../data-contracts";
 import {DataService} from "../data.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-profile-list',
@@ -10,16 +11,14 @@ import {DataService} from "../data.service";
 })
 
 export class ProfileListComponent implements OnInit {
-  @Input() profiles: Profile[];
+  profiles$: Observable<Profile[]>;
 
   displayedColumns: string[] = ['name', 'description', 'public', 'actions'];
 
   constructor(private router: Router, private _dataService: DataService) { }
 
   ngOnInit(): void {
-    if (!this.profiles) {
-      this.profiles = this._dataService.getProfiles();
-    }
+    this.profiles$ = this._dataService.getProfiles();
   }
 
   view(name: any) {

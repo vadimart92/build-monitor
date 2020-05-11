@@ -10,9 +10,12 @@ import {MatInputModule} from "@angular/material/input";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MonacoEditorModule, NgxMonacoEditorConfig} from "ngx-monaco-editor";
 import {DataService} from "../data.service";
-import {BuildServer, BuildServerType} from "../data-contracts";
+import {BuildServer, BuildServerType, Profile} from "../data-contracts";
 import {UIUtils} from "../uiutils";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import * as samples from "../samples.json";
+import {SchemaService} from "../schema.service";
+import {from, Observable} from "rxjs";
 
 const router = RouterTestingModule.withRoutes(
   [{path: '**', component: ProfileEditComponent}]
@@ -23,6 +26,32 @@ storiesOf('Profile edit component', module)
       imports: [
         BrowserAnimationsModule, MatCardModule, MatTableModule, MatButtonModule, MatIconModule, MatInputModule,
         MatCheckboxModule, MonacoEditorModule.forRoot(), router
+      ],
+      providers: [
+        {
+          provide: DataService,
+          useValue: {
+            getProfile: ()=> <Profile>{
+              name: "sample",
+              description: "desc",
+              config: samples.profile
+            },
+            getBuildServers(): Observable<BuildServer[]>{
+              return from([[
+                <BuildServer> {description: "test desc", config: {name: "teamcity"}, type: BuildServerType.TeamCity},
+                <BuildServer> {description: "empty desc", config: {name: "jenkins"}, type: BuildServerType.TeamCity}
+              ]])
+            },
+            createSampleProfile() {
+              return <Profile>{
+                name: "sample",
+                description: "desc",
+                config: samples.profile
+              }
+            }
+          }
+        },
+        UIUtils
       ]
     })
   )
@@ -36,8 +65,7 @@ storiesOf('Profile edit component', module)
         {
           provide: ActivatedRoute,
           useValue: {snapshot: {paramMap: convertToParamMap({mode: 'new'})}}
-        },
-        UIUtils
+        }
       ]
     }
   }))
@@ -51,20 +79,7 @@ storiesOf('Profile edit component', module)
         {
           provide: ActivatedRoute,
           useValue: {snapshot: {paramMap: convertToParamMap({mode: 'edit'})}}
-        },
-        {
-          provide: DataService,
-          useValue: {
-            getProfile: ()=> new DataService().createSampleProfile(),
-            getBuildServers():BuildServer []{
-              return [
-               <BuildServer> {description: "test desc", config: {name: "teamcity"}, type: BuildServerType.TeamCity},
-                <BuildServer> {description: "empty desc", config: {name: "jenkins"}, type: BuildServerType.TeamCity}
-              ]
-            }
-          }
-        },
-        UIUtils
+        }
       ]
     }
   }));
