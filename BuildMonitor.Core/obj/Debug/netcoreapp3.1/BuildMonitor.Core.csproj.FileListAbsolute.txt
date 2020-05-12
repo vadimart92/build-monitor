@@ -1,0 +1,8 @@
+D:\dev\GitHub\build-monitor\BuildMonitor.Core\bin\Debug\netcoreapp3.1\BuildMonitor.Core.deps.json
+D:\dev\GitHub\build-monitor\BuildMonitor.Core\bin\Debug\netcoreapp3.1\BuildMonitor.Core.dll
+D:\dev\GitHub\build-monitor\BuildMonitor.Core\bin\Debug\netcoreapp3.1\BuildMonitor.Core.pdb
+D:\dev\GitHub\build-monitor\BuildMonitor.Core\obj\Debug\netcoreapp3.1\BuildMonitor.Core.csprojAssemblyReference.cache
+D:\dev\GitHub\build-monitor\BuildMonitor.Core\obj\Debug\netcoreapp3.1\BuildMonitor.Core.AssemblyInfoInputs.cache
+D:\dev\GitHub\build-monitor\BuildMonitor.Core\obj\Debug\netcoreapp3.1\BuildMonitor.Core.AssemblyInfo.cs
+D:\dev\GitHub\build-monitor\BuildMonitor.Core\obj\Debug\netcoreapp3.1\BuildMonitor.Core.dll
+D:\dev\GitHub\build-monitor\BuildMonitor.Core\obj\Debug\netcoreapp3.1\BuildMonitor.Core.pdb

@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildMonitor", "BuildMonitor\BuildMonitor.csproj", "{A67EA1E3-94A2-4BA0-AC55-52DFFD63B33A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildMonitor.Core", "BuildMonitor.Core\BuildMonitor.Core.csproj", "{E1878ED9-A742-46CD-BC33-2B1E24F893D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildMonitor.Core.Tests", "BuildMonitor.Core.Tests\BuildMonitor.Core.Tests.csproj", "{D15252E7-6122-418D-8D2B-D74688FAB594}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A67EA1E3-94A2-4BA0-AC55-52DFFD63B33A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A67EA1E3-94A2-4BA0-AC55-52DFFD63B33A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A67EA1E3-94A2-4BA0-AC55-52DFFD63B33A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A67EA1E3-94A2-4BA0-AC55-52DFFD63B33A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1878ED9-A742-46CD-BC33-2B1E24F893D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1878ED9-A742-46CD-BC33-2B1E24F893D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1878ED9-A742-46CD-BC33-2B1E24F893D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1878ED9-A742-46CD-BC33-2B1E24F893D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D15252E7-6122-418D-8D2B-D74688FAB594}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D15252E7-6122-418D-8D2B-D74688FAB594}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D15252E7-6122-418D-8D2B-D74688FAB594}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D15252E7-6122-418D-8D2B-D74688FAB594}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
