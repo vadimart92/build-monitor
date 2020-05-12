@@ -11,7 +11,7 @@ namespace BuildMonitor.Core.Tests.Configuration
 		[Test]
 		public void Deserialize() {
 			var source = "{\n    \"type\": \"teamCity\",\n    \"name\": \"teamcityPublic\",\n    \"url\": \"https://teamcity.jetbrains.com\",\n    \"guestLogin\": true\n  }";
-			var result = System.Text.Json.JsonSerializer.Deserialize<BuildServer>(source, new JsonSerializerOptions() {
+			var result = JsonSerializer.Deserialize<BuildServer>(source, new JsonSerializerOptions() {
 				PropertyNamingPolicy = JsonNamingPolicy.CamelCase
 			});
 			var buildServer = result.Should().BeOfType<TeamcityBuildServer>().Subject;

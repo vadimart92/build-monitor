@@ -2,7 +2,7 @@
   "profile": {
     "screens": [
       {
-        "type": "buildMonitor",
+        "type": "buildStatus",
         "displayTime": 60,
         "builds": [
           {

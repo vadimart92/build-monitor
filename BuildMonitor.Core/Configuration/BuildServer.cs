@@ -2,8 +2,7 @@
 
 namespace BuildMonitor.Core.Configuration
 {
-	[JsonConverter(typeof(BuildServerConverter))]
-	[MapType(typeof(TeamcityBuildServer), typeof(BuildServerType), (int)BuildServerType.TeamCity)]
+	[JsonConverter(typeof(AbstractTypeConverter<BuildServer,BuildServerType>))]
 	public abstract class BuildServer
 	{
 		public abstract BuildServerType Type { get; }
@@ -12,6 +11,7 @@ namespace BuildMonitor.Core.Configuration
 
 	public enum BuildServerType
 	{
+		[MapType(typeof(TeamcityBuildServer))]
 		TeamCity,
 		Jenkins
 	}

@@ -41,7 +41,7 @@
       },
       "screenType": {
         "type": "string",
-        "enum": ["buildMonitor"]
+        "enum": ["buildStatus"]
       },
       "buildStatusScreen": {
         "type": "object",
