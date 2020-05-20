@@ -6,14 +6,19 @@
     </ng-container>
   </mat-card-header>
   <mat-card-content>
-    <div class="form">
-      <mat-form-field class="full-width">
-        <mat-label>Description</mat-label>
-        <input matInput id="description" placeholder="e.g. for core developers " [(ngModel)]="buildServer.description">
-      </mat-form-field>
-    </div>
-    <div class="code-editor-wrap">
-      <ngx-monaco-editor class="code-editor" [options]="editorOptions" (onInit)="onInit($event)" [(ngModel)]="config"></ngx-monaco-editor>
+    <div *ngIf="buildServer">
+      <div class="form">
+        <mat-form-field class="full-width">
+          <mat-label>Description</mat-label>
+          <input matInput id="description" placeholder="e.g. for core developers " [(ngModel)]="buildServer.description">
+        </mat-form-field>
+      </div>
+      <div class="code-editor-wrap">
+        <div *ngIf="!editorInitialized">
+          <mat-spinner></mat-spinner>
+        </div>
+        <ngx-monaco-editor class="code-editor" [options]="editorOptions" (onInit)="onInit($event)" [(ngModel)]="config"></ngx-monaco-editor>
+      </div>
     </div>
   </mat-card-content>
   <mat-card-actions align="end" class="buttons">

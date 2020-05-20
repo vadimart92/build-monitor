@@ -23,12 +23,9 @@ namespace BuildMonitor.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Config")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("jsonb");
 
                     b.Property<string>("Description")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -43,7 +40,7 @@ namespace BuildMonitor.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Config")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("jsonb");
 
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");

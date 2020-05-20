@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import {BuildServer} from "../data-contracts";
 import {SchemaService} from "../schema.service";
 import {ActivatedRoute} from "@angular/router";
@@ -16,17 +16,18 @@ export class BuildServerEditComponent implements OnInit {
   editorOptions = {theme: 'vs-dark', language: 'json'};
   buildServer: BuildServer;
   config: string;
+  editorInitialized: boolean = false;
   constructor(private _schemaService: SchemaService, private _route: ActivatedRoute,
               private _location: Location, private _dataService: DataService,
-              private _uiUtils: UIUtils) { }
+              private _uiUtils: UIUtils, private _zone: NgZone) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.isNewMode = this._route.snapshot.paramMap.get('mode') === "new";
     if (this.isNewMode){
       this.buildServer = this._dataService.createSampleBuildServer();
     } else {
-      let buildServerName = this._route.snapshot.paramMap.get('name');
-      this.buildServer = this._dataService.getBuildServer(buildServerName);
+      let id = this._route.snapshot.paramMap.get('id');
+      this.buildServer = await this._dataService.getBuildServer(id).toPromise();
     }
     this.config = this._uiUtils.getConfigText(this.buildServer);
   }
@@ -37,6 +38,7 @@ export class BuildServerEditComponent implements OnInit {
       validate: true,
       schemas: [buildServerSchema]
     });
+    this._zone.run(() => this.editorInitialized = true);
   }
 
   async save() {

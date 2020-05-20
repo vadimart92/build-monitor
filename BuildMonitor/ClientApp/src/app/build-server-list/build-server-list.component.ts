@@ -14,18 +14,18 @@ export class BuildServerListComponent implements OnInit {
 
   @Input() buildServers$: Observable<BuildServer[]>;
   displayedColumns: string[] = ['name', 'type', 'description', 'actions'];
-  constructor(private router: Router, private dataService: DataService, private _uiUtils: UIUtils) { }
+  constructor(private router: Router, private _dataService: DataService, private _uiUtils: UIUtils) { }
 
   ngOnInit(): void {
-    this.buildServers$ = this.dataService.getBuildServers();
+    this.buildServers$ = this._dataService.getBuildServers();
   }
 
   addBuildServer() {
     this.router.navigate(['/build-server', {mode: "new"}]);
   }
 
-  edit(name: any) {
-    this.router.navigate(['/build-server', {mode: "edit", name: name}]);
+  edit(id: any) {
+    this.router.navigate(['/build-server', {mode: "edit", id: id}]);
   }
 
   getTypeDisplayValue(server: BuildServer) {
@@ -33,5 +33,10 @@ export class BuildServerListComponent implements OnInit {
   }
   getName(server: BuildServer){
     return this._uiUtils.getBuildServerName(server);
+  }
+
+  async remove(id: any) {
+    await this._dataService.removeBuildServer(id);
+    this.buildServers$ = this._dataService.getBuildServers();
   }
 }

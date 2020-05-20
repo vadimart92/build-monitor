@@ -7,6 +7,7 @@ import {RouterTestingModule} from "@angular/router/testing";
 import {ActivatedRoute, convertToParamMap} from "@angular/router";
 import {MatInputModule} from "@angular/material/input";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MonacoEditorModule, NgxMonacoEditorConfig} from "ngx-monaco-editor";
 import {BuildServerEditComponent} from "./build-server-edit.component";
 import {UIUtils} from "../uiutils";
@@ -21,7 +22,8 @@ const router = RouterTestingModule.withRoutes(
 storiesOf('Build server edit component', module)
   .addDecorator(
     moduleMetadata({
-      imports: [BrowserAnimationsModule, MatCardModule, MatTableModule, MatButtonModule, MatIconModule, MatInputModule, MonacoEditorModule.forRoot(), router],
+      imports: [BrowserAnimationsModule, MatCardModule, MatTableModule, MatButtonModule, MatIconModule, MatInputModule,
+        MatProgressSpinnerModule, MonacoEditorModule.forRoot(), router],
       providers: [
         UIUtils,
         {

@@ -2,9 +2,10 @@
 
 namespace BuildMonitor.Core.Configuration
 {
-	[JsonConverter(typeof(AbstractTypeConverter<BuildServer,BuildServerType>))]
-	public abstract class BuildServer
+	[JsonConverter(typeof(AbstractTypeConverter<BuildServerConfig,BuildServerType>))]
+	public abstract class BuildServerConfig
 	{
+		[JsonConverter(typeof(StringEnumConverter<BuildServerType>))]
 		public abstract BuildServerType Type { get; }
 		public string Name { get; set; }
 	}
@@ -16,12 +17,14 @@ namespace BuildMonitor.Core.Configuration
 		Jenkins
 	}
 
-	public class TeamcityBuildServer : BuildServer
+	public class TeamcityBuildServer : BuildServerConfig
 	{
 		public string Url { get; set; }
 		public bool GuestLogin { get; set; }
 		public string Login { get; set; }
 		public string Password { get; set; }
+		
+		[JsonConverter(typeof(StringEnumConverter<BuildServerType>))]
 		public override BuildServerType Type => BuildServerType.TeamCity;
 	}
 }

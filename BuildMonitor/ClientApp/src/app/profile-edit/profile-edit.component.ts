@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, NgZone, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Location} from '@angular/common';
 
@@ -17,16 +17,17 @@ export class ProfileEditComponent implements OnInit {
   editorOptions = {theme: 'vs-dark', language: 'json'};
   profile: Profile;
   config: string;
+  editorInitialized: boolean = false;
   constructor(private _schemaService: SchemaService, private _route: ActivatedRoute,
-              private _location: Location, private _dataService: DataService, private _uiUtils: UIUtils) {}
+              private _location: Location, private _dataService: DataService, private _uiUtils: UIUtils, private _zone: NgZone) {}
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.isNewMode = this._route.snapshot.paramMap.get('mode') === "new";
     if (this.isNewMode){
       this.profile = this._dataService.createSampleProfile();
     } else {
-      let profileId = this._route.snapshot.paramMap.get('name');
-      this.profile = this._dataService.getProfile(profileId);
+      let profileId = this._route.snapshot.paramMap.get('id');
+      this.profile = await this._dataService.getProfile(profileId).toPromise();
     }
     this.config = this._uiUtils.getConfigText(this.profile);
   }
@@ -47,6 +48,7 @@ export class ProfileEditComponent implements OnInit {
       validate: true,
       schemas: [profileSchema]
     });
+    this._zone.run(() => this.editorInitialized = true);
   }
 
 }

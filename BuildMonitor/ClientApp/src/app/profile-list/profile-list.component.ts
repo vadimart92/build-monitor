@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {Profile} from "../data-contracts";
 import {DataService} from "../data.service";
 import {Observable} from "rxjs";
+import {UIUtils} from "../uiutils";
 
 @Component({
   selector: 'app-profile-list',
@@ -28,7 +29,12 @@ export class ProfileListComponent implements OnInit {
     this.router.navigate(['/profile', {mode: "new"}]);
   }
 
-  edit(name: any) {
-    this.router.navigate(['/profile', {mode: "edit", name: name}]);
+  edit(id: any) {
+    this.router.navigate(['/profile', {mode: "edit", id: id}]);
+  }
+
+  async remove(id: any) {
+    await this._dataService.removeProfile(id);
+    this.profiles$ = this._dataService.getProfiles();
   }
 }

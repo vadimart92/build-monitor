@@ -24,10 +24,6 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 })
 
 export class DataService {
-  private _buildServers: BuildServer[] = [
-    <BuildServer>{description: "test desc", config: {name: "test"}},
-    <BuildServer>{description: "empty desc", config: {name: "empty"}}
-  ]
 
   constructor(private http: HttpClient, private _snackBar: MatSnackBar) {
   }
@@ -36,7 +32,7 @@ export class DataService {
     return this.http.get<Profile[]>("/api/configuration/getProfiles");
   }
   getBuildServers():Observable<BuildServer[]>{
-    return from([this._buildServers]);
+    return this.http.get<BuildServer[]>("/api/configuration/getBuildServers");
   }
   getScreens(configProfileId): Screen[] {
     if (configProfileId == "empty"){
@@ -81,30 +77,26 @@ export class DataService {
       description: "desc"
     };
   }
-
-  getProfile(profileId: string) {
-    return this._profiles.find(p => p.name === profileId);
+  async saveProfile(profile: Profile) : Promise<void> {
+    await this.http.post("/api/configuration/saveProfile", profile).toPromise();
   }
 
-  private _profiles:  Profile [] = [
-    <Profile>{name: "test", description: "test desc", config: "..."},
-    <Profile>{name: "empty", description: "empty desc", config: "..."}
-  ]
-  saveProfile(profile: Profile) : Promise<void> {
-    if (!this.getProfile(profile.name)){
-      this._profiles.push(profile);
-    }
-    return Promise.resolve();
+  getBuildServer(buildServerId: string) : Observable<BuildServer> {
+    return this.http.get<BuildServer>(`/api/configuration/getBuildServer/${buildServerId}`);
   }
 
-  getBuildServer(buildServerId: string) {
-    return this._buildServers.find(p => p.config.name === buildServerId);
+  getProfile(profileId: string) : Observable<Profile> {
+    return this.http.get<Profile>(`/api/configuration/getProfile/${profileId}`);
+  }
+  async removeBuildServer(buildServerId: string) : Promise<void>{
+    await this.http.delete(`/api/configuration/removeBuildServer/${buildServerId}`).toPromise();
+  }
+
+  async removeProfile(buildServerId: string) : Promise<void>{
+    await this.http.delete(`/api/configuration/removeProfile/${buildServerId}`).toPromise();
   }
 
   async saveBuildServer(buildServer: BuildServer): Promise<void> {
-    const name = buildServer.config.name;
-    buildServer.config = JSON.stringify(buildServer.config);
-    buildServer.name = name;
     await this.http.post("/api/configuration/saveBuildServer", buildServer).toPromise();
     this._snackBar.open(`Build server ${name} saved.`);
   }

@@ -23,8 +23,11 @@
           <button mat-icon-button (click)="view(element.name)" >
             <mat-icon>open_in_new</mat-icon>
           </button>
-          <button mat-icon-button (click)="edit(element.name)" >
+          <button mat-icon-button (click)="edit(element.id)" >
             <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button (click)="remove(element.id)" >
+            <mat-icon>delete</mat-icon>
           </button>
         </mat-cell>
       </ng-container>

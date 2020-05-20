@@ -15,7 +15,23 @@ namespace BuildMonitor.Core.Configuration
 			Type = type;
 		}
 	}
-	
+
+	internal sealed class StringEnumConverter<TEnum> : JsonConverter<TEnum>
+	{
+		public override TEnum Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) {
+			var name = reader.GetString();
+			return Enum.TryParse(typeof(TEnum), name, out var val) ? (TEnum)val : default;
+		}
+
+		public override void Write(Utf8JsonWriter writer, TEnum value, JsonSerializerOptions options) {
+			var name = Enum.GetName(typeof(TEnum), value);
+			if (options.PropertyNamingPolicy == JsonNamingPolicy.CamelCase) {
+				name = $"{char.ToLowerInvariant(name[0])}{new String(name.Skip(1).ToArray())}";
+			}
+			writer.WriteStringValue(name);
+		}
+	}
+
 	internal sealed class AbstractTypeConverter<TType, TEnumType>
 		: JsonConverter<TType>
 	{

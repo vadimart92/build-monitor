@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BuildMonitor.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,9 +12,8 @@ namespace BuildMonitor.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
-                    Config = table.Column<string>(nullable: true)
+                    Config = table.Column<string>(type: "jsonb", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -28,7 +27,7 @@ namespace BuildMonitor.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
-                    Config = table.Column<string>(nullable: true)
+                    Config = table.Column<string>(type: "jsonb", nullable: true)
                 },
                 constraints: table =>
                 {

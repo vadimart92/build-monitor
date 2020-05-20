@@ -13,6 +13,7 @@ import {DataService} from "../data.service";
 import {BuildServer, Profile} from "../data-contracts";
 import {UIUtils} from "../uiutils";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import * as samples from "../samples.json";
 import {SchemaService} from "../schema.service";
 import {from, Observable} from "rxjs";
@@ -25,7 +26,7 @@ storiesOf('Profile edit component', module)
     moduleMetadata({
       imports: [
         BrowserAnimationsModule, MatCardModule, MatTableModule, MatButtonModule, MatIconModule, MatInputModule,
-        MatCheckboxModule, MonacoEditorModule.forRoot(), router
+        MatCheckboxModule, MatProgressSpinnerModule, MonacoEditorModule.forRoot(), router
       ],
       providers: [
         {

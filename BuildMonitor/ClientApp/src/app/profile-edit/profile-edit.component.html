@@ -6,22 +6,27 @@
     </ng-container>
   </mat-card-header>
   <mat-card-content>
-    <div class="form">
-      <mat-form-field class="full-width">
-        <mat-label>Profile name</mat-label>
-        <input [required]="true" matInput id="name" placeholder="My monitor" [(ngModel)]="profile.name">
-      </mat-form-field>
+    <div *ngIf="profile">
+      <div class="form">
+        <mat-form-field class="full-width">
+          <mat-label>Profile name</mat-label>
+          <input [required]="true" matInput id="name" placeholder="My monitor" [(ngModel)]="profile.name">
+        </mat-form-field>
 
-      <mat-form-field class="full-width">
-        <mat-label>Profile description</mat-label>
-        <input matInput id="description" placeholder="e.g. for core developers " [(ngModel)]="profile.description">
-      </mat-form-field>
-      <div class="full-width form-check-box">
-        <mat-checkbox id="isPublic" [(ngModel)]="profile.public">Public</mat-checkbox>
+        <mat-form-field class="full-width">
+          <mat-label>Profile description</mat-label>
+          <input matInput id="description" placeholder="e.g. for core developers " [(ngModel)]="profile.description">
+        </mat-form-field>
+        <div class="full-width form-check-box">
+          <mat-checkbox id="isPublic" [(ngModel)]="profile.public">Public</mat-checkbox>
+        </div>
       </div>
-    </div>
-    <div class="code-editor-wrap">
-      <ngx-monaco-editor class="code-editor" [options]="editorOptions" (onInit)="onInit($event)" [(ngModel)]="config"></ngx-monaco-editor>
+      <div class="code-editor-wrap">
+        <div *ngIf="!editorInitialized">
+          <mat-spinner></mat-spinner>
+        </div>
+        <ngx-monaco-editor class="code-editor" [options]="editorOptions" (onInit)="onInit($event)" [(ngModel)]="config"></ngx-monaco-editor>
+      </div>
     </div>
   </mat-card-content>
   <mat-card-actions align="end" class="buttons">
