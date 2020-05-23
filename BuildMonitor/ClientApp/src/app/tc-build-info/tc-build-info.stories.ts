@@ -1,6 +1,6 @@
 ﻿import { storiesOf, moduleMetadata } from '@storybook/angular';
 import { TcBuildInfoComponent } from './tc-build-info.component';
-import {BuildStatus, Change, TcBuildInfo, User} from "../data-contracts";
+import {BuildStatus, Change, User} from "../data-contracts";
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';

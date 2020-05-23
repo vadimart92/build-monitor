@@ -1,11 +1,7 @@
 import {
   Component,
   OnInit,
-  QueryList,
-  AfterViewInit,
-  ViewChildren,
-  ViewContainerRef,
-  ComponentFactoryResolver, ChangeDetectorRef, Input
+  Input
 } from '@angular/core';
 import {BuildScreenData, BuildViewType, Screen} from "../data-contracts";
 

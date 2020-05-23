@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {Profile} from "../data-contracts";
-import {DataService} from "../data.service";
 import {Observable} from "rxjs";
-import {UIUtils} from "../uiutils";
+import {UIProfileService} from "../data-services/uiprofile.service";
 
 @Component({
   selector: 'app-profile-list',
@@ -16,10 +15,11 @@ export class ProfileListComponent implements OnInit {
 
   displayedColumns: string[] = ['name', 'description', 'public', 'actions'];
 
-  constructor(private router: Router, private _dataService: DataService) { }
+  constructor(private router: Router, private _profileService: UIProfileService) {
+  }
 
   ngOnInit(): void {
-    this.profiles$ = this._dataService.getProfiles();
+    this.profiles$ = this._profileService.getAll();
   }
 
   view(name: any) {
@@ -34,7 +34,7 @@ export class ProfileListComponent implements OnInit {
   }
 
   async remove(id: any) {
-    await this._dataService.removeProfile(id);
-    this.profiles$ = this._dataService.getProfiles();
+    await this._profileService.remove(id);
+    this.profiles$ = this._profileService.getAll();
   }
 }

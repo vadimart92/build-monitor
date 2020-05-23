@@ -1,7 +1,7 @@
 import {Component, Input, OnInit, OnDestroy} from '@angular/core';
 
 import {BuildInfo, BuildStatus} from "../data-contracts";
-import {BuildInfoService} from "../build-info.service";
+import {BuildInfoService} from "../data-services/build-info.service";
 import {Subscription} from "rxjs";
 
 @Component({

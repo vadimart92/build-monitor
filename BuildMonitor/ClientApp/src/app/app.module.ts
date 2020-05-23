@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule} from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -28,7 +28,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {FlexModule} from '@angular/flex-layout/flex';
 import {GridModule} from '@angular/flex-layout/grid';
 
-import {MonacoEditorModule, NgxMonacoEditorConfig} from 'ngx-monaco-editor';
+import {MonacoEditorModule} from 'ngx-monaco-editor';
 
 import { ProfileListComponent } from './profile-list/profile-list.component';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';

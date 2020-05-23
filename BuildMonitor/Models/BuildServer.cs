@@ -5,7 +5,7 @@ using BuildMonitor.Core.Configuration;
 
 namespace BuildMonitor.Models
 {
-	public class BuildServer
+	public class BuildServer : IEntity
 	{
 		[Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public Guid Id { get; set; }

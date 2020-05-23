@@ -1,7 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {BuildStatus, TcBuildInfo} from "../data-contracts";
+import {Component, OnInit} from '@angular/core';
+import {TcBuildInfo} from "../data-contracts";
 import {BaseBuildInfoComponent} from "../base-build-info/base-build-info.component";
-import {BuildInfoService} from "../build-info.service";
+import {BuildInfoService} from "../data-services/build-info.service";
 
 @Component({
   selector: 'app-tc-build-info',

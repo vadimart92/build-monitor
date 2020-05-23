@@ -3,8 +3,8 @@ import {BuildServer} from "../data-contracts";
 import {SchemaService} from "../schema.service";
 import {ActivatedRoute} from "@angular/router";
 import {Location} from "@angular/common";
-import {DataService} from "../data.service";
 import {UIUtils} from "../uiutils";
+import {UIBuildServerService} from "../data-services/uibuild-server.service";
 
 @Component({
   selector: 'app-build-server-edit',
@@ -18,16 +18,16 @@ export class BuildServerEditComponent implements OnInit {
   config: string;
   editorInitialized: boolean = false;
   constructor(private _schemaService: SchemaService, private _route: ActivatedRoute,
-              private _location: Location, private _dataService: DataService,
+              private _location: Location, private _buildServerService: UIBuildServerService,
               private _uiUtils: UIUtils, private _zone: NgZone) { }
 
   async ngOnInit(): Promise<void> {
     this.isNewMode = this._route.snapshot.paramMap.get('mode') === "new";
     if (this.isNewMode){
-      this.buildServer = this._dataService.createSampleBuildServer();
+      this.buildServer = this._buildServerService.createSample();
     } else {
       let id = this._route.snapshot.paramMap.get('id');
-      this.buildServer = await this._dataService.getBuildServer(id).toPromise();
+      this.buildServer = await this._buildServerService.get(id).toPromise();
     }
     this.config = this._uiUtils.getConfigText(this.buildServer);
   }
@@ -43,7 +43,7 @@ export class BuildServerEditComponent implements OnInit {
 
   async save() {
     this._uiUtils.setConfig(this.buildServer, this.config);
-    await this._dataService.saveBuildServer(this.buildServer);
+    await this._buildServerService.save(this.buildServer);
     this.back();
   }
 

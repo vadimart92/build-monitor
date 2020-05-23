@@ -8,14 +8,13 @@ import {ProfileEditComponent} from "./profile-edit.component";
 import {ActivatedRoute, convertToParamMap} from "@angular/router";
 import {MatInputModule} from "@angular/material/input";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MonacoEditorModule, NgxMonacoEditorConfig} from "ngx-monaco-editor";
+import {MonacoEditorModule} from "ngx-monaco-editor";
 import {DataService} from "../data.service";
 import {BuildServer, Profile} from "../data-contracts";
 import {UIUtils} from "../uiutils";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import * as samples from "../samples.json";
-import {SchemaService} from "../schema.service";
 import {from, Observable} from "rxjs";
 
 const router = RouterTestingModule.withRoutes(

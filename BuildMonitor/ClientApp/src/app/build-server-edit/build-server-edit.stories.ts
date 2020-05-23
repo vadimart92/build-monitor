@@ -8,11 +8,11 @@ import {ActivatedRoute, convertToParamMap} from "@angular/router";
 import {MatInputModule} from "@angular/material/input";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import {MonacoEditorModule, NgxMonacoEditorConfig} from "ngx-monaco-editor";
+import {MonacoEditorModule} from "ngx-monaco-editor";
 import {BuildServerEditComponent} from "./build-server-edit.component";
 import {UIUtils} from "../uiutils";
 import {DataService} from "../data.service";
-import {BuildServer, Profile} from "../data-contracts";
+import {BuildServer} from "../data-contracts";
 import * as samples from "../samples.json";
 
 const router = RouterTestingModule.withRoutes(

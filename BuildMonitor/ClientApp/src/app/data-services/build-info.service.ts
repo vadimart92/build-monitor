@@ -1,5 +1,5 @@
 import {Injectable, NgZone} from '@angular/core';
-import {BuildInfo, BuildStatus, TcBuildInfo} from "./data-contracts";
+import {BuildInfo, BuildStatus, TcBuildInfo} from "../data-contracts";
 import {Observable, Subject} from "rxjs";
 
 @Injectable({

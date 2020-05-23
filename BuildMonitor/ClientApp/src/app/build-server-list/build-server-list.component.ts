@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {BuildServer, Profile} from "../data-contracts";
+import {BuildServer} from "../data-contracts";
 import {Router} from "@angular/router";
-import {DataService} from "../data.service";
 import {UIUtils} from "../uiutils";
 import {Observable} from "rxjs";
+import {UIBuildServerService} from "../data-services/uibuild-server.service";
 
 @Component({
   selector: 'app-build-server-list',
@@ -14,10 +14,10 @@ export class BuildServerListComponent implements OnInit {
 
   @Input() buildServers$: Observable<BuildServer[]>;
   displayedColumns: string[] = ['name', 'type', 'description', 'actions'];
-  constructor(private router: Router, private _dataService: DataService, private _uiUtils: UIUtils) { }
+  constructor(private router: Router, private _buildServerService: UIBuildServerService, private _uiUtils: UIUtils) { }
 
   ngOnInit(): void {
-    this.buildServers$ = this._dataService.getBuildServers();
+    this.buildServers$ = this._buildServerService.getAll();
   }
 
   addBuildServer() {
@@ -36,7 +36,7 @@ export class BuildServerListComponent implements OnInit {
   }
 
   async remove(id: any) {
-    await this._dataService.removeBuildServer(id);
-    this.buildServers$ = this._dataService.getBuildServers();
+    await this._buildServerService.remove(id);
+    this.buildServers$ = this._buildServerService.getAll();
   }
 }

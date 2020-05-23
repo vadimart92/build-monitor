@@ -1,9 +1,9 @@
-import {Component, ComponentFactoryResolver, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
-import {DataService} from "../data.service";
+import {DataService} from "../data-services/data.service";
 import {Screen, ScreenType} from "../data-contracts";
 import {ActivatedRoute} from "@angular/router";
-import {BuildInfoService} from "../build-info.service";
+import {BuildInfoService} from "../data-services/build-info.service";
 
 @Component({
   selector: 'app-monitor-list',
