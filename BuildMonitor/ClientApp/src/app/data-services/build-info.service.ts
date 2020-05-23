@@ -1,6 +1,17 @@
 import {Injectable, NgZone} from '@angular/core';
-import {BuildInfo, BuildStatus, TcBuildInfo} from "../data-contracts";
+import {
+  BuildData,
+  BuildInfo, BuildScreenData,
+  BuildStatus,
+  BuildViewType,
+  Change,
+  Screen,
+  ScreenType,
+  TcBuildInfo,
+  User
+} from "../data-contracts";
 import {Observable, Subject} from "rxjs";
+import * as data from "../sampleData.json";
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +35,20 @@ export class BuildInfoService {
     console.warn(`unsubscribeFromProfile ${profileName}`);
   }
 
+  openProfile(configProfileId): Screen[] {
+    if (configProfileId == "empty"){
+      return [];
+    }
+    return [
+      <Screen>({
+        id: "id1",
+        type: ScreenType.BuildInfo,
+        data: <BuildScreenData> {
+          builds: data.builds
+        }
+      })
+    ];
+  }
   refresh(){
     const info = new TcBuildInfo();
     info.id = "xxxx";

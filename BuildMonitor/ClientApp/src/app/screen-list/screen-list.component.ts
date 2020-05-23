@@ -1,6 +1,4 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-
-import {DataService} from "../data-services/data.service";
 import {Screen, ScreenType} from "../data-contracts";
 import {ActivatedRoute} from "@angular/router";
 import {BuildInfoService} from "../data-services/build-info.service";
@@ -14,11 +12,10 @@ export class ScreenListComponent implements OnInit, OnDestroy {
   monitorItems: Screen[];
   public monitorType = ScreenType;
   private _profileName;
-  constructor(private monitorService: DataService, private route: ActivatedRoute,
-              private _buildInfoService: BuildInfoService) { }
+  constructor(private route: ActivatedRoute, private _buildInfoService: BuildInfoService) { }
   ngOnInit() {
     this._profileName = this.route.snapshot.paramMap.get('profile');
-    this.monitorItems = this.monitorService.openProfile(this._profileName);
+    this.monitorItems = this._buildInfoService.openProfile(this._profileName);
     this._buildInfoService.subscribeForProfile(this._profileName);
   }
 

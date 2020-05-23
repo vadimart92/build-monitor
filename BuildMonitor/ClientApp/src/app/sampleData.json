@@ -1,157 +1,175 @@
 ﻿{
   "builds": [
     {
-      "id": "CsConfigurationUnitTestsDbUpdate|0.0.0.0",
-      "project": "Continuous Integration / Unit Tests / C# / Configuration",
-      "definition": "Unit (Diagnostic SE_M_SE)|trunk",
-      "number": "0.0.0.0",
-      "isRunning": false,
-      "startedAt": "2020-05-03T07:19:04.000Z",
-      "finishedAt": "2020-05-03T07:31:17.000Z",
-      "requestedFor": "bpmonlinebuild",
-      "statusText": "Success",
-      "status": "Green",
-      "reason": "#0\nupdate app.studio-enterprise.process-designer. GitSHA: 52011f468250539b456f8b0b05c26cd5fc4c67e3",
-      "hasErrors": false,
-      "hasWarnings": false,
-      "url": "http://tsbuild-app-03/viewLog.html?buildId=3245893&buildTypeId=CsConfigurationUnitTestsDbUpdate",
-      "etag": "fc038a8fc88d9ac2d0ccdf71c5a63b98"
+      "viewType": 1,
+      "config": {
+        "id": "CsConfigurationUnitTestsDbUpdate|0.0.0.0",
+        "name": "Unit (Diagnostic SE_M_SE)|trunk",
+        "projectName": "Continuous Integration / Unit Tests / C# / Configuration",
+        "number": "0.0.0.0",
+        "status": 2,
+        "url": "http://tsbuild-app-03/viewLog.html?buildId=3245893&buildTypeId=CsConfigurationUnitTestsDbUpdate",
+        "changes": [
+          {
+            "author": {
+              "name": "v.artemchuk",
+              "avatarImage": ""
+            }
+          }
+        ]
+      }
     },
     {
-      "id": "CoreJsIntegrationTests|4594",
-      "project": "Continuous Integration / Unit Tests / JS / Core",
-      "definition": "Integration|trunk",
-      "number": "4594",
-      "isRunning": false,
-      "startedAt": "2020-05-03T07:19:21.000Z",
-      "finishedAt": "2020-05-03T07:24:41.000Z",
-      "requestedFor": "bpmonlinebuild",
-      "statusText": "Failure",
-      "status": "Red",
-      "reason": "#0\nupdate app.studio-enterprise.process-designer. GitSHA: 52011f468250539b456f8b0b05c26cd5fc4c67e3",
-      "hasErrors": true,
-      "hasWarnings": false,
-      "url": "http://tsbuild-app-03/viewLog.html?buildId=3245904&buildTypeId=CoreJsIntegrationTests",
-      "etag": "d6fed6bd827ccc096a2ca82dfc5bd948"
+      "viewType": 1,
+      "config": {
+        "id": "CoreJsIntegrationTests|4594",
+        "name": "Integration|trunk",
+        "projectName": "Continuous Integration / Unit Tests / JS / Core",
+        "number": "4594",
+        "status": 3,
+        "url": "http://tsbuild-app-03/viewLog.html?buildId=3245904&buildTypeId=CoreJsIntegrationTests",
+        "changes": [
+          {
+            "author": {
+              "name": "v.artemchuk",
+              "avatarImage": ""
+            }
+          }
+        ]
+      }
     },
     {
-      "id": "JsCoreUnitTestsKarma|831",
-      "project": "Continuous Integration / Unit Tests / JS / Core",
-      "definition": "JS Core Unit/UI Tests Karma|trunk",
-      "number": "831",
-      "isRunning": false,
-      "startedAt": "2020-05-03T07:19:21.000Z",
-      "finishedAt": "2020-05-03T07:20:41.000Z",
-      "requestedFor": "bpmonlinebuild",
-      "statusText": "Success",
-      "status": "Green",
-      "reason": "#0\nupdate app.studio-enterprise.process-designer. GitSHA: 52011f468250539b456f8b0b05c26cd5fc4c67e3",
-      "hasErrors": false,
-      "hasWarnings": false,
-      "url": "http://tsbuild-app-03/viewLog.html?buildId=3245903&buildTypeId=JsCoreUnitTestsKarma",
-      "etag": "9e079ceaf374c1d2caf37a0162accc7a"
+      "viewType": 1,
+      "config": {
+        "id": "JsCoreUnitTestsKarma|831",
+        "name": "JS Core Unit/UI Tests Karma|trunk",
+        "projectName": "Continuous Integration / Unit Tests / JS / Core",
+        "number": "831",
+        "status": 2,
+        "url": "http://tsbuild-app-03/viewLog.html?buildId=3245903&buildTypeId=JsCoreUnitTestsKarma",
+        "changes": [
+          {
+            "author": {
+              "name": "v.artemchuk",
+              "avatarImage": ""
+            }
+          }
+        ]
+      }
     },
     {
-      "id": "ConfigurationUnitTest780|7509",
-      "project": "Continuous Integration / Unit Tests / JS / Configuration",
-      "definition": "Configuration|trunk",
-      "number": "7509",
-      "isRunning": false,
-      "startedAt": "2020-05-03T05:50:04.000Z",
-      "finishedAt": "2020-05-03T05:56:50.000Z",
-      "requestedFor": "d.khomenko",
-      "statusText": "Failure",
-      "status": "Red",
-      "reason": "#CRM-53409\nПревью сводной таблицы\nrefactoring",
-      "hasErrors": true,
-      "hasWarnings": false,
-      "url": "http://tsbuild-app-03/viewLog.html?buildId=3245846&buildTypeId=ConfigurationUnitTest780",
-      "etag": "e980253b5d849f598893a9673aff1ec9"
+      "viewType": 1,
+      "config": {
+        "id": "ConfigurationUnitTest780|7509",
+        "name": "Configuration|trunk",
+        "projectName": "Continuous Integration / Unit Tests / JS / Configuration",
+        "number": "7509",
+        "status": 3,
+        "url": "http://tsbuild-app-03/viewLog.html?buildId=3245846&buildTypeId=ConfigurationUnitTest780",
+        "changes": [
+          {
+            "author": {
+              "name": "v.artemchuk",
+              "avatarImage": ""
+            }
+          }
+        ]
+      }
     },
     {
-      "id": "ApiTests|4189",
-      "project": "Continuous Integration / API Tests",
-      "definition": "API Tests|trunk",
-      "number": "4189",
-      "isRunning": false,
-      "startedAt": "2020-05-03T02:42:37.000Z",
-      "finishedAt": "2020-05-03T03:08:47.000Z",
-      "requestedFor": "v.novak",
-      "statusText": "Failure",
-      "status": "Red",
-      "reason": "#INRF-1938\nВозможность перезапуска упавших тестов",
-      "hasErrors": true,
-      "hasWarnings": false,
-      "url": "http://tsbuild-app-03/viewLog.html?buildId=3245558&buildTypeId=ApiTests",
-      "etag": "f0104876d88d15c4c86c81ee9215bde9"
+      "viewType": 1,
+      "config": {
+        "id": "ApiTests|4189",
+        "name": "API Tests|trunk",
+        "projectName": "Continuous Integration / API Tests",
+        "number": "4189",
+        "status": 3,
+        "url": "http://tsbuild-app-03/viewLog.html?buildId=3245558&buildTypeId=ApiTests",
+        "changes": [
+          {
+            "author": {
+              "name": "v.artemchuk",
+              "avatarImage": ""
+            }
+          }
+        ]
+      }
     },
     {
-      "id": "UnitTestIntegration780|7.16.1.1618 ProductBase Softkey ENU",
-      "project": "Continuous Integration / Unit Tests / C# / Core",
-      "definition": "Integration (MSSQL)|trunk",
-      "number": "7.16.1.1618 ProductBase Softkey ENU",
-      "isRunning": false,
-      "startedAt": "2020-05-01T20:15:01.000Z",
-      "finishedAt": "2020-05-01T20:36:50.000Z",
-      "requestedFor": "bpmonlinebuild",
-      "statusText": "Success",
-      "status": "Green",
-      "reason": "#0\nupdate app.studio-enterprise.system-designer. GitSHA: 0245c1c695dc7d5c5ac4074842b4ce96be8fa073",
-      "hasErrors": false,
-      "hasWarnings": false,
-      "url": "http://tsbuild-app-03/viewLog.html?buildId=3243952&buildTypeId=UnitTestIntegration780",
-      "etag": "83eaedfd0190d4556c08d29ec1e59cb4"
+      "viewType": 1,
+      "config": {
+        "id": "UnitTestIntegration780|7.16.1.1618 ProductBase Softkey ENU",
+        "name": "Integration (MSSQL)|trunk",
+        "projectName": "Continuous Integration / Unit Tests / C# / Core",
+        "number": "7.16.1.1618 ProductBase Softkey ENU",
+        "status": 2,
+        "url": "http://tsbuild-app-03/viewLog.html?buildId=3243952&buildTypeId=UnitTestIntegration780",
+        "changes": [
+          {
+            "author": {
+              "name": "v.artemchuk",
+              "avatarImage": ""
+            }
+          }
+        ]
+      }
     },
     {
-      "id": "DotNetOracleIntegrationTests|7.16.1.1618 ProductBase Softkey ENU",
-      "project": "Continuous Integration / Unit Tests / C# / Core",
-      "definition": "Integration (Oracle)|trunk",
-      "number": "7.16.1.1618 ProductBase Softkey ENU",
-      "isRunning": false,
-      "startedAt": "2020-05-01T18:15:38.000Z",
-      "finishedAt": "2020-05-01T19:03:23.000Z",
-      "requestedFor": "bpmonlinebuild",
-      "statusText": "Success",
-      "status": "Green",
-      "reason": "#0\nupdate app.studio-enterprise.system-designer. GitSHA: 0245c1c695dc7d5c5ac4074842b4ce96be8fa073",
-      "hasErrors": false,
-      "hasWarnings": false,
-      "url": "http://tsbuild-app-03/viewLog.html?buildId=3243739&buildTypeId=DotNetOracleIntegrationTests",
-      "etag": "6a5612b90afe6909a48f7c8228a7afa0"
+      "viewType": 1,
+      "config": {
+        "id": "DotNetOracleIntegrationTests|7.16.1.1618 ProductBase Softkey ENU",
+        "name": "Integration (Oracle)|trunk",
+        "projectName": "Continuous Integration / Unit Tests / C# / Core",
+        "number": "7.16.1.1618 ProductBase Softkey ENU",
+        "status": 2,
+        "url": "http://tsbuild-app-03/viewLog.html?buildId=3243739&buildTypeId=DotNetOracleIntegrationTests",
+        "changes": [
+          {
+            "author": {
+              "name": "v.artemchuk",
+              "avatarImage": ""
+            }
+          }
+        ]
+      }
     },
     {
-      "id": "IntegrationPostgreSQL|7.16.1.1617 ProductBase Softkey ENU",
-      "project": "Continuous Integration / Unit Tests / C# / Core",
-      "definition": "Integration (PostgreSQL)|trunk",
-      "number": "7.16.1.1617 ProductBase Softkey ENU",
-      "isRunning": false,
-      "startedAt": "2020-05-01T18:01:13.000Z",
-      "finishedAt": "2020-05-01T18:25:10.000Z",
-      "requestedFor": "bpmonlinebuild",
-      "statusText": "Success",
-      "status": "Green",
-      "reason": "#0\nupdate app.studio-enterprise.system-designer. GitSHA: 0245c1c695dc7d5c5ac4074842b4ce96be8fa073",
-      "hasErrors": false,
-      "hasWarnings": false,
-      "url": "http://tsbuild-app-03/viewLog.html?buildId=3243801&buildTypeId=IntegrationPostgreSQL",
-      "etag": "a912e59c1557aeeb58816247cc8bd9b1"
+      "viewType": 1,
+      "config": {
+        "id": "IntegrationPostgreSQL|7.16.1.1617 ProductBase Softkey ENU",
+        "name": "Integration (PostgreSQL)|trunk",
+        "projectName": "Continuous Integration / Unit Tests / C# / Core",
+        "number": "7.16.1.1617 ProductBase Softkey ENU",
+        "status": 2,
+        "url": "http://tsbuild-app-03/viewLog.html?buildId=3243801&buildTypeId=IntegrationPostgreSQL",
+        "changes": [
+          {
+            "author": {
+              "name": "v.artemchuk",
+              "avatarImage": ""
+            }
+          }
+        ]
+      }
     },
     {
-      "id": "Team_Platform_ThirdWaveRiders_Custom_NetCoreAppCCoreUnitTests_2|868",
-      "project": "Team / Third Wave Riders / Custom",
-      "definition": "Core Unit (.Net Core 3.1)|trunk",
-      "number": "868",
-      "isRunning": false,
-      "startedAt": "2020-05-01T12:43:42.000Z",
-      "finishedAt": "2020-05-01T12:59:42.000Z",
-      "requestedFor": "a.khokhlov",
-      "statusText": "Failure",
-      "status": "Red",
-      "reason": "#CRM-53895\nSR-0884197. Обновление в один проход. Если нет возможности использовать ForceGetCustomPackageUId, то обновление должно выполняться не в один проход",
-      "hasErrors": true,
-      "hasWarnings": false,
-      "url": "http://tsbuild-app-03/viewLog.html?buildId=3243336&buildTypeId=Team_Platform_ThirdWaveRiders_Custom_NetCoreAppCCoreUnitTests_2",
-      "etag": "42c45e39a9a08b0b9e9b5aa4f6ab326d"
+      "viewType": 1,
+      "config": {
+        "id": "Team_Platform_ThirdWaveRiders_Custom_NetCoreAppCCoreUnitTests_2|868",
+        "name": "Core Unit (.Net Core 3.1)|trunk",
+        "projectName": "Team / Third Wave Riders / Custom",
+        "number": "868",
+        "status": 3,
+        "url": "http://tsbuild-app-03/viewLog.html?buildId=3243336&buildTypeId=Team_Platform_ThirdWaveRiders_Custom_NetCoreAppCCoreUnitTests_2",
+        "changes": [
+          {
+            "author": {
+              "name": "v.artemchuk",
+              "avatarImage": ""
+            }
+          }
+        ]
+      }
     }
   ]
 }
