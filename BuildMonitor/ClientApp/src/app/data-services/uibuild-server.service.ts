@@ -8,7 +8,9 @@ import {BuildServer} from "../data-contracts";
   providedIn: 'root',
   deps: [BuildServerService, MatSnackBar],
   useFactory: (service: BuildServerService, snackBar: MatSnackBar) => {
-    return new UIBuildServerService(service, "build server", snackBar);
+    return new UIBuildServerService(service, "build server", snackBar, (entity) => {
+      return (<any>entity)?.config?.name;
+    });
   },
 })
 export class UIBuildServerService extends UICrudService<BuildServer> {

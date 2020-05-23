@@ -34,7 +34,7 @@ namespace BuildMonitor.Controllers
 
 		[HttpPut]
 		public async Task<IActionResult> Save([FromBody]TEntity item) {
-			var current = await  _dbContext.FindAsync<TEntity>(item.Id);
+			var current = await _dbContext.FindAsync<TEntity>(item.Id);
 			var dbSet = _dbContext.Set<TEntity>();
 			if (current != null) {
 				dbSet.Remove(current);
