@@ -18,10 +18,10 @@ export class BuildInfoService {
   }
 
   subscribeForProfile(profileName: string){
-
+    console.warn(`subscribeForProfile ${profileName}`);
   }
   unsubscribeFromProfile(profileName: string){
-
+    console.warn(`unsubscribeFromProfile ${profileName}`);
   }
 
   refresh(){
