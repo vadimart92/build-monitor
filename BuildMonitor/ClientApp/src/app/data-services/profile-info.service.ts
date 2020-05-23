@@ -1,26 +1,29 @@
 import {Injectable, NgZone} from '@angular/core';
 import {
-  BuildData,
   BuildInfo, BuildScreenData,
   BuildStatus,
-  BuildViewType,
-  Change,
   Screen,
   ScreenType,
-  TcBuildInfo,
-  User
+  TcBuildInfo
 } from "../data-contracts";
-import {Observable, Subject} from "rxjs";
+import {from, Observable, Subject} from "rxjs";
+import * as signalR from "@aspnet/signalr";
 import * as data from "../sampleData.json";
 
 @Injectable({
   providedIn: 'root'
 })
-export class BuildInfoService {
+export class ProfileInfoService {
   private subjects: object = {};
+  private hubConnection: signalR.HubConnection
   constructor(private zone:NgZone) {
     (<any>window).BuildInfoService = this;
+   this.hubConnection = new signalR.HubConnectionBuilder()
+      .withUrl("/profile")
+      .build();
+    this._connectionOpen = this.hubConnection.start();
   }
+  private _connectionOpen: Promise<void>;
   getBuildInfo<TBuildInfo extends BuildInfo>(buildInfoId: string) : Observable<TBuildInfo>{
     if (!this.subjects[buildInfoId]){
       this.subjects[buildInfoId] = new Subject<TBuildInfo>();
@@ -28,14 +31,22 @@ export class BuildInfoService {
     return this.subjects[buildInfoId].asObservable();
   }
 
-  subscribeForProfile(profileName: string){
+  subscribeForProfile(profileName: string) : Observable<Screen[]> {
     console.warn(`subscribeForProfile ${profileName}`);
+    this._connectionOpen.then(value => {
+      this.hubConnection.send("subscribe", profileName)
+        .then(() => {
+          console.info("subscribed")
+        });
+    })
+    return from([this._openProfile(profileName)]);
   }
-  unsubscribeFromProfile(profileName: string){
+  unsubscribeFromProfile(profileName: string) : Promise<void> {
     console.warn(`unsubscribeFromProfile ${profileName}`);
+    return this.hubConnection.send("unsubscribe", profileName);
   }
 
-  openProfile(configProfileId): Screen[] {
+  _openProfile(configProfileId): Screen[] {
     if (configProfileId == "empty"){
       return [];
     }

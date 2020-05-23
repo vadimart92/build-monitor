@@ -27,6 +27,7 @@ namespace BuildMonitor
 			});
 			services.AddDbContext<ConfigDbContext>(builder =>
 				builder.UseSqlite(Configuration.GetConnectionString("ConfigDatabase")));
+			services.AddSignalR();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,7 +44,6 @@ namespace BuildMonitor
 				// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
 				app.UseHsts();
 			}
-
 			app.UseStaticFiles();
 			if (!env.IsDevelopment())
 			{
@@ -52,8 +52,8 @@ namespace BuildMonitor
 
 			app.UseRouting();
 
-			app.UseEndpoints(endpoints =>
-			{
+			app.UseEndpoints(endpoints => {
+				endpoints.MapHub<ProfileHub>("/profile");
 				endpoints.MapControllerRoute(
 					name: "default",
 					pattern: "{controller}/{action=Index}/{id?}");

@@ -1,7 +1,7 @@
 import {Component, Input, OnInit, OnDestroy} from '@angular/core';
 
 import {BuildInfo, BuildStatus} from "../data-contracts";
-import {BuildInfoService} from "../data-services/build-info.service";
+import {ProfileInfoService} from "../data-services/profile-info.service";
 import {Subscription} from "rxjs";
 
 @Component({
@@ -14,11 +14,11 @@ export class BaseBuildInfoComponent<TBuildInfo extends BuildInfo> implements OnI
   @Input() buildInfo: TBuildInfo;
   public buildStatus = BuildStatus;
   private _subscription: Subscription;
-  constructor(protected buildInfoService: BuildInfoService) {
+  constructor(protected profileInfoService: ProfileInfoService) {
   }
 
   ngOnInit(): void {
-    this._subscription = this.buildInfoService.getBuildInfo<TBuildInfo>(this.buildInfo.id)
+    this._subscription = this.profileInfoService.getBuildInfo<TBuildInfo>(this.buildInfo.id)
       .subscribe(value => {
         return this.buildInfo = value;
       });
