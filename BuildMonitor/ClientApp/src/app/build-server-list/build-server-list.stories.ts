@@ -7,8 +7,8 @@ import {BuildServer, BuildServerType} from "../data-contracts";
 import {RouterTestingModule} from "@angular/router/testing";
 import {BuildServerListComponent} from "./build-server-list.component";
 import {UIUtils} from "../uiutils";
-import {DataService} from "../data.service";
 import {from} from "rxjs";
+import {UIBuildServerService} from "../data-services/uibuild-server.service";
 
 const buildServers: BuildServer[] = [
   <BuildServer>{description: "Core", config: {name: "1", type: BuildServerType.TeamCity}},
@@ -28,8 +28,8 @@ storiesOf('Build server list component', module)
       providers: [
         UIUtils,
         {
-          provide: DataService,
-          useValue: {getBuildServers: ()=> from([buildServers])}
+          provide: UIBuildServerService,
+          useValue: {getAll: ()=> from([buildServers])}
         }
       ]
     })

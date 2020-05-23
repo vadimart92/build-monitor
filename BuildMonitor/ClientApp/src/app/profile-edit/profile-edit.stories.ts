@@ -9,13 +9,14 @@ import {ActivatedRoute, convertToParamMap} from "@angular/router";
 import {MatInputModule} from "@angular/material/input";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MonacoEditorModule} from "ngx-monaco-editor";
-import {DataService} from "../data.service";
 import {BuildServer, Profile} from "../data-contracts";
 import {UIUtils} from "../uiutils";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import * as samples from "../samples.json";
 import {from, Observable} from "rxjs";
+import {UIProfileService} from "../data-services/uiprofile.service";
+import {BuildServerService} from "../data-services/build-server.service";
 
 const router = RouterTestingModule.withRoutes(
   [{path: '**', component: ProfileEditComponent}]
@@ -29,20 +30,25 @@ storiesOf('Profile edit component', module)
       ],
       providers: [
         {
-          provide: DataService,
+          provide: BuildServerService,
           useValue: {
-            getProfile: ()=> <Profile>{
-              name: "sample",
-              description: "desc",
-              config: samples.profile
-            },
-            getBuildServers(): Observable<BuildServer[]>{
+            getAll(): Observable<BuildServer[]>{
               return from([[
                 <BuildServer> {description: "test desc", config: {name: "teamcity"}},
                 <BuildServer> {description: "empty desc", config: {name: "jenkins"}}
-              ]])
+              ]]);
             },
-            createSampleProfile() {
+          }
+        },
+        {
+          provide: UIProfileService,
+          useValue: {
+            get: () => from([<Profile>{
+              name: "sample",
+              description: "desc",
+              config: samples.profile
+            }]),
+            createSample() {
               return <Profile>{
                 name: "sample",
                 description: "desc",

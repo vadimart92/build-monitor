@@ -6,8 +6,8 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {Profile} from "../data-contracts";
 import {RouterTestingModule} from "@angular/router/testing";
-import {DataService} from "../data.service";
 import {from} from "rxjs";
+import {UIProfileService} from "../data-services/uiprofile.service";
 
 const profiles: Profile[] = [
   <Profile>{name: 'Hydrogen', description: "Core", public: true, config: {}},
@@ -24,8 +24,8 @@ storiesOf('Profile list component', module)
       imports: [MatCardModule, MatTableModule, MatButtonModule, MatIconModule, router],
       providers: [
         {
-          provide: DataService,
-          useValue: {getProfiles: ()=> (from([profiles]))}
+          provide: UIProfileService,
+          useValue: {getAll: ()=> (from([profiles]))}
         }
       ]
     })

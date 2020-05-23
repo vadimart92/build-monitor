@@ -24,7 +24,7 @@ export class DataService {
   constructor(private http: HttpClient, private _snackBar: MatSnackBar) {
   }
 
-  getScreens(configProfileId): Screen[] {
+  openProfile(configProfileId): Screen[] {
     if (configProfileId == "empty"){
       return [];
     }

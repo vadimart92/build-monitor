@@ -12,5 +12,4 @@ import {BuildServer} from "../data-contracts";
   },
 })
 export class UIBuildServerService extends UICrudService<BuildServer> {
-
 }

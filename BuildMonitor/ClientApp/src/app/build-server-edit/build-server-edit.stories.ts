@@ -11,9 +11,11 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MonacoEditorModule} from "ngx-monaco-editor";
 import {BuildServerEditComponent} from "./build-server-edit.component";
 import {UIUtils} from "../uiutils";
-import {DataService} from "../data.service";
 import {BuildServer} from "../data-contracts";
 import * as samples from "../samples.json";
+import {BuildServerService} from "../data-services/build-server.service";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {from} from "rxjs";
 
 const router = RouterTestingModule.withRoutes(
   [{path: '**', component: BuildServerEditComponent}]
@@ -23,14 +25,14 @@ storiesOf('Build server edit component', module)
   .addDecorator(
     moduleMetadata({
       imports: [BrowserAnimationsModule, MatCardModule, MatTableModule, MatButtonModule, MatIconModule, MatInputModule,
-        MatProgressSpinnerModule, MonacoEditorModule.forRoot(), router],
+        MatProgressSpinnerModule, MatSnackBarModule, MonacoEditorModule.forRoot(), router],
       providers: [
         UIUtils,
         {
-          provide: DataService,
+          provide: BuildServerService,
           useValue: {
-            getBuildServer: ()=> <BuildServer>{description: "test desc", config: samples.buildServer},
-            createSampleBuildServer: () => <BuildServer> {
+            get: ()=> from([<BuildServer>{description: "test desc", config: samples.buildServer}]),
+            createSample: () => <BuildServer> {
               description: "new desc",
               config: samples.buildServer
             }

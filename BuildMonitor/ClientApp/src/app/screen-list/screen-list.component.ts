@@ -17,7 +17,7 @@ export class ScreenListComponent implements OnInit {
               private _buildInfoService: BuildInfoService) { }
   ngOnInit() {
     let profile = this.route.snapshot.paramMap.get('profile');
-    this.monitorItems = this.monitorService.getScreens(profile);
+    this.monitorItems = this.monitorService.openProfile(profile);
     this._buildInfoService.subscribeForProfile(profile);
   }
 

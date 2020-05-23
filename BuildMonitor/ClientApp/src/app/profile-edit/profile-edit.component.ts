@@ -1,4 +1,4 @@
-import {Component, NgZone, OnInit} from '@angular/core';
+import {Component, Inject, inject, NgZone, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Location} from '@angular/common';
 
@@ -19,7 +19,8 @@ export class ProfileEditComponent implements OnInit {
   config: string;
   editorInitialized: boolean = false;
   constructor(private _schemaService: SchemaService, private _route: ActivatedRoute,
-              private _location: Location, private _profileService: UIProfileService, private _uiUtils: UIUtils, private _zone: NgZone) {}
+              private _location: Location, private _profileService: UIProfileService,
+              private _uiUtils: UIUtils, private _zone: NgZone) {}
 
   async ngOnInit(): Promise<void> {
     this.isNewMode = this._route.snapshot.paramMap.get('mode') === "new";
