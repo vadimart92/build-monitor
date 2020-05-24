@@ -1,3 +1,4 @@
+using BuildMonitor.Actors;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -28,11 +29,13 @@ namespace BuildMonitor
 			services.AddDbContext<ConfigDbContext>(builder =>
 				builder.UseSqlite(Configuration.GetConnectionString("ConfigDatabase")));
 			services.AddSignalR();
+			services.AddActors();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 		{
+			app.UseActors();
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
@@ -72,6 +75,7 @@ namespace BuildMonitor
 					spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
 				}
 			});
+
 		}
 	}
 }

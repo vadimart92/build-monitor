@@ -14,21 +14,26 @@ import * as data from "../sampleData.json";
   providedIn: 'root'
 })
 export class ProfileInfoService {
-  private subjects: object = {};
+  private buildInfoSubjects: object = {};
   private hubConnection: signalR.HubConnection
   constructor(private zone:NgZone) {
     (<any>window).BuildInfoService = this;
    this.hubConnection = new signalR.HubConnectionBuilder()
       .withUrl("/profile")
       .build();
+   this.hubConnection.on("profileDataReady", profileData => {
+      const subject = this._getOrCreateProfileSubject(profileData.name);
+      const screens = this._openProfile(profileData.name);
+      this.zone.run(() => subject.next(screens));
+   });
     this._connectionOpen = this.hubConnection.start();
   }
   private _connectionOpen: Promise<void>;
   getBuildInfo<TBuildInfo extends BuildInfo>(buildInfoId: string) : Observable<TBuildInfo>{
-    if (!this.subjects[buildInfoId]){
-      this.subjects[buildInfoId] = new Subject<TBuildInfo>();
+    if (!this.buildInfoSubjects[buildInfoId]){
+      this.buildInfoSubjects[buildInfoId] = new Subject<TBuildInfo>();
     }
-    return this.subjects[buildInfoId].asObservable();
+    return this.buildInfoSubjects[buildInfoId].asObservable();
   }
 
   subscribeForProfile(profileName: string) : Observable<Screen[]> {
@@ -38,11 +43,25 @@ export class ProfileInfoService {
         .then(() => {
           console.info("subscribed")
         });
-    })
-    return from([this._openProfile(profileName)]);
+    });
+    return this._getOrCreateProfileSubject(profileName).asObservable();
+  }
+
+  private _profileSubjects: object = {};
+  _getOrCreateProfileSubject(profileName: string) : Subject<Screen[]>{
+    if (!this._profileSubjects.hasOwnProperty(profileName)){
+      this._profileSubjects[profileName] = new Subject<Screen[]>();
+    }
+    return this._profileSubjects[profileName];
+  }
+  _completeProfileSubject(profileName: string) {
+    const subject = this._getOrCreateProfileSubject(profileName);
+    subject.complete();
+    delete this._profileSubjects[profileName];
   }
   unsubscribeFromProfile(profileName: string) : Promise<void> {
     console.warn(`unsubscribeFromProfile ${profileName}`);
+    this._completeProfileSubject(profileName);
     return this.hubConnection.send("unsubscribe", profileName);
   }
 
@@ -66,8 +85,8 @@ export class ProfileInfoService {
     info.name = "xxxx";
     info.number = "xxxx";
     info.status = BuildStatus.Failed
-    Object.keys(this.subjects).forEach(id => {
-      const subject = this.subjects[id];
+    Object.keys(this.buildInfoSubjects).forEach(id => {
+      const subject = this.buildInfoSubjects[id];
       this.zone.run(() => subject.next(info));
     });
   }
