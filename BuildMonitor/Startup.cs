@@ -28,7 +28,7 @@ namespace BuildMonitor
 			});
 			services.AddDbContext<ConfigDbContext>(builder =>
 				builder.UseSqlite(Configuration.GetConnectionString("ConfigDatabase")));
-			services.AddSignalR();
+			services.AddSignalR().AddNewtonsoftJsonProtocol();
 			services.AddActors();
 		}
 

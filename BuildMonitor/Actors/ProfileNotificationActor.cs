@@ -3,26 +3,26 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace BuildMonitor.Actors
 {
-	class ProfileData
-	{
-		public string Name { get; set; }
-	}
-
 	class NotifyClient
 	{
-		public NotifyClient(string connectionId, ProfileData data) {
+		public NotifyClient(string profileName, string connectionId, ProfileData data) {
 			ConnectionId = connectionId;
 			Data = data;
+			ProfileName = profileName;
 		}
 
 		public ProfileData Data { get; }
 		public string ConnectionId { get; }
+		public string ProfileName { get; }
 	}
 	public class ProfileNotificationActor : ReceiveActor
 	{
 		public ProfileNotificationActor(IHubContext<ProfileHub> hubContext) {
 			Receive<NotifyClient>(async msg => {
-				await hubContext.Clients.Client(msg.ConnectionId).SendAsync("profileDataReady", msg.Data);
+				var target = string.IsNullOrWhiteSpace(msg.ConnectionId)
+					? hubContext.Clients.Group(msg.ProfileName)
+					: hubContext.Clients.Client(msg.ConnectionId);
+				await target.SendAsync("profileDataReady", msg.ProfileName, msg.Data);
 			});
 		}
 	}

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Akka.Actor;
 using Akka.DI.Core;
 using Akka.DI.Extensions.DependencyInjection;
@@ -26,7 +27,8 @@ namespace BuildMonitor.Actors
 				.AddTransient<ProfileServiceActor>()
 				.AddTransient<BuildServerServiceActor>()
 				.AddTransient<ProfileNotificationActor>()
-				.AddSingleton<ActorSystem>(provider => ActorSystem.Create("actors"))
+				.AddSingleton(provider => ActorSystem.Create("actors")
+					.WithServiceScopeFactory(provider.GetService<IServiceScopeFactory>()))
 				.AddSingleton<IActors, Actors>();
 		}
 
@@ -35,6 +37,48 @@ namespace BuildMonitor.Actors
 			var actorSystem = serviceProvider.GetRequiredService<ActorSystem>();
 			actorSystem.UseServiceProvider(serviceProvider);
 			serviceProvider.GetRequiredService<IActors>();
+		}
+
+		public class ServiceScopeExtension : IExtension
+		{
+			private IServiceScopeFactory _serviceScopeFactory;
+
+			public void Initialize(IServiceScopeFactory serviceScopeFactory)
+			{
+				_serviceScopeFactory = serviceScopeFactory;
+			}
+
+			public IServiceScope CreateScope()
+			{
+				return _serviceScopeFactory.CreateScope();
+			}
+		}
+
+		public class ServiceScopeExtensionIdProvider : ExtensionIdProvider<ServiceScopeExtension>
+		{
+			public override ServiceScopeExtension CreateExtension(ExtendedActorSystem system)
+			{
+				return new ServiceScopeExtension();
+			}
+
+			public static readonly ServiceScopeExtensionIdProvider Instance = new ServiceScopeExtensionIdProvider();
+		}
+
+		public static ActorSystem WithServiceScopeFactory(this ActorSystem system, IServiceScopeFactory serviceScopeFactory)
+		{
+			system.RegisterExtension(ServiceScopeExtensionIdProvider.Instance);
+			ServiceScopeExtensionIdProvider.Instance.Get(system).Initialize(serviceScopeFactory);
+			return system;
+		}
+
+		public static IServiceScope CreateScope(this IActorContext context) {
+			return ServiceScopeExtensionIdProvider.Instance.Get(context.System).CreateScope();
+		}
+
+		public static async Task QueryDb(this IActorContext context, Func<ConfigDbContext, Task> action) {
+			using var scope = context.CreateScope();
+			var dbContext = scope.ServiceProvider.GetRequiredService<ConfigDbContext>();
+			await action(dbContext);
 		}
 	}
 }

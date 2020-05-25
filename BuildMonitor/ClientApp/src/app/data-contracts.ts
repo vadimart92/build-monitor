@@ -1,6 +1,7 @@
 ﻿export enum BuildViewType {
-  Default,
-  TeamCity
+  Unknown,
+  TeamCity,
+  Jenkins
 }
 export class BuildData {
   public viewType: BuildViewType

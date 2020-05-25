@@ -21,9 +21,9 @@ export class ProfileInfoService {
    this.hubConnection = new signalR.HubConnectionBuilder()
       .withUrl("/profile")
       .build();
-   this.hubConnection.on("profileDataReady", profileData => {
-      const subject = this._getOrCreateProfileSubject(profileData.name);
-      const screens = this._openProfile(profileData.name);
+   this.hubConnection.on("profileDataReady", (profileName, profileData) => {
+      const subject = this._getOrCreateProfileSubject(profileName);
+      const screens = profileData.screens || this._openProfile(profileName);
       this.zone.run(() => subject.next(screens));
    });
     this._connectionOpen = this.hubConnection.start();

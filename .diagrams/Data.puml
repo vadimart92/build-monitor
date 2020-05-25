@@ -1,7 +1,8 @@
 ﻿@startuml
 enum BuildViewType {
-  TeamCity,
-  Default
+ Unknown,
+ TeamCity,
+ Jenkins
 }
 class BuildData {
   viewType: BuildViewType
