@@ -1,5 +1,14 @@
 ﻿namespace BuildMonitor.Actors
 {
+	class ReloadProfile
+	{
+		public ReloadProfile(string profileName) {
+			ProfileName = profileName;
+		}
+
+		public string ProfileName { get; }
+	}
+
 	class OpenProfile
 	{
 		public string ConnectionId { get; }

@@ -1,4 +1,5 @@
 ﻿using Akka.Actor;
+using BuildMonitor.Contracts;
 using Microsoft.AspNetCore.SignalR;
 
 namespace BuildMonitor.Actors
@@ -15,6 +16,7 @@ namespace BuildMonitor.Actors
 		public string ConnectionId { get; }
 		public string ProfileName { get; }
 	}
+
 	public class ProfileNotificationActor : ReceiveActor
 	{
 		public ProfileNotificationActor(IHubContext<ProfileHub> hubContext) {

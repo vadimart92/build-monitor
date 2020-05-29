@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Collections.Immutable;
+﻿using System.Collections.Immutable;
+using BuildMonitor.Actors;
 
-namespace BuildMonitor.Actors
+namespace BuildMonitor.Contracts
 {
 	class ProfileData
 	{
 		public IImmutableList<Screen> Screens { get; set; }
+		public string Description { get; set; }
 	}
 }

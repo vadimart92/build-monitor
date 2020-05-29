@@ -1,5 +1,5 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import {Screen, ScreenType} from "../data-contracts";
+import {ProfileInfo, Screen, ScreenType} from "../data-contracts";
 import {ActivatedRoute} from "@angular/router";
 import {ProfileInfoService} from "../data-services/profile-info.service";
 import {Observable} from "rxjs";
@@ -10,7 +10,7 @@ import {Observable} from "rxjs";
   styleUrls: ['./screen-list.component.css']
 })
 export class ScreenListComponent implements OnInit, OnDestroy {
-  monitorItems$: Observable<Screen[]>;
+  monitorItems$: Observable<ProfileInfo>;
   public monitorType = ScreenType;
   private _profileName;
   constructor(private route: ActivatedRoute, private _profileInfoService: ProfileInfoService) { }

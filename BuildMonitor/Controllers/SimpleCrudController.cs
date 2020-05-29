@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Threading.Tasks;
 using BuildMonitor.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -41,8 +42,11 @@ namespace BuildMonitor.Controllers
 			}
 			await dbSet.AddAsync(item);
 			await _dbContext.SaveChangesAsync();
+			OnSave(item);
 			return Ok();
 		}
 
+		protected virtual void OnSave(TEntity item) {
+		}
 	}
 }

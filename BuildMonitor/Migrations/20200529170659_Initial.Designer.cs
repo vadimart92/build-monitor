@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BuildMonitor.Migrations
 {
     [DbContext(typeof(ConfigDbContext))]
-    [Migration("20200523220024_initial")]
-    partial class initial
+    [Migration("20200529170659_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,6 +28,9 @@ namespace BuildMonitor.Migrations
                         .HasColumnType("jsonb");
 
                     b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

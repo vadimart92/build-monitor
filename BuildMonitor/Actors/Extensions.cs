@@ -80,5 +80,10 @@ namespace BuildMonitor.Actors
 			var dbContext = scope.ServiceProvider.GetRequiredService<ConfigDbContext>();
 			await action(dbContext);
 		}
+		public static async Task<T> QueryDb<T>(this IActorContext context, Func<ConfigDbContext, Task<T>> action) {
+			using var scope = context.CreateScope();
+			var dbContext = scope.ServiceProvider.GetRequiredService<ConfigDbContext>();
+			return await action(dbContext);
+		}
 	}
 }

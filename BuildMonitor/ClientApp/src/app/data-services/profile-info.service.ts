@@ -1,7 +1,7 @@
 import {Injectable, NgZone} from '@angular/core';
 import {
   BuildInfo, BuildScreenData,
-  BuildStatus,
+  BuildStatus, ProfileInfo,
   Screen,
   ScreenType,
   TcBuildInfo
@@ -23,7 +23,7 @@ export class ProfileInfoService {
       .build();
    this.hubConnection.on("profileDataReady", (profileName, profileData) => {
       const subject = this._getOrCreateProfileSubject(profileName);
-      const screens = profileData.screens || this._openProfile(profileName);
+      const screens = profileData || this._openProfile(profileName);
       this.zone.run(() => subject.next(screens));
    });
     this._connectionOpen = this.hubConnection.start();
@@ -36,7 +36,7 @@ export class ProfileInfoService {
     return this.buildInfoSubjects[buildInfoId].asObservable();
   }
 
-  subscribeForProfile(profileName: string) : Observable<Screen[]> {
+  subscribeForProfile(profileName: string) : Observable<ProfileInfo> {
     console.warn(`subscribeForProfile ${profileName}`);
     this._connectionOpen.then(value => {
       this.hubConnection.send("subscribe", profileName)
@@ -48,9 +48,9 @@ export class ProfileInfoService {
   }
 
   private _profileSubjects: object = {};
-  _getOrCreateProfileSubject(profileName: string) : Subject<Screen[]>{
+  _getOrCreateProfileSubject(profileName: string) : Subject<ProfileInfo>{
     if (!this._profileSubjects.hasOwnProperty(profileName)){
-      this._profileSubjects[profileName] = new Subject<Screen[]>();
+      this._profileSubjects[profileName] = new Subject<ProfileInfo>();
     }
     return this._profileSubjects[profileName];
   }
@@ -65,19 +65,21 @@ export class ProfileInfoService {
     return this.hubConnection.send("unsubscribe", profileName);
   }
 
-  _openProfile(configProfileId): Screen[] {
+  _openProfile(configProfileId): ProfileInfo {
     if (configProfileId == "empty"){
-      return [];
+      return new ProfileInfo();
     }
-    return [
-      <Screen>({
-        id: "id1",
-        type: ScreenType.BuildInfo,
-        data: <BuildScreenData> {
-          builds: data.builds
-        }
-      })
-    ];
+    return <ProfileInfo>{
+      screens: [
+        <Screen>({
+          id: "id1",
+          type: ScreenType.BuildInfo,
+          data: <BuildScreenData> {
+            builds: data.builds
+          }
+        })
+      ]
+    };
   }
   refresh(){
     const info = new TcBuildInfo();

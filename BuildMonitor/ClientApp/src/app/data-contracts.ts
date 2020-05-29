@@ -48,6 +48,10 @@ export class Change {
 export enum ScreenType {
   BuildInfo
 }
+export class ProfileInfo {
+  public screens: Screen[]
+  public description: string;
+}
 export class Screen {
   //profile name + screen number
   public id: string;

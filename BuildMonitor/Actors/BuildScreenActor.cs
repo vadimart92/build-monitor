@@ -1,89 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Linq;
 using Akka.Actor;
 using BuildMonitor.Core.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+
 
 namespace BuildMonitor.Actors
 {
-	class BuildScreenData : IScreenData
-	{
-		public IList<BuildData> Builds { get; set; } = new List<BuildData>();
-	}
-
-	public enum BuildViewType
-	{
-		Unknown,
-		TeamCity,
-		Jenkins
-	}
-
-	public class BuildData
-	{
-		public BuildViewType ViewType { get; set; }
-		public BuildInfo Config { get; set; }
-	}
-
-	public class TeamCityBuildInfo : BuildInfo
-	{
-		public string ProjectName { get; set; }
-	}
-
-	public class BuildInfo
-	{
-		public string Id { get; set; }
-		public string Name { get; set; }
-		public string Number { get; set; }
-		public BuildStatus Status { get; set; }
-		public string Url { get; set; }
-		public string StartedBy { get; set; }
-		public DateTime StartedOn { get; set; }
-		public int DurationSeconds { get; set; }
-	}
-
-	public enum BuildStatus
-	{
-		Undefined,
-		Running,
-		Success,
-		Failed
-	}
-
-	public class BuildScreenActor : ReceiveActor
+	public class BuildScreenActor : ReceiveActor, IWithUnboundedStash
 	{
 		private BuildStatusScreen _screen;
+		private IImmutableList<IActorRef> _buildActors;
 
 		public BuildScreenActor(BuildStatusScreen screen) {
 			_screen = screen;
-			Become(Ready);
+			Receive<IList<IActorRef>>(buildActors => {
+				_buildActors = buildActors.ToImmutableList();
+				Become(Ready);
+				Stash.UnstashAll();
+			});
+			ReceiveAny(o => Stash.Stash());
+			using var scope = Context.CreateScope();
+			var actors = scope.ServiceProvider.GetService<IActors>();
+			actors.BuildServerService.Tell(new GetBuildActors(_screen.Builds));
 		}
 
 		private void Ready() {
 			Receive<ScreenDataRequest>(msg => {
-				var screenData = new BuildScreenData() {
-					Builds = {
-						new BuildData {
-							ViewType = BuildViewType.TeamCity,
-							Config = new TeamCityBuildInfo {
-								Id = "test id",
-								Name = "teest name",
-								Number = "smaple number",
-								Status = BuildStatus.Success,
-								Url = "http://aa.com",
-								DurationSeconds = 1213,
-								ProjectName = "test project",
-								StartedBy = "admin",
-								StartedOn = DateTime.Now.AddDays(-1)
-							}
-						}
-					}
-				};
-				Sender.Tell(new Screen() {
+				Context.ActorOf(Props.Create(() => new Aggregator<BuildData, IActorRef>(_buildActors, Sender)))
+					.Tell(GetBuildData.Instance);
+			});
+			Receive<AggregatorResponse<BuildData, IActorRef>>(msg => {
+				msg.Metadata.Tell(new Screen {
 					Id = Guid.NewGuid(),
 					Type = ScreenType.BuildStatus,
-					Data = screenData
+					Data = new BuildScreenData(msg.Results.Values)
 				});
 			});
 		}
+
+		public IStash Stash { get; set; }
 
 	}
 }

@@ -1,4 +1,6 @@
-﻿using BuildMonitor.Models;
+﻿using Akka.Actor;
+using BuildMonitor.Actors;
+using BuildMonitor.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BuildMonitor.Controllers
@@ -8,9 +10,15 @@ namespace BuildMonitor.Controllers
 	public class ProfilesController : SimpleCrudController<Profile>
 	{
 
-		public ProfilesController(ConfigDbContext dbContext)
+		private readonly IActors _actors;
+
+		public ProfilesController(ConfigDbContext dbContext, IActors actors)
 			: base(dbContext) {
+			_actors = actors;
 		}
 
+		protected override void OnSave(Profile item) {
+			_actors.ProfileService.Tell(new ReloadProfile(item.Name));
+		}
 	}
 }

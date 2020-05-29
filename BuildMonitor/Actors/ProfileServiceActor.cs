@@ -20,11 +20,18 @@ namespace BuildMonitor.Actors
 			StringComparer.OrdinalIgnoreCase);
 
 		public ProfileServiceActor(IActors actors) {
+			Receive<ReloadProfile>(msg => {
+				var actor = Context.Child(msg.ProfileName);
+				if (actor.IsNobody()) {
+					actor = CreateProfileActor(actors, msg.ProfileName);
+				}
+				actor.Tell(ProfileActor.Init.Instance);
+				actor.Tell(ProfileActor.SendProfile.ToAll);
+			});
 			Receive<OpenProfile>(msg => {
 				var actor = Context.Child(msg.ProfileName);
 				if (actor.IsNobody()) {
-					actor = Context.ActorOf(Props.Create<ProfileActor>(msg.ProfileName, actors.ProfileNotifier),
-						msg.ProfileName);
+					actor = CreateProfileActor(actors, msg.ProfileName);
 				}
 				ProfileListeners[msg.ConnectionId] = msg.ProfileName;
 				actor.Tell(new ProfileActor.SendProfile(msg.ConnectionId));
@@ -43,6 +50,10 @@ namespace BuildMonitor.Actors
 				Context.System.Scheduler.ScheduleTellOnce(timeout, Self,
 					new TryStopProfile(profileName), Self);
 			});
+		}
+
+		private static IActorRef CreateProfileActor(IActors actors, string profileName) {
+			return Context.ActorOf(Props.Create<ProfileActor>(profileName, actors.ProfileNotifier), profileName);
 		}
 	}
 }
