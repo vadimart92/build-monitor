@@ -23,7 +23,8 @@
             "type": "string",
             "format": "uri"
           },
-          "guestLogin": { "type": "boolean" }
+          "guestLogin": { "type": "boolean" },
+          "checkIntervalSeconds": { "type":  "number"}
         },
         "required": ["name","type","url", "guestLogin"]
       }

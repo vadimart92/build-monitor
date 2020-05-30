@@ -1,9 +1,4 @@
-﻿export enum BuildViewType {
-  Unknown,
-  TeamCity,
-  Jenkins
-}
-export class BuildData {
+﻿export class BuildData {
   public viewType: BuildViewType
   public config: BuildInfo
 }
@@ -75,4 +70,9 @@ export class BuildServer extends BaseConfigItem {
 export enum BuildServerType {
   TeamCity = "teamCity",
   Jenkins = "jenkins"
+}
+export enum BuildViewType {
+  Unknown,
+  TeamCity,
+  Jenkins
 }

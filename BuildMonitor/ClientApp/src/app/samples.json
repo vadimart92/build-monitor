@@ -19,6 +19,7 @@
     "type": "teamCity",
     "name": "teamcityPublic",
     "url": "https://teamcity.jetbrains.com",
-    "guestLogin": true
+    "guestLogin": true,
+    "checkIntervalSeconds": 30
   }
 }
