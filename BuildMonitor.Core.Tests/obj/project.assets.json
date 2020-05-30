@@ -1748,6 +1748,19 @@
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
       },
+      "BuildMonitor.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "BuildMonitor.Contracts": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/BuildMonitor.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BuildMonitor.Common.dll": {}
+        }
+      },
       "BuildMonitor.Contracts/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
@@ -1767,6 +1780,7 @@
         "dependencies": {
           "Akka": "1.4.6",
           "Akka.DI.Extensions.DependencyInjection": "1.4.15",
+          "BuildMonitor.Common": "1.0.0",
           "BuildMonitor.Contracts": "1.0.0",
           "BuildMonitor.TeamCity": "1.0.0",
           "Microsoft.AspNetCore.SignalR.Core": "1.1.0",
@@ -1784,6 +1798,7 @@
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
           "Akka": "1.4.6",
+          "BuildMonitor.Common": "1.0.0",
           "BuildMonitor.Contracts": "1.0.0"
         },
         "compile": {
@@ -5817,6 +5832,11 @@
         "system.xml.xpath.xmldocument.4.3.0.nupkg.sha512",
         "system.xml.xpath.xmldocument.nuspec"
       ]
+    },
+    "BuildMonitor.Common/1.0.0": {
+      "type": "project",
+      "path": "../BuildMonitor.Common/BuildMonitor.Common.csproj",
+      "msbuildProject": "../BuildMonitor.Common/BuildMonitor.Common.csproj"
     },
     "BuildMonitor.Contracts/1.0.0": {
       "type": "project",

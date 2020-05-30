@@ -19,6 +19,9 @@
     "frameworks": {
       "netcoreapp3.1": {
         "projectReferences": {
+          "D:\\dev\\GitHub\\build-monitor\\BuildMonitor.Common\\BuildMonitor.Common.csproj": {
+            "projectPath": "D:\\dev\\GitHub\\build-monitor\\BuildMonitor.Common\\BuildMonitor.Common.csproj"
+          },
           "D:\\dev\\GitHub\\build-monitor\\BuildMonitor.Contracts\\BuildMonitor.Contracts.csproj": {
             "projectPath": "D:\\dev\\GitHub\\build-monitor\\BuildMonitor.Contracts\\BuildMonitor.Contracts.csproj"
           }

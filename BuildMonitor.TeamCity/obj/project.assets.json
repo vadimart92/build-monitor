@@ -181,6 +181,19 @@
           }
         }
       },
+      "BuildMonitor.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "BuildMonitor.Contracts": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/BuildMonitor.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BuildMonitor.Common.dll": {}
+        }
+      },
       "BuildMonitor.Contracts/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
@@ -565,6 +578,11 @@
         "version.txt"
       ]
     },
+    "BuildMonitor.Common/1.0.0": {
+      "type": "project",
+      "path": "../BuildMonitor.Common/BuildMonitor.Common.csproj",
+      "msbuildProject": "../BuildMonitor.Common/BuildMonitor.Common.csproj"
+    },
     "BuildMonitor.Contracts/1.0.0": {
       "type": "project",
       "path": "../BuildMonitor.Contracts/BuildMonitor.Contracts.csproj",
@@ -574,6 +592,7 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "Akka >= 1.4.6",
+      "BuildMonitor.Common >= 1.0.0",
       "BuildMonitor.Contracts >= 1.0.0"
     ]
   },
@@ -607,6 +626,9 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
+            "D:\\dev\\GitHub\\build-monitor\\BuildMonitor.Common\\BuildMonitor.Common.csproj": {
+              "projectPath": "D:\\dev\\GitHub\\build-monitor\\BuildMonitor.Common\\BuildMonitor.Common.csproj"
+            },
             "D:\\dev\\GitHub\\build-monitor\\BuildMonitor.Contracts\\BuildMonitor.Contracts.csproj": {
               "projectPath": "D:\\dev\\GitHub\\build-monitor\\BuildMonitor.Contracts\\BuildMonitor.Contracts.csproj"
             }

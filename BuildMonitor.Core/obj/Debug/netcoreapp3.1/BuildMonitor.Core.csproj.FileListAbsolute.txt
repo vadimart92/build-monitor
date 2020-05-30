@@ -11,3 +11,5 @@ D:\dev\GitHub\build-monitor\BuildMonitor.Core\bin\Debug\netcoreapp3.1\BuildMonit
 D:\dev\GitHub\build-monitor\BuildMonitor.Core\bin\Debug\netcoreapp3.1\BuildMonitor.Contracts.pdb
 D:\dev\GitHub\build-monitor\BuildMonitor.Core\bin\Debug\netcoreapp3.1\BuildMonitor.TeamCity.pdb
 D:\dev\GitHub\build-monitor\BuildMonitor.Core\obj\Debug\netcoreapp3.1\BuildMonitor.Core.csproj.CopyComplete
+D:\dev\GitHub\build-monitor\BuildMonitor.Core\bin\Debug\netcoreapp3.1\BuildMonitor.Common.dll
+D:\dev\GitHub\build-monitor\BuildMonitor.Core\bin\Debug\netcoreapp3.1\BuildMonitor.Common.pdb

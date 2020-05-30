@@ -9,6 +9,7 @@
       "BuildMonitor.TeamCity/1.0.0": {
         "dependencies": {
           "Akka": "1.4.6",
+          "BuildMonitor.Common": "1.0.0",
           "BuildMonitor.Contracts": "1.0.0"
         },
         "runtime": {
@@ -149,6 +150,14 @@
           }
         }
       },
+      "BuildMonitor.Common/1.0.0": {
+        "dependencies": {
+          "BuildMonitor.Contracts": "1.0.0"
+        },
+        "runtime": {
+          "BuildMonitor.Common.dll": {}
+        }
+      },
       "BuildMonitor.Contracts/1.0.0": {
         "dependencies": {
           "Akka": "1.4.6"
@@ -248,6 +257,11 @@
       "sha512": "sha512-CeWTdRNfRaSh0pm2gDTJFwVaXfTq6Xwv/sA887iwPTneW7oMtMlpvDIO+U60+3GWTB7Aom6oQwv5VZVUhQRdPQ==",
       "path": "system.windows.extensions/4.7.0",
       "hashPath": "system.windows.extensions.4.7.0.nupkg.sha512"
+    },
+    "BuildMonitor.Common/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "BuildMonitor.Contracts/1.0.0": {
       "type": "project",

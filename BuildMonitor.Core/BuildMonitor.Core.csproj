@@ -12,6 +12,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\BuildMonitor.Common\BuildMonitor.Common.csproj" />
       <ProjectReference Include="..\BuildMonitor.Contracts\BuildMonitor.Contracts.csproj" />
       <ProjectReference Include="..\BuildMonitor.TeamCity\BuildMonitor.TeamCity.csproj" />
     </ItemGroup>
