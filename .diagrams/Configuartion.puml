@@ -11,6 +11,7 @@ buildServer *-- buildServerType
 object teamCityBuildServer {
     url: string
     guestLogin: bool
+    checkIntervalSeconds: int
 }
 teamCityBuildServer <|-- buildServer
 object jenkinsBuildServer
