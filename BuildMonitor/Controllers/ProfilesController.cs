@@ -1,6 +1,7 @@
 ﻿using Akka.Actor;
-using BuildMonitor.Actors;
-using BuildMonitor.Models;
+using BuildMonitor.Contracts.Models;
+using BuildMonitor.Core;
+using BuildMonitor.Core.Actors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BuildMonitor.Controllers

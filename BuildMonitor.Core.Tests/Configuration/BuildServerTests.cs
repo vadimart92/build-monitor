@@ -1,5 +1,5 @@
 ﻿using System.Text.Json;
-using BuildMonitor.Core.Configuration;
+using BuildMonitor.Contracts.Configuration;
 using FluentAssertions;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
@@ -17,7 +17,7 @@ namespace BuildMonitor.Core.Tests.Configuration
 				IgnoreNullValues = true
 			};
 			var result = JsonSerializer.Deserialize<BuildServerConfig>(source, options);
-			var buildServer = result.Should().BeOfType<TeamcityBuildServer>().Subject;
+			var buildServer = result.Should().BeOfType<TeamcityBuildServerConfig>().Subject;
 			buildServer.Type.Should().Be(BuildServerType.TeamCity);
 			buildServer.Name.Should().Be("teamcityPublic");
 			buildServer.Url.Should().Be("https://teamcity.jetbrains.com");

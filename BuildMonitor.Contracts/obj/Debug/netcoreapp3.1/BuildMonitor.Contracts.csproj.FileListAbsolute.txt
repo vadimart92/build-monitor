@@ -1,0 +1,8 @@
+D:\dev\GitHub\build-monitor\BuildMonitor.Contracts\bin\Debug\netcoreapp3.1\BuildMonitor.Contracts.deps.json
+D:\dev\GitHub\build-monitor\BuildMonitor.Contracts\bin\Debug\netcoreapp3.1\BuildMonitor.Contracts.dll
+D:\dev\GitHub\build-monitor\BuildMonitor.Contracts\bin\Debug\netcoreapp3.1\BuildMonitor.Contracts.pdb
+D:\dev\GitHub\build-monitor\BuildMonitor.Contracts\obj\Debug\netcoreapp3.1\BuildMonitor.Contracts.csprojAssemblyReference.cache
+D:\dev\GitHub\build-monitor\BuildMonitor.Contracts\obj\Debug\netcoreapp3.1\BuildMonitor.Contracts.AssemblyInfoInputs.cache
+D:\dev\GitHub\build-monitor\BuildMonitor.Contracts\obj\Debug\netcoreapp3.1\BuildMonitor.Contracts.AssemblyInfo.cs
+D:\dev\GitHub\build-monitor\BuildMonitor.Contracts\obj\Debug\netcoreapp3.1\BuildMonitor.Contracts.dll
+D:\dev\GitHub\build-monitor\BuildMonitor.Contracts\obj\Debug\netcoreapp3.1\BuildMonitor.Contracts.pdb

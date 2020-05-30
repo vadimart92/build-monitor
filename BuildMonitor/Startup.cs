@@ -1,4 +1,5 @@
-using BuildMonitor.Actors;
+using BuildMonitor.Core;
+using BuildMonitor.Core.Actors;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -33,9 +34,8 @@ namespace BuildMonitor
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-		{
-			app.UseActors();
+		public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
+			app.ApplicationServices.UseActors();
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();

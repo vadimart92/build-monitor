@@ -6,6 +6,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildMonitor.Core", "BuildM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildMonitor.Core.Tests", "BuildMonitor.Core.Tests\BuildMonitor.Core.Tests.csproj", "{D15252E7-6122-418D-8D2B-D74688FAB594}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildMonitor.TeamCity", "BuildMonitor.TeamCity\BuildMonitor.TeamCity.csproj", "{FB8C313E-0619-4F71-9055-29FDE830BB8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildMonitor.Contracts", "BuildMonitor.Contracts\BuildMonitor.Contracts.csproj", "{C9F6EF61-A624-4901-ABD6-D0EBF286E82F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +28,13 @@ Global
 		{D15252E7-6122-418D-8D2B-D74688FAB594}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D15252E7-6122-418D-8D2B-D74688FAB594}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D15252E7-6122-418D-8D2B-D74688FAB594}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB8C313E-0619-4F71-9055-29FDE830BB8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB8C313E-0619-4F71-9055-29FDE830BB8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB8C313E-0619-4F71-9055-29FDE830BB8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB8C313E-0619-4F71-9055-29FDE830BB8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9F6EF61-A624-4901-ABD6-D0EBF286E82F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9F6EF61-A624-4901-ABD6-D0EBF286E82F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9F6EF61-A624-4901-ABD6-D0EBF286E82F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9F6EF61-A624-4901-ABD6-D0EBF286E82F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,4 +1,5 @@
-﻿using BuildMonitor.Models;
+﻿using BuildMonitor.Contracts.Models;
+using BuildMonitor.Core;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BuildMonitor.Controllers

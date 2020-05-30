@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using System.Text.Json;
-using BuildMonitor.Core.Configuration;
+using BuildMonitor.Contracts.Configuration;
 using FluentAssertions;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
