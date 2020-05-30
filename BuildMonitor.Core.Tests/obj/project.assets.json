@@ -1751,6 +1751,9 @@
       "BuildMonitor.Contracts/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Akka": "1.4.6"
+        },
         "compile": {
           "bin/placeholder/BuildMonitor.Contracts.dll": {}
         },

@@ -7,7 +7,7 @@ import {
   TcBuildInfo
 } from "../data-contracts";
 import {from, Observable, Subject} from "rxjs";
-import * as signalR from "@aspnet/signalr";
+import * as signalR from "@microsoft/signalr";
 import * as data from "../sampleData.json";
 
 @Injectable({
@@ -20,6 +20,7 @@ export class ProfileInfoService {
     (<any>window).BuildInfoService = this;
    this.hubConnection = new signalR.HubConnectionBuilder()
       .withUrl("/profile")
+      .withAutomaticReconnect()
       .build();
    this.hubConnection.on("profileDataReady", (profileName, profileData) => {
       const subject = this._getOrCreateProfileSubject(profileName);

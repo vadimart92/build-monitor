@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using Akka.Actor;
+using BuildMonitor.Contracts.Actors;
 using BuildMonitor.Contracts.Configuration;
 
 namespace BuildMonitor.TeamCity
 {
+
 	public class TeamCityBuildServerActor : ReceiveActor
 	{
 		public TeamCityBuildServerActor(TeamcityBuildServerConfig buildServerConfig) {
@@ -13,6 +16,16 @@ namespace BuildMonitor.TeamCity
 					.SelectMany(b => b.BuildIds)
 					.Select(GetBuildActor).ToList();
 				Sender.Tell(buildActors);
+			});
+			Receive<ReleaseBuilds>(msg => {
+				var children = Context.GetChildren().ToList();
+				var childrenToStop = msg.BuildActors.Intersect(children);
+				foreach (var actor in childrenToStop) {
+					Context.Stop(actor);
+				}
+				if (!children.Except(msg.BuildActors).Any()) {
+					Context.Stop(Self);
+				}
 			});
 		}
 

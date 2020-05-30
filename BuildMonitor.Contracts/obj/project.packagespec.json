@@ -29,6 +29,12 @@
   },
   "frameworks": {
     "netcoreapp3.1": {
+      "dependencies": {
+        "Akka": {
+          "target": "Package",
+          "version": "[1.4.6, )"
+        }
+      },
       "imports": [
         "net461",
         "net462",

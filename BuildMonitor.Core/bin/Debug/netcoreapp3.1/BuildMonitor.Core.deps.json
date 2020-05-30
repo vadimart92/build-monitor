@@ -667,6 +667,9 @@
         }
       },
       "BuildMonitor.Contracts/1.0.0": {
+        "dependencies": {
+          "Akka": "1.4.6"
+        },
         "runtime": {
           "BuildMonitor.Contracts.dll": {}
         }

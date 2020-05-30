@@ -11,8 +11,9 @@ namespace BuildMonitor.Core.Actors
 {
 	public class BuildScreenActor : ReceiveActor, IWithUnboundedStash
 	{
-		private BuildStatusScreen _screen;
+		private readonly BuildStatusScreen _screen;
 		private IImmutableList<IActorRef> _buildActors;
+		private readonly IActorRef _buildServerService;
 
 		public BuildScreenActor(BuildStatusScreen screen) {
 			_screen = screen;
@@ -24,7 +25,8 @@ namespace BuildMonitor.Core.Actors
 			ReceiveAny(o => Stash.Stash());
 			using var scope = Context.CreateScope();
 			var actors = scope.ServiceProvider.GetService<IActors>();
-			actors.BuildServerService.Tell(new GetBuildActors(_screen.Builds));
+			_buildServerService = actors.BuildServerService;
+			_buildServerService.Tell(new GetBuildActors(_screen.Builds));
 		}
 
 		private void Ready() {
@@ -39,6 +41,11 @@ namespace BuildMonitor.Core.Actors
 					Data = new BuildScreenData(msg.Results.Values)
 				});
 			});
+		}
+
+		protected override void PostStop() {
+			base.PostStop();
+			_buildServerService.Tell(ScreenStopped.Instance);
 		}
 
 		public IStash Stash { get; set; }
