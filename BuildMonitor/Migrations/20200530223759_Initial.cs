@@ -35,6 +35,12 @@ namespace BuildMonitor.Migrations
                 {
                     table.PrimaryKey("PK_Profiles", x => x.Id);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BuildServers_Name",
+                table: "BuildServers",
+                column: "Name",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

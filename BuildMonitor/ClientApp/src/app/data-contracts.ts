@@ -23,6 +23,7 @@ export class BuildInfo {
 export class TcBuildInfo extends BuildInfo{
   public changes: Change[]
   public projectName: string
+  public statusText: string;
 }
 export interface IScreenData {}
 export class BuildScreenData implements IScreenData{

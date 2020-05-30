@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Akka.Actor;
+using BuildMonitor.Common.Actors;
 
 namespace BuildMonitor.Core.Actors
 {

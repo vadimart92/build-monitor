@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Akka.Actor;
+using BuildMonitor.Common.Actors;
 using BuildMonitor.Core.Actors;
 using Microsoft.AspNetCore.SignalR;
 
@@ -24,6 +25,16 @@ namespace BuildMonitor.Core
 		public async Task Unsubscribe(string profileId) {
 			await Groups.RemoveFromGroupAsync(Context.ConnectionId, profileId);
 			_actors.ProfileService.Tell(new CloseProfile(Context.ConnectionId));
+		}
+
+		[HubMethodName("subscribeForBuildInfo")]
+		public async Task SubscribeForBuildInfo(string buildInfoId) {
+			await Groups.AddToGroupAsync(Context.ConnectionId, buildInfoId);
+		}
+
+		[HubMethodName("unsubscribeFromBuildInfo")]
+		public async Task UnsubscribeFromBuildInfo(string buildInfoId) {
+			await Groups.RemoveFromGroupAsync(Context.ConnectionId, buildInfoId);
 		}
 
 		public override Task OnDisconnectedAsync(Exception exception) {

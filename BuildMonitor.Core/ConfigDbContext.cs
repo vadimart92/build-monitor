@@ -24,6 +24,10 @@ namespace BuildMonitor.Core
 			modelBuilder.Entity<BuildServer>()
 				.Property(b => b.Config)
 				.HasJsonConversion();
+			modelBuilder.Entity<BuildServer>()
+				.HasIndex(b => b.Name).IsUnique();
+			modelBuilder.Entity<BuildServer>()
+				.Property(b => b.Name);
 		}
 	}
 	public static class PropertyBuilderExtensions

@@ -4,6 +4,7 @@ namespace BuildMonitor.Contracts.Actors
 {
 	public class BuildInfo
 	{
+		public string InternalError { get; set; }
 		public string Id { get; set; }
 		public string Name { get; set; }
 		public string Number { get; set; }

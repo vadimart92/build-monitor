@@ -44,6 +44,12 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[3.1.4, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -171,6 +177,10 @@
             "Akka": {
               "target": "Package",
               "version": "[1.4.6, )"
+            },
+            "TeamCitySharp-forked-mavezeau": {
+              "target": "Package",
+              "version": "[2.0.11, )"
             }
           },
           "imports": [

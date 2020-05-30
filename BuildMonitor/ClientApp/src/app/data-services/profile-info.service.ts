@@ -14,7 +14,7 @@ import * as data from "../sampleData.json";
   providedIn: 'root'
 })
 export class ProfileInfoService {
-  private buildInfoSubjects: object = {};
+
   private hubConnection: signalR.HubConnection
   constructor(private zone:NgZone) {
     (<any>window).BuildInfoService = this;
@@ -27,27 +27,14 @@ export class ProfileInfoService {
       const screens = profileData || this._openProfile(profileName);
       this.zone.run(() => subject.next(screens));
    });
+   this.hubConnection.on("buildInfoReady", (buildInfo) => {
+     const info = buildInfo.config;
+     console.debug(`buildInfoReady ${info.id}`)
+     const subject = this._getOrCreateBuildInfoSubject<BuildInfo>(info.id);
+      this.zone.run(() => subject.next(info));
+   });
     this._connectionOpen = this.hubConnection.start();
   }
-  private _connectionOpen: Promise<void>;
-  getBuildInfo<TBuildInfo extends BuildInfo>(buildInfoId: string) : Observable<TBuildInfo>{
-    if (!this.buildInfoSubjects[buildInfoId]){
-      this.buildInfoSubjects[buildInfoId] = new Subject<TBuildInfo>();
-    }
-    return this.buildInfoSubjects[buildInfoId].asObservable();
-  }
-
-  subscribeForProfile(profileName: string) : Observable<ProfileInfo> {
-    console.warn(`subscribeForProfile ${profileName}`);
-    this._connectionOpen.then(value => {
-      this.hubConnection.send("subscribe", profileName)
-        .then(() => {
-          console.info("subscribed")
-        });
-    });
-    return this._getOrCreateProfileSubject(profileName).asObservable();
-  }
-
   private _profileSubjects: object = {};
   _getOrCreateProfileSubject(profileName: string) : Subject<ProfileInfo>{
     if (!this._profileSubjects.hasOwnProperty(profileName)){
@@ -55,14 +42,38 @@ export class ProfileInfoService {
     }
     return this._profileSubjects[profileName];
   }
-  _completeProfileSubject(profileName: string) {
-    const subject = this._getOrCreateProfileSubject(profileName);
-    subject.complete();
-    delete this._profileSubjects[profileName];
+  private _connectionOpen: Promise<void>;
+  private buildInfoSubjects: object = {};
+  _getOrCreateBuildInfoSubject<TBuildInfo extends BuildInfo>(buildInfoId: string) : Subject<TBuildInfo> {
+    if (!this.buildInfoSubjects[buildInfoId]){
+      this.buildInfoSubjects[buildInfoId] = new Subject<TBuildInfo>();
+    }
+    return this.buildInfoSubjects[buildInfoId];
   }
+  getBuildInfo<TBuildInfo extends BuildInfo>(buildInfoId: string) : Observable<TBuildInfo>{
+    this._connectionOpen.then(value => {
+      this.hubConnection.send("subscribeForBuildInfo", buildInfoId)
+        .then(() => console.debug(`subscribed for build info ${buildInfoId}`));
+    });
+    const subject = this._getOrCreateBuildInfoSubject<TBuildInfo>(buildInfoId);
+    return subject.asObservable();
+  }
+  unsubscribeFromBuildInfo(buildInfoId: string) : Promise<void> {
+    console.debug(`unsubscribeFromBuildInfo ${buildInfoId}`);
+    return this.hubConnection.send("unsubscribeFromBuildInfo", buildInfoId);
+  }
+
+  subscribeForProfile(profileName: string) : Observable<ProfileInfo> {
+    console.warn(`subscribeForProfile ${profileName}`);
+    this._connectionOpen.then(value => {
+      this.hubConnection.send("subscribe", profileName)
+        .then(() => console.debug(`subscribed for profile ${profileName}`));
+    });
+    return this._getOrCreateProfileSubject(profileName).asObservable();
+  }
+
   unsubscribeFromProfile(profileName: string) : Promise<void> {
-    console.warn(`unsubscribeFromProfile ${profileName}`);
-    this._completeProfileSubject(profileName);
+    console.debug(`unsubscribeFromProfile ${profileName}`);
     return this.hubConnection.send("unsubscribe", profileName);
   }
 

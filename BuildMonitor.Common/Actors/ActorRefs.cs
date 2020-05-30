@@ -1,6 +1,6 @@
 ﻿using Akka.Actor;
 
-namespace BuildMonitor.Core.Actors
+namespace BuildMonitor.Common.Actors
 {
 	public interface IActors
 	{

@@ -56,13 +56,19 @@ namespace BuildMonitor.Core.Actors
 
 		private async Task InitBuildServers(IEnumerable<string> names) {
 			var toInit = names.Select(n => new {Name = n, Ref = GetBuildServer(n)}).Where(s => s.Ref.IsNobody())
-				.Select(s => s.Name).ToList();
+				.Select(s => s.Name.ToLowerInvariant()).ToList();
 			if (!toInit.Any()) return;
 			var buildServers =
-				await Context.QueryDb(context => context.BuildServers.Where(s => toInit.Contains(s.Name)).ToListAsync());
+				await Context.QueryDb(context => context.BuildServers.Where(s =>
+					toInit.Contains(s.Name)).ToListAsync());
 			foreach (var buildServer in buildServers) {
+				var name = buildServer.Name.ToLowerInvariant();
+				toInit.Remove(name);
 				var props = buildServer.GetActorProps();
-				Context.ActorOf(props, buildServer.Name.ToLowerInvariant());
+				Context.ActorOf(props, name);
+			}
+			foreach (var errorServer in toInit) {
+				Context.ActorOf(BuildServerActorPropsFactory.GetEmptyBuildServerActorProps(errorServer), errorServer);
 			}
 		}
 

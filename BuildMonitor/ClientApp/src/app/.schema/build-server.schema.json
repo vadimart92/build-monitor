@@ -24,6 +24,9 @@
             "format": "uri"
           },
           "guestLogin": { "type": "boolean" },
+          "login": { "type": "string" },
+          "password": { "type": "string" },
+          "accessToken": { "type": "string" },
           "checkIntervalSeconds": { "type":  "number"}
         },
         "required": ["name","type","url", "guestLogin"]

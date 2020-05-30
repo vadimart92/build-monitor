@@ -7,20 +7,16 @@ namespace BuildMonitor.Contracts.Models
 {
 	public class BuildServer : IEntity
 	{
-		private BuildServerConfig _config;
 
 		[Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public Guid Id { get; set; }
 		public string Description { get; set; }
 
-		public BuildServerConfig Config {
-			get => _config;
-			set {
-				_config = value;
-				Name = value?.Name;
-			}
-		}
+		public BuildServerConfig Config { get; set; }
 
-		public string Name { get; set; }
+		public string Name {
+			get => Config?.Name.ToLowerInvariant();
+			private set { }
+		}
 	}
 }

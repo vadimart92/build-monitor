@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
 using Akka.Actor;
 using BuildMonitor.Contracts.Actors;
 
@@ -6,6 +8,7 @@ namespace BuildMonitor.Common.Actors
 {
 	public class BaseBuildServerActor : ReceiveActor
 	{
+
 		protected void ReleaseBuilds(ReleaseBuilds msg) {
 			var children = Context.GetChildren().ToList();
 			var childrenToStop = msg.BuildActors.Intersect(children);
@@ -16,5 +19,6 @@ namespace BuildMonitor.Common.Actors
 				Context.Stop(Self);
 			}
 		}
+
 	}
 }

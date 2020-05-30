@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Akka.Actor;
 using Akka.DI.Core;
 using Akka.DI.Extensions.DependencyInjection;
+using BuildMonitor.Common.Actors;
 using BuildMonitor.Core.Actors;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -28,6 +29,7 @@ namespace BuildMonitor.Core
 				.AddTransient<BuildServerServiceActor>()
 				.AddTransient<ProfileNotificationActor>()
 				.AddSingleton(provider => ActorSystem.Create("actors")
+					.WithServiceProvider(provider)
 					.WithServiceScopeFactory(provider.GetService<IServiceScopeFactory>()))
 				.AddSingleton<IActors, Actors>();
 		}
@@ -42,6 +44,12 @@ namespace BuildMonitor.Core
 		{
 			system.RegisterExtension(ServiceScopeExtensionIdProvider.Instance);
 			ServiceScopeExtensionIdProvider.Instance.Get(system).Initialize(serviceScopeFactory);
+			return system;
+		}
+		public static ActorSystem WithServiceProvider(this ActorSystem system, IServiceProvider serviceProvider)
+		{
+			system.RegisterExtension(ServiceProviderExtensionIdProvider.Instance);
+			ServiceProviderExtensionIdProvider.Instance.Get(system).Initialize(serviceProvider);
 			return system;
 		}
 

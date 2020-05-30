@@ -1,5 +1,6 @@
 ﻿using Akka.Actor;
 using BuildMonitor.Contracts;
+using BuildMonitor.Contracts.Actors;
 using Microsoft.AspNetCore.SignalR;
 
 namespace BuildMonitor.Core.Actors
@@ -25,6 +26,10 @@ namespace BuildMonitor.Core.Actors
 					? hubContext.Clients.Group(msg.ProfileName)
 					: hubContext.Clients.Client(msg.ConnectionId);
 				await target.SendAsync("profileDataReady", msg.ProfileName, msg.Data);
+			});
+			Receive<BuildInfoMessage>(async msg => {
+				var target = hubContext.Clients.Group(msg.Config.Id);
+				await target.SendAsync("buildInfoReady", msg);
 			});
 		}
 	}

@@ -56,6 +56,25 @@
           }
         }
       },
+      "Autofac/3.5.0": {
+        "runtime": {
+          "lib/net40/Autofac.dll": {
+            "assemblyVersion": "3.5.0.0",
+            "fileVersion": "3.5.0.0"
+          }
+        }
+      },
+      "EasyHttp/1.6.85": {
+        "dependencies": {
+          "JsonFx": "2.0.1209.2802"
+        },
+        "runtime": {
+          "lib/net40/EasyHttp.dll": {
+            "assemblyVersion": "1.6.85.0",
+            "fileVersion": "1.6.85.0"
+          }
+        }
+      },
       "FluentAssertions/5.10.3": {
         "dependencies": {
           "System.Configuration.ConfigurationManager": "4.7.0"
@@ -64,6 +83,29 @@
           "lib/netcoreapp2.1/FluentAssertions.dll": {
             "assemblyVersion": "5.10.3.0",
             "fileVersion": "5.10.3.0"
+          }
+        }
+      },
+      "FluentTc/0.0.0.249": {
+        "dependencies": {
+          "Autofac": "3.5.0",
+          "EasyHttp": "1.6.85",
+          "SharpZipLib": "0.86.0",
+          "System.IO.Abstractions": "2.0.0.124",
+          "TeamCity.ServiceMessages": "3.0.5.1"
+        },
+        "runtime": {
+          "lib/net40/FluentTc.dll": {
+            "assemblyVersion": "0.0.0.249",
+            "fileVersion": "0.0.0.249"
+          }
+        }
+      },
+      "JsonFx/2.0.1209.2802": {
+        "runtime": {
+          "lib/net40/JsonFx.dll": {
+            "assemblyVersion": "2.0.1209.2802",
+            "fileVersion": "2.0.1209.2802"
           }
         }
       },
@@ -739,6 +781,14 @@
           "Microsoft.NETCore.Targets": "1.1.0"
         }
       },
+      "SharpZipLib/0.86.0": {
+        "runtime": {
+          "lib/20/ICSharpCode.SharpZipLib.dll": {
+            "assemblyVersion": "0.86.0.518",
+            "fileVersion": "0.86.0.518"
+          }
+        }
+      },
       "SQLitePCLRaw.bundle_e_sqlite3/2.0.2": {
         "dependencies": {
           "SQLitePCLRaw.core": "2.0.2",
@@ -1012,6 +1062,14 @@
           "System.Runtime": "4.3.0",
           "System.Text.Encoding": "4.3.0",
           "System.Threading.Tasks": "4.3.0"
+        }
+      },
+      "System.IO.Abstractions/2.0.0.124": {
+        "runtime": {
+          "lib/net40/System.IO.Abstractions.dll": {
+            "assemblyVersion": "2.0.0.124",
+            "fileVersion": "2.0.0.124"
+          }
         }
       },
       "System.IO.FileSystem/4.3.0": {
@@ -1325,7 +1383,26 @@
           }
         }
       },
+      "TeamCity.ServiceMessages/3.0.5.1": {
+        "runtime": {
+          "lib/net35/JetBrains.TeamCity.ServiceMessages.dll": {
+            "assemblyVersion": "3.0.5.1",
+            "fileVersion": "3.0.5.1"
+          }
+        }
+      },
+      "BuildMonitor.Common/1.0.0": {
+        "dependencies": {
+          "BuildMonitor.Contracts": "1.0.0"
+        },
+        "runtime": {
+          "BuildMonitor.Common.dll": {}
+        }
+      },
       "BuildMonitor.Contracts/1.0.0": {
+        "dependencies": {
+          "Akka": "1.4.6"
+        },
         "runtime": {
           "BuildMonitor.Contracts.dll": {}
         }
@@ -1334,6 +1411,7 @@
         "dependencies": {
           "Akka": "1.4.6",
           "Akka.DI.Extensions.DependencyInjection": "1.4.15",
+          "BuildMonitor.Common": "1.0.0",
           "BuildMonitor.Contracts": "1.0.0",
           "BuildMonitor.TeamCity": "1.0.0",
           "Microsoft.AspNetCore.SignalR.Core": "1.1.0",
@@ -1346,7 +1424,9 @@
       "BuildMonitor.TeamCity/1.0.0": {
         "dependencies": {
           "Akka": "1.4.6",
-          "BuildMonitor.Contracts": "1.0.0"
+          "BuildMonitor.Common": "1.0.0",
+          "BuildMonitor.Contracts": "1.0.0",
+          "FluentTc": "0.0.0.249"
         },
         "runtime": {
           "BuildMonitor.TeamCity.dll": {}
@@ -1381,12 +1461,40 @@
       "path": "akka.di.extensions.dependencyinjection/1.4.15",
       "hashPath": "akka.di.extensions.dependencyinjection.1.4.15.nupkg.sha512"
     },
+    "Autofac/3.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ge1fziLkxQhFEBreAaQlFiIVzpL32rSnpInJCJAmfFnHO6ab0VcW+0nzeZWY8WaSkDFcg6KNxB9v4Tp2icnXSg==",
+      "path": "autofac/3.5.0",
+      "hashPath": "autofac.3.5.0.nupkg.sha512"
+    },
+    "EasyHttp/1.6.85": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rvpTIgBMUUW8593sV1I5GQgY2Isd0zGofcR0oXqxBmVSrYAnOfe1WNHyzKyg3KJXtnnq0xKFtyJasji+3JZl+Q==",
+      "path": "easyhttp/1.6.85",
+      "hashPath": "easyhttp.1.6.85.nupkg.sha512"
+    },
     "FluentAssertions/5.10.3": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-gVPEVp1hLVqcv+7Q2wiDf7kqCNn7+bQcQ0jbJ2mcRT6CeRoZl1tNkqvzSIhvekyldDptk77j1b03MXTTRIqqpg==",
       "path": "fluentassertions/5.10.3",
       "hashPath": "fluentassertions.5.10.3.nupkg.sha512"
+    },
+    "FluentTc/0.0.0.249": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-B4f4AfY0tySCvqZfUsgIpZIi3sgnSpQoIh9r+LTTt2x/ajaXnIAJHnrKKsDYTXCJU9vxbF38aGSpxpO72ToP9g==",
+      "path": "fluenttc/0.0.0.249",
+      "hashPath": "fluenttc.0.0.0.249.nupkg.sha512"
+    },
+    "JsonFx/2.0.1209.2802": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3t/we8huH5YtabKgjNfTpDM+HB5emjgx6CxwyaRSg/NVLEtwZOXDi4YwIG0zvgkSSFBTYbYWE0eBwXpqFMtNBg==",
+      "path": "jsonfx/2.0.1209.2802",
+      "hashPath": "jsonfx.2.0.1209.2802.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Authorization/2.2.0": {
       "type": "package",
@@ -1696,6 +1804,13 @@
       "path": "runtime.native.system/4.3.0",
       "hashPath": "runtime.native.system.4.3.0.nupkg.sha512"
     },
+    "SharpZipLib/0.86.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-5DbS1SlKLMi+WG00Cm0ueYf2oyXJrowETQk8nx96rmdjTuHsA3laPykGV7Sxi0R5Xxfx0Kh/EfacAZ1f6M7y/g==",
+      "path": "sharpziplib/0.86.0",
+      "hashPath": "sharpziplib.0.86.0.nupkg.sha512"
+    },
     "SQLitePCLRaw.bundle_e_sqlite3/2.0.2": {
       "type": "package",
       "serviceable": true,
@@ -1856,6 +1971,13 @@
       "sha512": "sha512-3qjaHvxQPDpSOYICjUoTsmoq5u6QJAFRUITgeT/4gqkF1bajbSmb1kwSxEA8AHlofqgcKJcM8udgieRNhaJ5Cg==",
       "path": "system.io/4.3.0",
       "hashPath": "system.io.4.3.0.nupkg.sha512"
+    },
+    "System.IO.Abstractions/2.0.0.124": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Q7ygG5luWlPKYlWVZE8nLFlFfxNo/7Cw1sLfKATc/kUMPjEhxzqEnHl2TbyXcsoJ03gyR3cC2FVeVO4xO+6VAw==",
+      "path": "system.io.abstractions/2.0.0.124",
+      "hashPath": "system.io.abstractions.2.0.0.124.nupkg.sha512"
     },
     "System.IO.FileSystem/4.3.0": {
       "type": "package",
@@ -2108,6 +2230,18 @@
       "sha512": "sha512-91tvfHWHSrYFPolCwWYqbpo1YaoBUCQ3uNZ/O/zr0ev5BnkoATJoie16ywlMVUaXZtfSfNELxhtG3aqpTfwR4w==",
       "path": "system.xml.xpath.xmldocument/4.3.0",
       "hashPath": "system.xml.xpath.xmldocument.4.3.0.nupkg.sha512"
+    },
+    "TeamCity.ServiceMessages/3.0.5.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-asu+IUr+hstp0EWfH1iQFY5wJv25HFasI5lPWslPuyl/trnKTKgkNNcgjLmQ5kOhHHBq6mpfuuDutALCgjYvuQ==",
+      "path": "teamcity.servicemessages/3.0.5.1",
+      "hashPath": "teamcity.servicemessages.3.0.5.1.nupkg.sha512"
+    },
+    "BuildMonitor.Common/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "BuildMonitor.Contracts/1.0.0": {
       "type": "project",

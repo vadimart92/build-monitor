@@ -27,8 +27,12 @@ export class BaseBuildInfoComponent<TBuildInfo extends BuildInfo> implements OnI
   getStatusClass(): string {
     return "build-status-" + this.buildStatus[this.buildInfo.status].toLowerCase()
   }
+  openBuildPage(){
+    window.open(this.buildInfo.url);
+  };
 
-  ngOnDestroy(): void {
+  async ngOnDestroy(): Promise<void> {
+    await this.profileInfoService.unsubscribeFromBuildInfo(this.buildInfo.id);
     this._subscription.unsubscribe();
   }
 }

@@ -12,6 +12,9 @@ object teamCityBuildServer {
     url: string
     guestLogin: bool
     checkIntervalSeconds: int
+    accessToken: string
+    userName: string
+    password: string
 }
 teamCityBuildServer <|-- buildServer
 object jenkinsBuildServer

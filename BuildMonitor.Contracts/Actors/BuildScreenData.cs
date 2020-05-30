@@ -5,10 +5,10 @@ namespace BuildMonitor.Contracts.Actors
 {
 	public class BuildScreenData : IScreenData
 	{
-		public BuildScreenData(IEnumerable<BuildData> builds) {
+		public BuildScreenData(IEnumerable<BuildInfoMessage> builds) {
 			Builds = builds.ToList();
 		}
 
-		public IList<BuildData> Builds { get;  }
+		public IList<BuildInfoMessage> Builds { get;  }
 	}
 }

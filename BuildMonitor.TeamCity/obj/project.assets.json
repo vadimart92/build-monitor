@@ -16,6 +16,27 @@
           "lib/netstandard2.0/Akka.dll": {}
         }
       },
+      "Microsoft.Extensions.DependencyInjection/3.1.4": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.4"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/Microsoft.Extensions.DependencyInjection.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Microsoft.Extensions.DependencyInjection.dll": {}
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/3.1.4": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {}
+        }
+      },
       "Microsoft.NETCore.Platforms/3.1.0": {
         "type": "package",
         "compile": {
@@ -181,11 +202,24 @@
           }
         }
       },
+      "TeamCitySharp-forked-mavezeau/2.0.11": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "11.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/TeamCitySharp.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/TeamCitySharp.dll": {}
+        }
+      },
       "BuildMonitor.Common/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
-          "BuildMonitor.Contracts": "1.0.0"
+          "BuildMonitor.Contracts": "1.0.0",
+          "Microsoft.Extensions.DependencyInjection": "3.1.4"
         },
         "compile": {
           "bin/placeholder/BuildMonitor.Common.dll": {}
@@ -221,6 +255,40 @@
         "akka.nuspec",
         "lib/netstandard2.0/Akka.dll",
         "lib/netstandard2.0/Akka.xml"
+      ]
+    },
+    "Microsoft.Extensions.DependencyInjection/3.1.4": {
+      "sha512": "dAWhz6BEjUFIVLUPbT1s1sUrPTwbUWdw2iBRRe3ej3xXcKS+oo64dKrIWFxRjYP6TWyESpGFNY5NGeA5FcHVlg==",
+      "type": "package",
+      "path": "microsoft.extensions.dependencyinjection/3.1.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "lib/net461/Microsoft.Extensions.DependencyInjection.dll",
+        "lib/net461/Microsoft.Extensions.DependencyInjection.xml",
+        "lib/netcoreapp3.1/Microsoft.Extensions.DependencyInjection.dll",
+        "lib/netcoreapp3.1/Microsoft.Extensions.DependencyInjection.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.xml",
+        "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.dll",
+        "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.xml",
+        "microsoft.extensions.dependencyinjection.3.1.4.nupkg.sha512",
+        "microsoft.extensions.dependencyinjection.nuspec"
+      ]
+    },
+    "Microsoft.Extensions.DependencyInjection.Abstractions/3.1.4": {
+      "sha512": "AceHamXNKDMDwIoZqEoApLp8s3935wSC3VXrPaRWa0wWOaEcYdDlo1nWQ1zLiezoDmpJzV7FqDm53E0Ty/hEMg==",
+      "type": "package",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/3.1.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "microsoft.extensions.dependencyinjection.abstractions.3.1.4.nupkg.sha512",
+        "microsoft.extensions.dependencyinjection.abstractions.nuspec"
       ]
     },
     "Microsoft.NETCore.Platforms/3.1.0": {
@@ -578,6 +646,19 @@
         "version.txt"
       ]
     },
+    "TeamCitySharp-forked-mavezeau/2.0.11": {
+      "sha512": "ZAHhREKG1KbuaWAnqVNPGArZkRQEXwaN4+fQLiQGiHEIQ5KcuhOPnzKg6FDkzeTokSjSexqoX+Cur7lvyhnraQ==",
+      "type": "package",
+      "path": "teamcitysharp-forked-mavezeau/2.0.11",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/TeamCitySharp.dll",
+        "lib/netstandard2.0/TeamCitySharp.dll",
+        "teamcitysharp-forked-mavezeau.2.0.11.nupkg.sha512",
+        "teamcitysharp-forked-mavezeau.nuspec"
+      ]
+    },
     "BuildMonitor.Common/1.0.0": {
       "type": "project",
       "path": "../BuildMonitor.Common/BuildMonitor.Common.csproj",
@@ -593,7 +674,8 @@
     ".NETCoreApp,Version=v3.1": [
       "Akka >= 1.4.6",
       "BuildMonitor.Common >= 1.0.0",
-      "BuildMonitor.Contracts >= 1.0.0"
+      "BuildMonitor.Contracts >= 1.0.0",
+      "TeamCitySharp-forked-mavezeau >= 2.0.11"
     ]
   },
   "packageFolders": {
@@ -647,6 +729,10 @@
           "Akka": {
             "target": "Package",
             "version": "[1.4.6, )"
+          },
+          "TeamCitySharp-forked-mavezeau": {
+            "target": "Package",
+            "version": "[2.0.11, )"
           }
         },
         "imports": [

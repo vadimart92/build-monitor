@@ -1,7 +1,9 @@
 D:\dev\GitHub\build-monitor\BuildMonitor.TeamCity\bin\Debug\netcoreapp3.1\BuildMonitor.TeamCity.deps.json
 D:\dev\GitHub\build-monitor\BuildMonitor.TeamCity\bin\Debug\netcoreapp3.1\BuildMonitor.TeamCity.dll
 D:\dev\GitHub\build-monitor\BuildMonitor.TeamCity\bin\Debug\netcoreapp3.1\BuildMonitor.TeamCity.pdb
+D:\dev\GitHub\build-monitor\BuildMonitor.TeamCity\bin\Debug\netcoreapp3.1\BuildMonitor.Common.dll
 D:\dev\GitHub\build-monitor\BuildMonitor.TeamCity\bin\Debug\netcoreapp3.1\BuildMonitor.Contracts.dll
+D:\dev\GitHub\build-monitor\BuildMonitor.TeamCity\bin\Debug\netcoreapp3.1\BuildMonitor.Common.pdb
 D:\dev\GitHub\build-monitor\BuildMonitor.TeamCity\bin\Debug\netcoreapp3.1\BuildMonitor.Contracts.pdb
 D:\dev\GitHub\build-monitor\BuildMonitor.TeamCity\obj\Debug\netcoreapp3.1\BuildMonitor.TeamCity.csprojAssemblyReference.cache
 D:\dev\GitHub\build-monitor\BuildMonitor.TeamCity\obj\Debug\netcoreapp3.1\BuildMonitor.TeamCity.AssemblyInfoInputs.cache
@@ -9,5 +11,3 @@ D:\dev\GitHub\build-monitor\BuildMonitor.TeamCity\obj\Debug\netcoreapp3.1\BuildM
 D:\dev\GitHub\build-monitor\BuildMonitor.TeamCity\obj\Debug\netcoreapp3.1\BuildMonitor.TeamCity.csproj.CopyComplete
 D:\dev\GitHub\build-monitor\BuildMonitor.TeamCity\obj\Debug\netcoreapp3.1\BuildMonitor.TeamCity.dll
 D:\dev\GitHub\build-monitor\BuildMonitor.TeamCity\obj\Debug\netcoreapp3.1\BuildMonitor.TeamCity.pdb
-D:\dev\GitHub\build-monitor\BuildMonitor.TeamCity\bin\Debug\netcoreapp3.1\BuildMonitor.Common.dll
-D:\dev\GitHub\build-monitor\BuildMonitor.TeamCity\bin\Debug\netcoreapp3.1\BuildMonitor.Common.pdb

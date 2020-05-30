@@ -27,7 +27,8 @@ namespace BuildMonitor
 				configuration.RootPath = "ClientApp/dist";
 			});
 			services.AddDbContext<ConfigDbContext>(builder =>
-				builder.UseSqlite(Configuration.GetConnectionString("ConfigDatabase")));
+				builder.UseSqlite(Configuration.GetConnectionString("ConfigDatabase"),
+					optionsBuilder => optionsBuilder.MigrationsAssembly("BuildMonitor")));
 			services.AddSignalR().AddNewtonsoftJsonProtocol();
 			services.AddActors();
 		}

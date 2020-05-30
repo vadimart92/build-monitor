@@ -3,6 +3,7 @@ using System;
 using BuildMonitor.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BuildMonitor.Migrations
 {
@@ -15,7 +16,7 @@ namespace BuildMonitor.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.3");
 
-            modelBuilder.Entity("BuildMonitor.Models.BuildServer", b =>
+            modelBuilder.Entity("BuildMonitor.Contracts.Models.BuildServer", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -32,10 +33,13 @@ namespace BuildMonitor.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.ToTable("BuildServers");
                 });
 
-            modelBuilder.Entity("BuildMonitor.Models.Profile", b =>
+            modelBuilder.Entity("BuildMonitor.Contracts.Models.Profile", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()

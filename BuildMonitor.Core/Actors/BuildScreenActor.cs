@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using Akka.Actor;
+using BuildMonitor.Common.Actors;
 using BuildMonitor.Contracts.Actors;
 using BuildMonitor.Contracts.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,10 +32,10 @@ namespace BuildMonitor.Core.Actors
 
 		private void Ready() {
 			Receive<ScreenDataRequest>(msg => {
-				Context.ActorOf(Props.Create(() => new Aggregator<BuildData, IActorRef>(_buildActors, Sender)))
-					.Tell(GetBuildData.Instance);
+				Context.ActorOf(Props.Create(() => new Aggregator<BuildInfoMessage, IActorRef>(_buildActors, Sender)))
+					.Tell(GetBuildInfoMessage.Instance);
 			});
-			Receive<AggregatorResponse<BuildData, IActorRef>>(msg => {
+			Receive<AggregatorResponse<BuildInfoMessage, IActorRef>>(msg => {
 				msg.Metadata.Tell(new Screen {
 					Id = Guid.NewGuid(),
 					Type = ScreenType.BuildStatus,

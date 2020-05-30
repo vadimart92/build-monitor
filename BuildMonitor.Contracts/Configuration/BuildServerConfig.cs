@@ -23,6 +23,8 @@ namespace BuildMonitor.Contracts.Configuration
 		public bool GuestLogin { get; set; }
 		public string Login { get; set; }
 		public string Password { get; set; }
+
+		public string AccessToken { get; set; }
 		public int CheckIntervalSeconds { get; set; }
 
 		[JsonConverter(typeof(StringEnumConverter<BuildServerType>))]

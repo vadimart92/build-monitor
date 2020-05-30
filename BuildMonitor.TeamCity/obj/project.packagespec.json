@@ -40,6 +40,10 @@
         "Akka": {
           "target": "Package",
           "version": "[1.4.6, )"
+        },
+        "TeamCitySharp-forked-mavezeau": {
+          "target": "Package",
+          "version": "[2.0.11, )"
         }
       },
       "imports": [

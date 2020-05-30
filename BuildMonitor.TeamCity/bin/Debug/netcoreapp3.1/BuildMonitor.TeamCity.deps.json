@@ -10,7 +10,8 @@
         "dependencies": {
           "Akka": "1.4.6",
           "BuildMonitor.Common": "1.0.0",
-          "BuildMonitor.Contracts": "1.0.0"
+          "BuildMonitor.Contracts": "1.0.0",
+          "TeamCitySharp-forked-mavezeau": "2.0.11"
         },
         "runtime": {
           "BuildMonitor.TeamCity.dll": {}
@@ -26,6 +27,25 @@
           "lib/netstandard2.0/Akka.dll": {
             "assemblyVersion": "1.4.6.0",
             "fileVersion": "1.4.6.0"
+          }
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection/3.1.4": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.4"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Microsoft.Extensions.DependencyInjection.dll": {
+            "assemblyVersion": "3.1.4.0",
+            "fileVersion": "3.100.420.21409"
+          }
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/3.1.4": {
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "assemblyVersion": "3.1.4.0",
+            "fileVersion": "3.100.420.21409"
           }
         }
       },
@@ -150,9 +170,21 @@
           }
         }
       },
+      "TeamCitySharp-forked-mavezeau/2.0.11": {
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/TeamCitySharp.dll": {
+            "assemblyVersion": "2.0.11.0",
+            "fileVersion": "2.0.11.0"
+          }
+        }
+      },
       "BuildMonitor.Common/1.0.0": {
         "dependencies": {
-          "BuildMonitor.Contracts": "1.0.0"
+          "BuildMonitor.Contracts": "1.0.0",
+          "Microsoft.Extensions.DependencyInjection": "3.1.4"
         },
         "runtime": {
           "BuildMonitor.Common.dll": {}
@@ -180,6 +212,20 @@
       "sha512": "sha512-0XEnuJshBEMjjZd82NqwAXBA+w0pY1KKetFuCZqdEaW2WqBoaeHbmZWEoO7qotZOXQAwmQzkfTXDPduo5oaPiA==",
       "path": "akka/1.4.6",
       "hashPath": "akka.1.4.6.nupkg.sha512"
+    },
+    "Microsoft.Extensions.DependencyInjection/3.1.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dAWhz6BEjUFIVLUPbT1s1sUrPTwbUWdw2iBRRe3ej3xXcKS+oo64dKrIWFxRjYP6TWyESpGFNY5NGeA5FcHVlg==",
+      "path": "microsoft.extensions.dependencyinjection/3.1.4",
+      "hashPath": "microsoft.extensions.dependencyinjection.3.1.4.nupkg.sha512"
+    },
+    "Microsoft.Extensions.DependencyInjection.Abstractions/3.1.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-AceHamXNKDMDwIoZqEoApLp8s3935wSC3VXrPaRWa0wWOaEcYdDlo1nWQ1zLiezoDmpJzV7FqDm53E0Ty/hEMg==",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/3.1.4",
+      "hashPath": "microsoft.extensions.dependencyinjection.abstractions.3.1.4.nupkg.sha512"
     },
     "Microsoft.NETCore.Platforms/3.1.0": {
       "type": "package",
@@ -257,6 +303,13 @@
       "sha512": "sha512-CeWTdRNfRaSh0pm2gDTJFwVaXfTq6Xwv/sA887iwPTneW7oMtMlpvDIO+U60+3GWTB7Aom6oQwv5VZVUhQRdPQ==",
       "path": "system.windows.extensions/4.7.0",
       "hashPath": "system.windows.extensions.4.7.0.nupkg.sha512"
+    },
+    "TeamCitySharp-forked-mavezeau/2.0.11": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ZAHhREKG1KbuaWAnqVNPGArZkRQEXwaN4+fQLiQGiHEIQ5KcuhOPnzKg6FDkzeTokSjSexqoX+Cur7lvyhnraQ==",
+      "path": "teamcitysharp-forked-mavezeau/2.0.11",
+      "hashPath": "teamcitysharp-forked-mavezeau.2.0.11.nupkg.sha512"
     },
     "BuildMonitor.Common/1.0.0": {
       "type": "project",

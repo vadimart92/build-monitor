@@ -8,7 +8,11 @@
           {
             "buildServer": "testServer",
             "config": {
-              "buildIds": ["coreUnitTest"]
+              "buildIds": [
+                "BuildMonitor_TestSuccess",
+                "BuildMonitor_TestRunning",
+                "BuildMonitor_TestFail"
+              ]
             }
           }
         ]
@@ -17,9 +21,12 @@
   },
   "buildServer": {
     "type": "teamCity",
-    "name": "teamcityPublic",
-    "url": "https://teamcity.jetbrains.com",
+    "name": "testServer",
+    "url": "http://localhost:8111",
     "guestLogin": true,
+    "login": "",
+    "password": "",
+    "accessToken": "",
     "checkIntervalSeconds": 30
   }
 }
