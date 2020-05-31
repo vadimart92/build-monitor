@@ -16,8 +16,8 @@ export class BuildInfo {
   public status: BuildStatus;
   public url: string;
   public startedBy: string;
-  public startedOn: Date;
-  public durationSeconds: number
+  public startedOn: string;
+  public completedOn: string;
 }
 
 export class TcBuildInfo extends BuildInfo{

@@ -34,11 +34,13 @@ namespace BuildMonitor.TeamCity
 				: "SUCCESS".Equals(build.Status, StringComparison.OrdinalIgnoreCase)
 				? BuildStatus.Success
 				: BuildStatus.Failed;
-			info.Name = build.BuildType.Name;
+			info.Name = string.IsNullOrWhiteSpace(build.BranchName)
+				? build.BuildType.Name
+				: $"{build.BuildType.Name}|{build.BranchName}";
 			info.Number = build.Number;
 			info.Status = status;
 			info.Url = build.WebUrl;
-			info.DurationSeconds = 1213;
+			info.CompletedOn = build.FinishDate;
 			info.ProjectName = build.BuildType.ProjectName;
 			info.StartedBy = build.Triggered.User.Username;
 			info.StartedOn = build.StartDate;

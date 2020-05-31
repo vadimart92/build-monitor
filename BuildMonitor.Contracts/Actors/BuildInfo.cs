@@ -12,6 +12,7 @@ namespace BuildMonitor.Contracts.Actors
 		public string Url { get; set; }
 		public string StartedBy { get; set; }
 		public DateTime StartedOn { get; set; }
-		public int DurationSeconds { get; set; }
+
+		public DateTime CompletedOn { get; set; }
 	}
 }
