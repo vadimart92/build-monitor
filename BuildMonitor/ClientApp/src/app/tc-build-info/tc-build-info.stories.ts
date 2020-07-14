@@ -1,6 +1,6 @@
 ﻿import { storiesOf, moduleMetadata } from '@storybook/angular';
 import { TcBuildInfoComponent } from './tc-build-info.component';
-import {BuildStatus, Change, User} from "../data-contracts";
+import {BuildStatus, Change, TcBuildInfo, User} from "../data-contracts";
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
@@ -25,15 +25,21 @@ storiesOf('TC build info', module)
   .add('Failed', () => ({
     component: TcBuildInfoComponent,
     props: {
-      buildInfo: {
+      buildInfo: <TcBuildInfo>{
         id: "ApiTests|4189",
         name: "API Tests|trunk",
         projectName: "Continuous Integration / API Tests",
         number: "4189",
         status: BuildStatus.Failed,
+        statusText: "OK",
         url: "http://tsbuild-app-03/viewLog.html?buildId=3245558&buildTypeId=ApiTests",
+        startedBy: "subversion",
+        startedOn: new Date().toString(),
+        completedOn: new Date().toString(),
         changes: [
-          <Change>{author: <User>{name: "v.artemchuk", avatarImage: ""}}
+          <Change>{author: <User>{name: "v.artemchuk", avatarImage: ""}},
+          <Change>{author: <User>{name: "ciadmin", avatarImage: ""}},
+          <Change>{author: <User>{name: "bpmbuild", avatarImage: ""}}
         ]
       }
     }
@@ -41,7 +47,7 @@ storiesOf('TC build info', module)
   .add('Success', () => ({
     component: TcBuildInfoComponent,
     props: {
-      buildInfo: {
+      buildInfo: <TcBuildInfo>{
         id: "testServer_buildmonitor_testfail_22a57c28-203f-440d-b028-bf15229cf999",
         name: "API Tests|trunk",
         number: "4189",

@@ -1,10 +1,9 @@
 import {Injectable, NgZone} from '@angular/core';
 import {
   BuildInfo, BuildScreenData,
-  BuildStatus, ProfileInfo,
+  ProfileInfo,
   Screen,
-  ScreenType,
-  TcBuildInfo
+  ScreenType
 } from "../data-contracts";
 import {from, Observable, Subject} from "rxjs";
 import * as signalR from "@microsoft/signalr";
@@ -92,16 +91,5 @@ export class ProfileInfoService {
         })
       ]
     };
-  }
-  refresh(){
-    const info = new TcBuildInfo();
-    info.id = "xxxx";
-    info.name = "xxxx";
-    info.number = "xxxx";
-    info.status = BuildStatus.Failed
-    Object.keys(this.buildInfoSubjects).forEach(id => {
-      const subject = this.buildInfoSubjects[id];
-      this.zone.run(() => subject.next(info));
-    });
   }
 }

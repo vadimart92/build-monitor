@@ -64,7 +64,21 @@ storiesOf('Build screen', module)
                   <Change>{author: <User>{name: "v.artemchuk", avatarImage: ""}}
                 ]
               })
-            })
+            }),
+            <BuildData>({
+              viewType: BuildViewType.TeamCity,
+              config: <TcBuildInfo>({
+                id: "ApiTests|4189",
+                name: "API Tests|trunk",
+                projectName: "Continuous Integration / API Tests",
+                number: "4189",
+                status: BuildStatus.Failed,
+                url: "http://tsbuild-app-03/viewLog.html?buildId=3245558&buildTypeId=ApiTests",
+                changes: [
+                  <Change>{author: <User>{name: "v.artemchuk", avatarImage: ""}}
+                ]
+              })
+            }),
           ]
         }
       })

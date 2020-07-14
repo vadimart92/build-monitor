@@ -1,11 +1,8 @@
-<mat-card  [ngClass]="getStatusClass()" class="mat-elevation-z4 exo2">
+<mat-card  [ngClass]="getStatusClass()" class="mat-elevation-z4 exo2 build-card" (click)="openBuildPage()">
   <mat-card-content>
-    <div class="project-name">{{buildInfo.projectName}}</div>
-    <div class="status-icon" [ngSwitch]="buildInfo.status" (click)="openBuildPage()">
-      <b *ngSwitchCase="buildStatus.Failed">FAIL</b>
-      <b *ngSwitchCase="buildStatus.Success">OK</b>
-    </div>
     <div class="build-name">{{buildInfo.name}}</div>
+    <div class="project-name">{{buildInfo.projectName}}</div>
+    <div class="separator"></div>
     <div class="build-startedBy">{{buildInfo.startedBy}}</div>
     <div class="build-startedBy">{{buildInfo.statusText}}</div>
     <div class="build-startedBy">{{buildInfo.number}}</div>
