@@ -358,3 +358,10 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/**/obj/
+/BuildMonitor.Contracts/obj
+/BuildMonitor.TeamCity/obj
+/BuildMonitor.Core.Tests/bin
+/BuildMonitor.Core.Tests/obj
+/BuildMonitor.Core/obj
+/BuildMonitor.Core/bin
