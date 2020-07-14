@@ -7,28 +7,40 @@ using TeamCitySharp;
 
 namespace BuildMonitor.TeamCity
 {
-	class TeamCityBuildActor : ReceiveActor
+	using System.Linq;
+	using TeamCitySharp.Locators;
+	using BuildStatus = BuildMonitor.Contracts.Actors.BuildStatus;
+
+	public class TeamCityBuildActor : ReceiveActor
 	{
 		private readonly TeamcityBuildServerConfig _buildServerConfig;
 		private readonly string _buildTypeId;
 		private readonly IActorRef _notifier;
 
 		private readonly TeamCityBuildInfo _currentBuildInfo;
-		public TeamCityBuildActor(TeamcityBuildServerConfig buildServerConfig, string buildTypeId) {
+		public TeamCityBuildActor(TeamcityBuildServerConfig buildServerConfig, string buildTypeId, IActorRef notifier) {
 			var buildInfoId = $"{buildServerConfig.Name}_{buildTypeId}_{Guid.NewGuid()}";
 			_currentBuildInfo = TeamCityBuildInfo.Empty(buildInfoId);
 			_buildServerConfig = buildServerConfig;
 			_buildTypeId = buildTypeId;
-			Receive<GetBuildInfoMessage>(msg => SendBuildInfoMessage(Sender));
+			Receive<GetBuildInfoMessage>(msg => SendBuildInfoMessage());
 			Receive<Refresh>(RefreshInfo);
 			Self.Tell(Refresh.Instance);
-			_notifier = Context.GetActors().ProfileNotifier;
+			_notifier = notifier;
+		}
+
+		public TeamCityBuildActor(TeamcityBuildServerConfig buildServerConfig, string buildTypeId)
+			: this(buildServerConfig, buildTypeId, Context.GetActors().ProfileNotifier) {
 		}
 
 		private void RefreshInfo(Refresh msg) {
 			var info = _currentBuildInfo;
 			var client = Connect();
-			var lastBuild = client.Builds.LastBuildByBuildConfigId(_buildTypeId);
+			var builds = client.Builds.ByBuildLocator(
+				BuildLocator.WithDimensions(
+					BuildTypeLocator.WithId(_buildTypeId), sinceDate:DateTime.Today.AddDays(-4), branch:"trunk"));
+
+			var lastBuild = builds.Last();
 			var build = client.Builds.ById(lastBuild.Id);
 			var status = build.Running ? BuildStatus.Running
 				: "SUCCESS".Equals(build.Status, StringComparison.OrdinalIgnoreCase)
@@ -45,12 +57,12 @@ namespace BuildMonitor.TeamCity
 			info.StartedBy = build.Triggered.User.Username;
 			info.StartedOn = build.StartDate;
 			info.StatusText = build.StatusText;
-			SendBuildInfoMessage(_notifier);
+			SendBuildInfoMessage();
 		}
 
 		private TeamCityClient Connect() {
 			var url = new Uri(_buildServerConfig.Url);
-			var host = $"{url.Host}:{url.Port}";
+			var host = url.IsDefaultPort ? url.Host : $"{url.Host}:{url.Port}";
 			var client = new TeamCityClient(host);
 			if (_buildServerConfig.GuestLogin) {
 				client.ConnectAsGuest();
@@ -62,8 +74,8 @@ namespace BuildMonitor.TeamCity
 			return client;
 		}
 
-		private void SendBuildInfoMessage(IActorRef target) {
-			target.Tell(new BuildInfoMessage {
+		private void SendBuildInfoMessage() {
+			_notifier.Tell(new BuildInfoMessage {
 				ViewType = BuildViewType.TeamCity,
 				Config = _currentBuildInfo
 			});
