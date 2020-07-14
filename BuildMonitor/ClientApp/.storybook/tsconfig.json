@@ -11,6 +11,7 @@
   ],
   "compilerOptions": {
     "resolveJsonModule": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
   }
 }
