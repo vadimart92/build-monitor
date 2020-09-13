@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {TcBuildInfo} from "../data-contracts";
-import {BaseBuildInfoComponent} from "../base-build-info/base-build-info.component";
-import {ProfileInfoService} from "../data-services/profile-info.service";
+import {TcBuildInfo} from '../data-contracts';
+import {BaseBuildInfoComponent} from '../base-build-info/base-build-info.component';
+import {ProfileInfoService} from '../data-services/profile-info.service';
 
 @Component({
   selector: 'app-tc-build-info',
@@ -15,7 +15,7 @@ export class TcBuildInfoComponent extends BaseBuildInfoComponent<TcBuildInfo> im
   }
 
   ngOnInit(): void {
-    super.ngOnInit()
+    super.ngOnInit();
   }
 
 }
