@@ -4,7 +4,9 @@
     <div class="project-name">{{buildInfo.projectName}}</div>
     <div class="build-id">{{buildInfo.number}}</div>
     <div class="separator"></div>
-   <!-- <div class="build-startedBy">{{buildInfo.startedBy}}</div>
+    <app-build-date-info [startDate]="buildInfo.startedOn" [endDate]="buildInfo.completedOn"></app-build-date-info>
+    <div class="build-date-info">{{buildInfo.startedBy}}</div>
+   <!--
     <div class="build-startedBy">{{buildInfo.statusText}}</div>
     <div class="build-startedBy">{{buildInfo.number}}</div>-->
   </mat-card-content>

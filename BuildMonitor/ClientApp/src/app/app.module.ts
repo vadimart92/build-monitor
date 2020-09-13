@@ -11,8 +11,8 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BuildScreenComponent } from './build-screen/build-screen.component';
 import { TcBuildInfoComponent } from './tc-build-info/tc-build-info.component';
-import {ScreenListComponent} from "./screen-list/screen-list.component";
-import {MatCardModule} from "@angular/material/card";
+import {ScreenListComponent} from './screen-list/screen-list.component';
+import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
@@ -33,8 +33,9 @@ import { ProfileListComponent } from './profile-list/profile-list.component';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import { BuildServerListComponent } from './build-server-list/build-server-list.component';
 import { BuildServerEditComponent } from './build-server-edit/build-server-edit.component';
-import {UIUtils} from "./uiutils";
+import {UIUtils} from './uiutils';
 import { BaseBuildInfoComponent } from './base-build-info/base-build-info.component';
+import { BuildDateInfoComponent } from './build-date-info/build-date-info.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { BaseBuildInfoComponent } from './base-build-info/base-build-info.compon
     ProfileEditComponent,
     BuildServerListComponent,
     BuildServerEditComponent,
-    BaseBuildInfoComponent
+    BaseBuildInfoComponent,
+    BuildDateInfoComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),

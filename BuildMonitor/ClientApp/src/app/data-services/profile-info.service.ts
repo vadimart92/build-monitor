@@ -28,7 +28,10 @@ export class ProfileInfoService {
      const info = buildInfo.config;
      console.debug(`buildInfoReady ${info.id}`);
      const subject = this._getOrCreateBuildInfoSubject<BuildInfo>(info.id);
-      this.zone.run(() => subject.next(info));
+     debugger;
+     info.startedOn = new Date(info.startedOn);
+     info.completedOn = new Date(info.completedOn);
+     this.zone.run(() => subject.next(info));
    });
     this._connectionOpen = this.hubConnection.start();
   }

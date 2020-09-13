@@ -1,6 +1,6 @@
 ﻿export class BuildData {
-  public viewType: BuildViewType
-  public config: BuildInfo
+  public viewType: BuildViewType;
+  public config: BuildInfo;
 }
 export enum BuildStatus {
   Undefined,
@@ -9,50 +9,51 @@ export enum BuildStatus {
   Failed
 }
 export class BuildInfo {
-  //profile name + screen number + build number
+  // profile name + screen number + build number
   public id: string;
   public name: string;
   public number: string;
   public status: BuildStatus;
   public url: string;
   public startedBy: string;
-  public startedOn: string;
-  public completedOn: string;
+  public startedOn: Date;
+  public completedOn: Date;
 }
 
-export class TcBuildInfo extends BuildInfo{
-  public changes: Change[]
-  public projectName: string
+export class TcBuildInfo extends BuildInfo {
+  public changes: Change[];
+  public projectName: string;
   public statusText: string;
 }
 export interface IScreenData {}
-export class BuildScreenData implements IScreenData{
-  public builds: BuildData[]
+
+export class BuildScreenData implements IScreenData {
+  public builds: BuildData[];
 }
 export class User {
-  public name: string
-  public avatarImage: string
+  public name: string;
+  public avatarImage: string;
   getAvatarImage() {
-    return "https://secure.gravatar.com/avatar/e0d74fa45947023e43e5846320951c59?d=mm&s=48"
+    return 'https://secure.gravatar.com/avatar/e0d74fa45947023e43e5846320951c59?d=mm&s=48';
   }
 }
 export class Change {
   public message: string;
-  public author: User
+  public author: User;
 }
 
 export enum ScreenType {
   BuildInfo
 }
 export class ProfileInfo {
-  public screens: Screen[]
+  public screens: Screen[];
   public description: string;
 }
 export class Screen {
-  //profile name + screen number
+  // profile name + screen number
   public id: string;
-  public type: ScreenType
-  public data: IScreenData
+  public type: ScreenType;
+  public data: IScreenData;
 }
 
 export class BaseConfigItem {
@@ -63,14 +64,14 @@ export class BaseConfigItem {
 }
 
 export class Profile extends BaseConfigItem {
-  public: boolean
+  public: boolean;
 }
 
 export class BuildServer extends BaseConfigItem {
 }
 export enum BuildServerType {
-  TeamCity = "teamCity",
-  Jenkins = "jenkins"
+  TeamCity = 'teamCity',
+  Jenkins = 'jenkins'
 }
 export enum BuildViewType {
   Unknown,

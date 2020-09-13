@@ -25,7 +25,7 @@ namespace BuildMonitor.TeamCity
 			_buildTypeId = buildTypeId;
 			Receive<GetBuildInfoMessage>(msg => SendBuildInfoMessage());
 			Receive<Refresh>(RefreshInfo);
-			Self.Tell(Refresh.Instance);
+			Self.Tell(Refresh.Instance, _notifier);
 			_notifier = notifier;
 		}
 
@@ -38,9 +38,12 @@ namespace BuildMonitor.TeamCity
 			var client = Connect();
 			var builds = client.Builds.ByBuildLocator(
 				BuildLocator.WithDimensions(
-					BuildTypeLocator.WithId(_buildTypeId), sinceDate:DateTime.Today.AddDays(-4), branch:"trunk"));
+					BuildTypeLocator.WithId(_buildTypeId), sinceDate:DateTime.Today.AddDays(-4)));//, branch:"trunk"
 
-			var lastBuild = builds.Last();
+			var lastBuild = builds.LastOrDefault();
+			if (lastBuild == null) {
+				// todo create info "builds not found"
+			}
 			var build = client.Builds.ById(lastBuild.Id);
 			var status = build.Running ? BuildStatus.Running
 				: "SUCCESS".Equals(build.Status, StringComparison.OrdinalIgnoreCase)
@@ -75,7 +78,7 @@ namespace BuildMonitor.TeamCity
 		}
 
 		private void SendBuildInfoMessage() {
-			_notifier.Tell(new BuildInfoMessage {
+			Sender.Tell(new BuildInfoMessage {
 				ViewType = BuildViewType.TeamCity,
 				Config = _currentBuildInfo
 			});
