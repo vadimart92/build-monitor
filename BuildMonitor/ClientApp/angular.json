@@ -22,10 +22,13 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/assets",
-              {
-                "glob": "**/*",
+              { "glob": "**/*",
                 "input": "node_modules/ngx-monaco-editor/assets/monaco",
-                "output": "/assets/monaco/"
+                "output": "./assets/monaco/"
+              },
+              { "glob": "**/*",
+                "input": "node_modules/monaco-editor/min-maps",
+                "output": "./assets/min-maps/"
               },
               {
                 "glob": "**/*",
