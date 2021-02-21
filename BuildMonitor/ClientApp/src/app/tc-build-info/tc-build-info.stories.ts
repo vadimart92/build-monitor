@@ -1,4 +1,5 @@
 ﻿import { storiesOf, moduleMetadata } from '@storybook/angular';
+import {BuildDateInfoComponent} from '../build-date-info/build-date-info.component';
 import { TcBuildInfoComponent } from './tc-build-info.component';
 import {BuildStatus, Change, TcBuildInfo, User} from '../data-contracts';
 import {MatCardModule} from '@angular/material/card';
@@ -10,6 +11,7 @@ import {from} from 'rxjs';
 storiesOf('TC build info', module)
   .addDecorator(
     moduleMetadata({
+      declarations: [BuildDateInfoComponent],
       imports: [MatCardModule, MatButtonModule, MatIconModule],
       providers: [
         {

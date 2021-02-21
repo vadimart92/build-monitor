@@ -9,6 +9,7 @@ export class BuildDateInfoComponent implements OnInit {
 
   @Input() startDate: Date;
   @Input() endDate: Date;
+  dateFormat = 'dd.MM HH:mm';
   constructor() { }
 
   ngOnInit(): void {

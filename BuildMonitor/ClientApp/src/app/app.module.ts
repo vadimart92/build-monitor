@@ -45,13 +45,13 @@ import { BuildDateInfoComponent } from './build-date-info/build-date-info.compon
     FetchDataComponent,
     ScreenListComponent,
     BuildScreenComponent,
+    BuildDateInfoComponent,
     TcBuildInfoComponent,
     ProfileListComponent,
     ProfileEditComponent,
     BuildServerListComponent,
     BuildServerEditComponent,
-    BaseBuildInfoComponent,
-    BuildDateInfoComponent
+    BaseBuildInfoComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
