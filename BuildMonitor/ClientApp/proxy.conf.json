@@ -2,5 +2,11 @@
   "/api": {
     "target": "http://localhost:5000",
     "secure": false
+  },
+  "/signalR": {
+    "target": "http://localhost:5000",
+    "pathRewrite": { "^/signalR": "" },
+    "ws": true,
+    "secure": false
   }
 }

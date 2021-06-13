@@ -9,17 +9,15 @@ import {
 import {from, Observable, Subject} from 'rxjs';
 import * as signalR from '@microsoft/signalr';
 import {SampleBuilds} from '../samples/sample-builds';
+import {SignalRService} from '../shared/signalR/signalR-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileInfoService {
-  constructor(private zone: NgZone) {
+  constructor(private zone: NgZone, private signalRService: SignalRService) {
     (<any>window).BuildInfoService = this;
-    this.hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl('/profile')
-      .withAutomaticReconnect()
-      .build();
+    this.hubConnection = this.signalRService.buildHubConnection('profile');
     this.hubConnection.on('profileDataReady', (profileName, profileData) => {
       const subject = this._getOrCreateProfileSubject(profileName);
       const screens = profileData || this._openProfile(profileName);
