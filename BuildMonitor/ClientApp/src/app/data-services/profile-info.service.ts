@@ -1,13 +1,14 @@
 import {Injectable, NgZone} from '@angular/core';
 import {
-  BuildInfo, BuildScreenData,
+  BuildInfo,
+  BuildScreenData,
   ProfileInfo,
   Screen,
   ScreenType
 } from '../data-contracts';
 import {from, Observable, Subject} from 'rxjs';
 import * as signalR from '@microsoft/signalr';
-import * as data from '../sampleData.json';
+import {SampleBuilds} from '../samples/sample-builds';
 
 @Injectable({
   providedIn: 'root'
@@ -89,7 +90,7 @@ export class ProfileInfoService {
           id: 'id1',
           type: ScreenType.BuildInfo,
           data: <BuildScreenData> {
-            builds: <any>data.builds
+            builds: <any>SampleBuilds
           }
         })
       ]

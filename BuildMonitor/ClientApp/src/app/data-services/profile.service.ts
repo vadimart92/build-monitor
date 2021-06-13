@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {BaseCrudService} from "./base-crud.service";
-import {Profile} from "../data-contracts";
-import {HttpClient} from "@angular/common/http";
-import * as samples from "../samples.json";
+import {BaseCrudService} from './base-crud.service';
+import {Profile} from '../data-contracts';
+import {HttpClient} from '@angular/common/http';
+import {SampleProfile} from '../samples/sample-profile';
 
 @Injectable({
   providedIn: 'root'
@@ -10,14 +10,14 @@ import * as samples from "../samples.json";
 export class ProfileService extends BaseCrudService<Profile> {
 
   constructor(protected http: HttpClient) {
-    super(http, "Profiles");
+    super(http, 'Profiles');
   }
 
-  createSample():Profile {
+  createSample(): Profile {
     return <Profile>{
-      name: "sample",
-      description: "desc",
-      config: samples.profile
+      name: 'sample',
+      description: 'desc',
+      config: SampleProfile
     };
   }
 

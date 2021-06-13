@@ -1,25 +1,25 @@
 ﻿import { storiesOf, moduleMetadata } from '@storybook/angular';
-import {MatCardModule} from "@angular/material/card";
+import {MatCardModule} from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
-import {MatButtonModule} from "@angular/material/button";
-import {MatIconModule} from "@angular/material/icon";
-import {RouterTestingModule} from "@angular/router/testing";
-import {ActivatedRoute, convertToParamMap} from "@angular/router";
-import {MatInputModule} from "@angular/material/input";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import {MonacoEditorModule} from "ngx-monaco-editor";
-import {BuildServerEditComponent} from "./build-server-edit.component";
-import {UIUtils} from "../uiutils";
-import {BuildServer} from "../data-contracts";
-import * as samples from "../samples.json";
-import {BuildServerService} from "../data-services/build-server.service";
-import {MatSnackBarModule} from "@angular/material/snack-bar";
-import {from} from "rxjs";
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {RouterTestingModule} from '@angular/router/testing';
+import {ActivatedRoute, convertToParamMap} from '@angular/router';
+import {MatInputModule} from '@angular/material/input';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MonacoEditorModule} from 'ngx-monaco-editor';
+import {BuildServerEditComponent} from './build-server-edit.component';
+import {UIUtils} from '../uiutils';
+import {BuildServer} from '../data-contracts';
+import {BuildServerService} from '../data-services/build-server.service';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {from} from 'rxjs';
+import {SampleBuildServer} from '../samples/sample-build-server';
 
 const router = RouterTestingModule.withRoutes(
   [{path: '**', component: BuildServerEditComponent}]
-)
+);
 
 storiesOf('Build server edit component', module)
   .addDecorator(
@@ -31,10 +31,10 @@ storiesOf('Build server edit component', module)
         {
           provide: BuildServerService,
           useValue: {
-            get: ()=> from([<BuildServer>{description: "test desc", config: samples.buildServer}]),
+            get: () => from([<BuildServer>{description: 'test desc', config: SampleBuildServer}]),
             createSample: () => <BuildServer> {
-              description: "new desc",
-              config: samples.buildServer
+              description: 'new desc',
+              config: SampleBuildServer
             }
           }
         },
@@ -64,7 +64,7 @@ storiesOf('Build server edit component', module)
       providers: [
         {
           provide: ActivatedRoute,
-          useValue: {snapshot: {paramMap: convertToParamMap({mode: 'edit', name: "test"})}}
+          useValue: {snapshot: {paramMap: convertToParamMap({mode: 'edit', name: 'test'})}}
         }
       ]
     }
