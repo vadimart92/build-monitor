@@ -29,6 +29,7 @@
     "@microsoft/signalr": "^5.0.7",
     "aspnet-prerendering": "^3.0.1",
     "core-js": "^3.14.0",
+    "monaco-editor": "^0.25.0",
     "monaco-yaml": "^2.5.1",
     "ngx-monaco-editor": "12.0.0",
     "oidc-client": "^1.11.5",
