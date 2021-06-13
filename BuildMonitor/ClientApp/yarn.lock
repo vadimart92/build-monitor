@@ -8963,10 +8963,12 @@ nested-error-stacks@^2.0.0, nested-error-stacks@^2.1.0:
   resolved "https://registry.yarnpkg.com/nested-error-stacks/-/nested-error-stacks-2.1.0.tgz#0fbdcf3e13fe4994781280524f8b96b0cdff9c61"
   integrity sha512-AO81vsIO1k1sM4Zrd6Hu7regmJN1NSiAja10gc4bX3F0wd+9rQmcuHQaHVQCYIEC8iFXnE+mavh23GOt7wBgug==
 
-ngx-monaco-editor@9.0.0:
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/ngx-monaco-editor/-/ngx-monaco-editor-9.0.0.tgz#bb69784606f549e369cee3f483ecf26bab2fcc97"
-  integrity sha512-fPXT3M8W920Vs0KPMX6iA7GJYjBRnl9naug9A7D2inPPzxQGtgPZrSEatIPf37a6ir9Ts+8fwt1bTkFzfTgIpQ==
+ngx-monaco-editor@12.0.0:
+  version "12.0.0"
+  resolved "https://registry.yarnpkg.com/ngx-monaco-editor/-/ngx-monaco-editor-12.0.0.tgz#060b46d764df68319826e3664358cf1529c5ca11"
+  integrity sha512-/HXTILVwWvrk4OkT1p88nb+PGEqlecQot2VMTdSLbVW7A24fNZpDAF6tNR4Bp3V/abZjShDK8LfsqLePA0tPmw==
+  dependencies:
+    tslib "^2.1.0"
 
 nice-try@^1.0.4:
   version "1.0.5"
