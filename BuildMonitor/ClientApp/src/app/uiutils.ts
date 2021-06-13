@@ -1,12 +1,12 @@
-import {BaseConfigItem, BuildServer} from "./data-contracts";
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
+import { BaseConfigItem, BuildServer } from './data-contracts';
 
 @Injectable()
 export class UIUtils {
-  getConfigText(configItem: BaseConfigItem){
+  getConfigText(configItem: BaseConfigItem) {
     return JSON.stringify(configItem.config, null, 4);
   }
-  setConfig(configItem: BaseConfigItem, text: string){
+  setConfig(configItem: BaseConfigItem, text: string) {
     configItem.config = JSON.parse(text);
   }
 

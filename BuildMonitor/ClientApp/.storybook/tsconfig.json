@@ -1,5 +1,10 @@
-﻿{
-  "extends": "../tsconfig.json",
+{
+  "extends": "../src/tsconfig.app.json",
+  "compilerOptions": {
+    "types": [
+      "node"
+    ]
+  },
   "exclude": [
     "../src/test.ts",
     "../src/**/*.spec.ts",
@@ -9,9 +14,7 @@
     "../src/**/*",
     "../projects/**/*"
   ],
-  "compilerOptions": {
-    "resolveJsonModule": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true
-  }
+  "files": [
+    "./typings.d.ts"
+  ]
 }

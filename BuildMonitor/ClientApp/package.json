@@ -9,7 +9,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "storybook": "start-storybook"
+    "storybook": "yarn docs:json && start-storybook -p 6006",
+    "docs:json": "compodoc -p ./tsconfig.json -e json -d .",
+    "build-storybook": "yarn docs:json && build-storybook"
   },
   "private": true,
   "dependencies": {
@@ -36,7 +38,6 @@
     "popper.js": "^1.16.1",
     "rxjs": "^7.1.0",
     "tslib": "^2.3.0",
-    "yarn-upgrade-all": "^0.5.4",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
@@ -45,7 +46,13 @@
     "@angular/compiler-cli": "^12.0.4",
     "@angular/language-service": "^12.0.4",
     "@babel/core": "^7.14.5",
+    "@compodoc/compodoc": "^1.1.11",
+    "@storybook/addon-actions": "^6.2.9",
+    "@storybook/addon-essentials": "^6.2.9",
+    "@storybook/addon-links": "^6.2.9",
     "@storybook/angular": "^6.2.9",
+    "@storybook/builder-webpack5": "^6.2.9",
+    "@storybook/manager-webpack5": "^6.3.0-rc.4",
     "@types/jasmine": "^3.7.7",
     "@types/jasminewd2": "^2.0.9",
     "@types/node": "^15.12.2",
@@ -60,7 +67,8 @@
     "karma-jasmine-html-reporter": "^1.6.0",
     "prettier": "2.3.1",
     "prettier-plugin-organize-imports": "^2.1.0",
-    "typescript": "^4.2.4"
+    "typescript": "^4.2.4",
+    "yarn-upgrade-all": "^0.5.4"
   },
   "optionalDependencies": {
     "protractor": "~7.0.0",
